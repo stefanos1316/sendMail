@@ -47,16 +47,18 @@ Stereo equipped with [Nvidia RTX 2080 Ti](https://lambdalabs.com/blog/2080-ti-de
 # Frameworks
 Here we have to choose 4-5 since it is going to take too much time
 to train the models.
-I think we can use [GitHub stars](https://github.com/search?o=desc&p=1&q=Machine+Learning&s=stars&type=Repositories&utf8=%E2%9C%93)
+I think we can use [GitHub stars](https://github.com/aymericdamien/TopDeepLearning)
 to select the TOP 4-5 frameworks.
+By executing the python2.7 scripts/generate_stats.py you can get a list with the top starred
+deep learning projects on GitHub
 However, if you have another opinion please share.
 
 Top GitHub frameworks for Machine Learning:
 * Tensorflow
-* Scikit-learning
-* onnx
-*  
-
+* Keras
+* opencv
+* PyTorch
+* Bert
 
 # Supervised Algorithms
 There are two categories of machine learning algorithms
@@ -75,8 +77,9 @@ An example of task is the Spam filter detection for emails
 were we feed our model/nueral network with a number of
 data to train it and then we can pass inputs to predict
 the result.
-I do not think we should have more that five tasks
-for this step.
+We should also consider having small, medium,
+and large tasks.
+For instance, recognize an image can be a small task.
 
 
 # References
