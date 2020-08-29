@@ -1,4 +1,4 @@
-# machine_learning_algorithms_analysis
+# machine_learning_frameworks_analysis
 Here we store everything related to the "An analysis on the energy and run-time performance of machine learning frameworks".
 Below there are some points that we could fill in in order to help us in this research
 
