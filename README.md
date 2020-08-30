@@ -1,14 +1,17 @@
 # machine_learning_frameworks_analysis
 Here we store everything related to the "An analysis on the energy and run-time performance of machine learning frameworks".
-Below there are some points that we could fill in in order to help us in this research
+Below there are some points that we could fill in in order to help us in this research.
 
 
 # Motivation
 According to [1] the energy needed to train AI is now rising seven times
 faster than ever before.
-Therefore, selecting the proper algorithms to train and infer results
+Therefore, selecting the proper algorithms to train and predict
 could significantly reduce the monetary and environmental
 impact of the IT sector.
+Such a choice is even more paramount since the data-sets
+are always increasing and more training is required to
+precisely predict.
 
 
 # Related Work
@@ -24,8 +27,8 @@ to facilitate the design of energy efficient deep learning solutions.
 # Research Questions
 * What are the energy and run-time performance implications
 of different Machine Learning algorithms?---Here we are trying
-to investigate the overall performance of different algorithms.
-Since we will use different frameworks
+to investigate the overall performance of different algorithms
+to find out which are the most energy- and run-time performance-efficient ones.
 * What are the energy and run-time performance implications
 of the selected Machine Learning frameworks?---Here we are
 going to examine two different sub-research questions
@@ -34,15 +37,17 @@ of each different steps.
 	* Performance implications of the Training
 	* Performance implications of the Prediction
 * How much can the hyperparameter tuning affect the energy and run-time performance
-of the correspodning Machine Learning Frameworks?
+of the correspondning Machine Learning Frameworks?---Here we are going
+to examine a number of tunable hyperparameters to find their
+energy and run-time performance implications.
 * Are specific machine learning algorithms more energy
 and run-time performance efficient for specific tasks?---Here
-we are examining wheter the are algorithms, among the selected
+we are examining whether the are algorithms, among the selected
 ML frameworks, that perform better for particular tasks than others.
 
 
 # Copmuter Platform
-Stereo equipped with [Nvidia RTX 2080 Ti](https://lambdalabs.com/blog/2080-ti-deep-learning-benchmarks/). 
+[Stereo](https://www.dell.com/downloads/global/products/pedge/t320_spec_sheet.pdf) equipped with [Nvidia RTX 2080 Ti](https://lambdalabs.com/blog/2080-ti-deep-learning-benchmarks/). 
 
 # Frameworks
 Here we have to choose 4-5 since it is going to take too much time
