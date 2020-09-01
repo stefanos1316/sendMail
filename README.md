@@ -75,16 +75,8 @@ However, we need to find a method on how to select the best candidates.
 
 
 # Tasks
-This is a challenging step!
-Why should find out and implemented the same tasks for
-each of the framworks that we are going to use.
-An example of task is the Spam filter detection for emails
-were we feed our model/nueral network with a number of
-data to train it and then we can pass inputs to predict
-the result.
-We should also consider having small, medium,
-and large tasks.
-For instance, recognize an image can be a small task.
+An idea is to search among the MSR data-set papers and select that candidate tasks
+for deep learning based on the available and well-documented ones.
 
 
 # References
