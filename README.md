@@ -16,9 +16,9 @@ precisely predict.
 
 # Related Work
 [2] discusses methods on how to obtain energy measurements correctly
-from a machine learning algorithms.
+from a machine learning algorithm.
 [3] investigates the energy requirements of CNN and compares
-the energy/accurasy. Moreover, it provides a detailed workload characterization
+its energy/accurasy. Moreover, it provides a detailed workload characterization
 to facilitate the design of energy efficient deep learning solutions.
 [4]
 
