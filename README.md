@@ -25,25 +25,21 @@ to facilitate the design of energy efficient deep learning solutions.
 
 
 # Research Questions
-* What are the energy and run-time performance implications
-of different Machine Learning algorithms?---Here we are trying
-to investigate the overall performance of different algorithms
-to find out which are the most energy- and run-time performance-efficient ones.
-* What are the energy and run-time performance implications
-of the selected Machine Learning frameworks?---Here we are
-going to examine two different sub-research questions
-in order to identify the performance implications
-of each different steps.
+* Which are the most energy- and run-time performance-efficient
+machine learning frameworks?---Here we investigate the overall
+performance of the selected ML framework by examining
+the following steps:
 	* Performance implications of the Training
 	* Performance implications of the Prediction
-* How much can the hyperparameter tuning affect the energy and run-time performance
-of the correspondning Machine Learning Frameworks?---Here we are going
+* How much can the hyperparameter tuning affect the energy
+and run-time performance of the correspondning
+Machine Learning Frameworks?---Here we are going
 to examine a number of tunable hyperparameters to find their
 energy and run-time performance implications.
-* Are specific machine learning algorithms more energy
-and run-time performance efficient for specific tasks?---Here
-we are examining whether the are algorithms, among the selected
-ML frameworks, that perform better for particular tasks than others.
+* Which machine learning algorithms more energy
+and run-time performance-efficient for the selected tasks tasks?---Here
+we try to find out which ML algorithms, among the selected
+ML frameworks, perform better for particular tasks.
 
 
 # Copmuter Platform
