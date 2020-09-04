@@ -27,7 +27,7 @@ None related study was found for this conference.
 None related study was found for this conference.
 
 [ACL](https://www.aclweb.org/portal/acl)
-None related study was found for this conference
+* [Energy and Policy Considerations for Deep Learning in NLP](https://arxiv.org/abs/1906.02243)
 
 [AAAI](https://aaai.org/Library/conferences-library.php)
 None related study was found for this conference.
