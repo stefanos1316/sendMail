@@ -15,8 +15,25 @@ precisely predict.
 
 
 # Related Work
-Works done in the past two years from top-tier ML conferences:
+Works done in the past two years (2018 and 2019) from top-tier ML conferences:
 
+[NeurIPS](https://papers.nips.cc/):
+* [E2-Train: Training State-of-the-art CNNs with Over 80% Energy Savings](https://papers.nips.cc/paper/8757-e2-train-training-state-of-the-art-cnns-with-over-80-energy-savings)
+
+[CVPR](https://openaccess.thecvf.com/menu):
+None related study was found for this conference.
+
+[ICML](http://proceedings.mlr.press/)
+None related study was found for this conference.
+
+[ACL](https://www.aclweb.org/portal/acl)
+None related study was found for this conference
+
+[ICSE](https://2019.icse-conferences.org/program/program-icse-2019)
+* [What can Android mobile app developers do about the energy consumption of machine learning?](https://softwareprocess.es/pubs/mcintosh2018EMSE-MLEnergy.pdf)
+
+[FSE]
+None related study was found for this conference
 
 
 [2] discusses methods on how to obtain energy measurements correctly
@@ -25,7 +42,6 @@ from a machine learning algorithm.
 its energy/accurasy. Moreover, it provides a detailed workload characterization
 to facilitate the design of energy efficient deep learning solutions.
 [4]
-
 
 
 # Research Questions
@@ -61,21 +77,28 @@ energy and run-time performance implications.
 # Copmuter Platform
 [Stereo](https://www.dell.com/downloads/global/products/pedge/t320_spec_sheet.pdf) equipped with [Nvidia RTX 2080 Ti](https://lambdalabs.com/blog/2080-ti-deep-learning-benchmarks/). 
 
-# Frameworks
-Here we have to choose 4-5 since it is going to take too much time
-to train the models.
-I think we can use [GitHub stars](https://github.com/aymericdamien/TopDeepLearning)
-to select the TOP 4-5 frameworks.
-By executing the python2.7 scripts/generate_stats.py you can get a list with the top starred
-deep learning projects on GitHub
-However, if you have another opinion please share.
 
-Top GitHub frameworks for Machine Learning:
+# Frameworks
+
+Here we can set a number of selection criteria
+such as the following:
+
+* Open Source
+* Activity (last commit no more than a year)
+* Popularity (based on [GitHub stars](https://github.com/aymericdamien/TopDeepLearning)
+* Evaluation (evaluated in related work)
+* Documentation
+* Programming Language (in order to be fair to the ML frameworks, we select only the Python framework as Python is the most popular PL for ML)
+* Working toy tutorial
+* Evaluation on the same data (data used in one framework are applicable to all the other frameworks)
+
+Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
 * Keras
 * opencv
 * PyTorch
 * Bert
+
 
 # Supervised Algorithms
 There are two categories of machine learning algorithms
