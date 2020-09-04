@@ -1,0 +1,31 @@
+2020-08-29 Discussion with Tushar Sharma
+========================================
+* Supervised learnining and standard algorithms
+* ML is important but we should emphasis on deep learning
+* Diverse tasks like small, medium, and large
+* Different sample points (e.g., 1000, 5000, 10.000)
+* Hyperparameters tuning: there are available libraries that can do that or empirically
+* 4-5 ML frameworks
+
+
+2020-09-03 Discussion with Maria Kechagia
+=========================================
+
+RQ1-2: break to two to test the energy and run-time performance separately.
+RQ3: which algorithms are more energy efficient for certain tasks
+RQ4: Hyperparameters
+
+Selection criteria for ML algorithms:
+1) Open Source
+2) Active (commint no more than a year)
+3) Popularity (GitHub start)
+4) Evaluation (related work)
+5) Documentation
+6) Programming Languages (Python is the popular, therefore, we select only python frameworks, and python version)
+7) Working tutorial
+8) Evaluate on the same data
+
+Selection of tasks:
+* Machine translation
+* NLP
+* 

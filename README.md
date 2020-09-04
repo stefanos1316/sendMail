@@ -15,6 +15,10 @@ precisely predict.
 
 
 # Related Work
+Works done in the past two years from top-tier ML conferences:
+
+
+
 [2] discusses methods on how to obtain energy measurements correctly
 from a machine learning algorithm.
 [3] investigates the energy requirements of CNN and compares
@@ -25,21 +29,33 @@ to facilitate the design of energy efficient deep learning solutions.
 
 
 # Research Questions
-* Which are the most energy- and run-time performance-efficient
-machine learning frameworks?---Here we investigate the overall
-performance of the selected ML framework by examining
+
+Primary RQs to be answered:
+* Which are the most energy-efficient machine learning
+frameworks?---Here we investigate the overall
+energy performance of the selected ML framework by examining
 the following steps:
 	* Performance implications of the Training
 	* Performance implications of the Prediction
+
+* Which are the most run-time performance-efficient machine learning
+frameworks?---Similarly to the above, we investigate the overall
+run-time performance of the selected ML framework by examining
+the following steps:
+	* Performance implications of the Training
+	* Performance implications of the Prediction
+
+* Which machine learning algorithms more energy
+and run-time performance-efficient for the selected tasks?---Here
+we try to find out which ML algorithms, among the selected
+ML frameworks, perform better for particular tasks.
+
+Secondary RQs in case we have time:
 * How much can the hyperparameter tuning affect the energy
 and run-time performance of the correspondning
 Machine Learning Frameworks?---Here we are going
 to examine a number of tunable hyperparameters to find their
 energy and run-time performance implications.
-* Which machine learning algorithms more energy
-and run-time performance-efficient for the selected tasks tasks?---Here
-we try to find out which ML algorithms, among the selected
-ML frameworks, perform better for particular tasks.
 
 
 # Copmuter Platform
