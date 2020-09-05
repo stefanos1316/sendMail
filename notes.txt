@@ -29,3 +29,11 @@ Selection of tasks:
 * Machine translation
 * NLP
 * 
+
+
+Some thoughts (Tushar)
+=======================
+Scope: 
+- The nature of ML standard algorithms (Logistic regression, SVM, etc.) are quite different than deep learning models (CNN and RNN based). For example, ML algorithms are (very) quick to train compared to deep learning models. Shall we seperate them? Maybe two sub-questions in a RQ?
+- Also, just to be clear and explicit - we are comparing frameworks, right? (not algorithms). I mean, we intend to take a few problems and solve each problem using exact same algorithm but with different frameworks.  
+- There are many aspects that may vary-task, framework, data, hyper-parameters, programming language, hardware. We need to fix some aspects (hardware, prog. lang, and data) and vary other aspects one at a time in each RQ.
