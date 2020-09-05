@@ -25,15 +25,19 @@ Selection criteria for ML algorithms:
 7) Working tutorial
 8) Evaluate on the same data
 
-Selection of tasks:
-* Machine translation
-* NLP
-* 
-
 
 Some thoughts (Tushar)
 =======================
 Scope: 
 - The nature of ML standard algorithms (Logistic regression, SVM, etc.) are quite different than deep learning models (CNN and RNN based). For example, ML algorithms are (very) quick to train compared to deep learning models. Shall we seperate them? Maybe two sub-questions in a RQ?
+
+SG@TS: Yes, I believe we could separate them. Also having standard ML and deep learninig could increase the impact of our research.
+
 - Also, just to be clear and explicit - we are comparing frameworks, right? (not algorithms). I mean, we intend to take a few problems and solve each problem using exact same algorithm but with different frameworks.  
+
+SG@TS: Yes, we would like to compare, for example, the performance of X algorithm developed on the selected ML frameworks. However, if possible, we would also like to suggest which algorithm to use in certain cases (e.g., spam filtering) to win more energy and run-time performance. So these are two different ideas.
+
 - There are many aspects that may vary-task, framework, data, hyper-parameters, programming language, hardware. We need to fix some aspects (hardware, prog. lang, and data) and vary other aspects one at a time in each RQ.
+
+SG@TS: Yes we should, otherwise the time to train the models will increase exponentially. Regarding PL I believe we should use Python as it is the most know and popular for ML.
+About data we can set a number of different sample by reading related work, no?
