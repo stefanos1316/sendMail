@@ -111,6 +111,12 @@ I am not sure how much time it will take to implement just one of this
 using a framework.
 However, we need to find a method on how to select the best candidates.
 
+MK: It would be more interesting to look at deep learning algorithms.
+If we check both, deep learning and starndard algorithms,
+we can possibly have another RQ for that.
+Note that we should use the tasks for all
+stardard and deep learning algorithms.
+
 
 # Tasks
 There is a really nice and diverse [data-set](https://github.com/tensorflow/datasets) for research purposes
@@ -119,6 +125,10 @@ Since it has many tasks for each of the selected categories, we may consider
 selecting 1 from each, but which? :P
 
 
+MK: We need to find tasks that are already implemented (and are open source software).
+Then, we need to write these tasks into other frameworks.
+Let's focus on Python-based frameworks as a starting point.
+IMHO, it would be interesting to look at NLP tasks.
 
 # References
 [1] @article{SGM_2019,
