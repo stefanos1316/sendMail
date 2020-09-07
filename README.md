@@ -113,8 +113,11 @@ However, we need to find a method on how to select the best candidates.
 
 
 # Tasks
-An idea is to search among the MSR data-set papers and select that candidate tasks
-for deep learning based on the available and well-documented ones.
+There is a really nice and diverse [data-set](https://github.com/tensorflow/datasets) for research purposes
+available under the Tensorflow repository [5].
+Since it has many tasks for each of the selected categories, we may consider
+selecting 1 from each, but which? :P
+
 
 
 # References
@@ -158,3 +161,7 @@ for deep learning based on the available and well-documented ones.
 	pages = {477--484},
 }
 
+[5] @misc{TFDS,
+  title = {{TensorFlow Datasets}, A collection of ready-to-use datasets},
+  howpublished = {\url{https://www.tensorflow.org/datasets}},
+}
