@@ -36,7 +36,7 @@ None related study was found for this conference.
 * [What can Android mobile app developers do about the energy consumption of machine learning?](https://softwareprocess.es/pubs/mcintosh2018EMSE-MLEnergy.pdf)
 
 [FSE]
-None related study was found for this conference
+* [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
 
 
 [2] discusses methods on how to obtain energy measurements correctly
