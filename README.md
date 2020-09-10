@@ -50,12 +50,14 @@ to facilitate the design of energy efficient deep learning solutions.
 # Research Questions
 
 Primary RQs to be answered:
-* Which are the most energy-efficient machine learning
+1. Which are the most energy-efficient machine learning
 frameworks?---Here we investigate the overall
 energy performance of the selected ML framework by examining
 the following steps:
 	* Performance implications of the Training
 	* Performance implications of the Prediction
+
+TS: Do you want to pick one task out of the selected tasks (3?) for this RQ? Or, all the tasks can be considered here (in that case, we dont need the third RQ - task specific performance).
 
 * Which are the most run-time performance-efficient machine learning
 frameworks?---Similarly to the above, we investigate the overall
@@ -102,6 +104,8 @@ Top GitHub frameworks for Machine Learning based on stars:
 * PyTorch
 * Bert
 
+TS: One concern here is that not all framework/libraries support all kinds of tasks. for example, opencv is a vision library; hence tasks other than image/vision might not be feasible.
+Two alternatives to mitigate this: 1) choose only generic frameworks 2) task specific frameworks.
 
 # Supervised Algorithms
 There are two categories of machine learning algorithms
@@ -124,11 +128,14 @@ available under the Tensorflow repository [5].
 Since it has many tasks for each of the selected categories, we may consider
 selecting 1 from each, but which? :P
 
+TS: Potential candidates: NLP-based - [IMDB reviews sentiment analysis](https://www.tensorflow.org/datasets/catalog/imdb_reviews) or [Text summarization](https://www.tensorflow.org/datasets/catalog/multi_news), [image classification](https://www.tensorflow.org/datasets/catalog/cifar10), [regression](https://www.tensorflow.org/datasets/catalog/forest_fires)
 
 MK: We need to find tasks that are already implemented (and are open source software).
 Then, we need to write these tasks into other frameworks.
 Let's focus on Python-based frameworks as a starting point.
 IMHO, it would be interesting to look at NLP tasks.
+
+TS: Agree with MK
 
 # References
 [1] @article{SGM_2019,
