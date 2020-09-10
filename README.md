@@ -59,8 +59,10 @@ the following steps:
 	* Performance implications of the Prediction
 
 TS: Do you want to pick one task out of the selected tasks (3?) for this RQ? Or, all the tasks can be considered here (in that case, we dont need the third RQ - task specific performance).
+SG: About the 3rd I was thinking that it can be interesting to find out which framework perform better for a task and find out why. But on a second thought, we can do also such an analysis
+in the RQ 1. and 2., no?
 
-* Which are the most run-time performance-efficient machine learning
+2. Which are the most run-time performance-efficient machine learning
 frameworks?---Similarly to the above, we investigate the overall
 run-time performance of the selected ML framework by examining
 the following steps:
@@ -101,12 +103,16 @@ such as the following:
 Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
 * Keras
-* opencv
 * PyTorch
 * Bert
 
 TS: One concern here is that not all framework/libraries support all kinds of tasks. for example, opencv is a vision library; hence tasks other than image/vision might not be feasible.
 Two alternatives to mitigate this: 1) choose only generic frameworks 2) task specific frameworks.
+
+SG: I think both of your above points are interesting to examine. However, I think not many people will choose to implement specific task
+with specific framework in order to gain more energy savings, but instead they will choose a single framework that is overall more efficient.
+So I think we should stick with the (1) and choose more generic frameworks.
+
 
 # Supervised Algorithms
 There are two categories of machine learning algorithms
