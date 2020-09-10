@@ -37,6 +37,7 @@ None related study was found for this conference.
 
 [FSE]
 * [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
+* [A comprehensive study on deep learning bug characteristics](https://dl.acm.org/doi/pdf/10.1145/3338906.3338955)
 
 
 [2] discusses methods on how to obtain energy measurements correctly

@@ -41,3 +41,11 @@ SG@TS: Yes, we would like to compare, for example, the performance of X algorith
 
 SG@TS: Yes we should, otherwise the time to train the models will increase exponentially. Regarding PL I believe we should use Python as it is the most know and popular for ML.
 About data we can set a number of different sample by reading related work, no?
+
+Tasks from FSE (Stefanos)
+=========================
+1) CIFAR10, MNIST, Udacity Self-Driving Car (all of them are image related tasks)
+2) [Kaggle kernels](https://www.kaggle.com/kernels) (Each kernel provides a solution code and description for a specific ML task)
+3) MNIST, EMNIST, FMNIST, and KMNIST (all of them are image related tasks)
+4) CIFAR-10, STL-10, ImageNet (all of them are imag related tasks)
+5) CODEnn-Java-Train, GitHub-Android-Train, and StackOverflow-Android-Train ()
