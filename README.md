@@ -69,6 +69,15 @@ the following steps:
 	* Performance implications of the Training
 	* Performance implications of the Prediction
 
+3. What are the energy, run-time performance, and accuracy
+trade-offs of the examined ML frameworks?---Here we are going
+to investigate what are each of the frameworks performance
+trade-offs with respect to the energy, run-time performance,
+and accuracy. Here we could also present a ranking
+so that developers could select among frameworks or algorithms
+to develop a task whenever energy, run-time performance,
+or accuracy is of high demand.
+
 * Which machine learning algorithms are more energy
 and run-time performance-efficient for the selected tasks?---Here
 we try to find out which ML algorithms, among the selected
