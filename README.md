@@ -69,7 +69,7 @@ the following steps:
 	* Performance implications of the Training
 	* Performance implications of the Prediction
 
-* Which machine learning algorithms more energy
+* Which machine learning algorithms are more energy
 and run-time performance-efficient for the selected tasks?---Here
 we try to find out which ML algorithms, among the selected
 ML frameworks, perform better for particular tasks.
@@ -99,6 +99,7 @@ such as the following:
 * Programming Language (in order to be fair to the ML frameworks, we select only the Python framework as Python is the most popular PL for ML)
 * Working toy tutorial
 * Evaluation on the same data (data used in one framework are applicable to all the other frameworks)
+* General tasks (select frameworks that can implement different tasks and not specific)
 
 Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
