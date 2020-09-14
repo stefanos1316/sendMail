@@ -34,8 +34,10 @@ None related study was found for this conference.
 
 [ICSE](https://2019.icse-conferences.org/program/program-icse-2019)
 * [What can Android mobile app developers do about the energy consumption of machine learning?](https://softwareprocess.es/pubs/mcintosh2018EMSE-MLEnergy.pdf)
+* [ReluDiff: Differential Verification of Deep Neural Networks](https://arxiv.org/pdf/2001.03662.pdf)
+* [Improving the Effectiveness of Traceability Link Recoveryusing Hierarchical Bayesian Networks](https://arxiv.org/pdf/2005.09046.pdf)
 
-[FSE]
+[FSE](https://2021.esec-fse.org/)
 * [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
 * [A comprehensive study on deep learning bug characteristics](https://dl.acm.org/doi/pdf/10.1145/3338906.3338955)
 
@@ -153,6 +155,8 @@ Let's focus on Python-based frameworks as a starting point.
 IMHO, it would be interesting to look at NLP tasks.
 
 TS: Agree with MK
+
+MK: Other benchmarks that could be useful for NNs are CIFAR-10 (also mentioned by TS), CIFAR-100, and MNIST.
 
 # References
 [1] @article{SGM_2019,
