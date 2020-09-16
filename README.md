@@ -114,9 +114,9 @@ such as the following:
 
 Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
-* Keras
 * PyTorch
-* Bert
+* Caffe
+* Scikit-learn (Image processing tasks are not to be implemented for this framework)
 
 TS: One concern here is that not all framework/libraries support all kinds of tasks. for example, opencv is a vision library; hence tasks other than image/vision might not be feasible.
 Two alternatives to mitigate this: 1) choose only generic frameworks 2) task specific frameworks.
@@ -140,6 +140,21 @@ we can possibly have another RQ for that.
 Note that we should use the tasks for all
 stardard and deep learning algorithms.
 
+SG: After reading some papers from FSE and ICSE, I believe that people
+do not use a standard methodology to pick the candidate algorithms.
+But, I have found that most of them are using Resnet (e.g., 110)
+and Covn2D for the neural networks.
+I believe we should included in this work.
+Moreover, I have found Resnet implementations for the frameworks
+we have selected that are using the cifar10.
+Also, regarding the standard ML algorithms, we may use some of the following:
+
+* Nearest Neighbor
+* Naive Bayes
+* Decision Trees
+* Linear Regression
+* Support Vector Machines (SVM)
+
 
 # Tasks
 There is a really nice and diverse [data-set](https://github.com/tensorflow/datasets) for research purposes
@@ -147,7 +162,11 @@ available under the Tensorflow repository [5].
 Since it has many tasks for each of the selected categories, we may consider
 selecting 1 from each, but which? :P
 
-TS: Potential candidates: NLP-based - [IMDB reviews sentiment analysis](https://www.tensorflow.org/datasets/catalog/imdb_reviews) or [Text summarization](https://www.tensorflow.org/datasets/catalog/multi_news), [image classification](https://www.tensorflow.org/datasets/catalog/cifar10), [regression](https://www.tensorflow.org/datasets/catalog/forest_fires)
+TS: Potential candidates:
+
+	* NLP-based - [IMDB reviews sentiment analysis](https://www.tensorflow.org/datasets/catalog/imdb_reviews) or [Text summarization](https://www.tensorflow.org/datasets/catalog/multi_news)
+	* [image classification](https://www.tensorflow.org/datasets/catalog/cifar10),
+ 	* [regression](https://www.tensorflow.org/datasets/catalog/forest_fires)
 
 MK: We need to find tasks that are already implemented (and are open source software).
 Then, we need to write these tasks into other frameworks.
@@ -157,6 +176,8 @@ IMHO, it would be interesting to look at NLP tasks.
 TS: Agree with MK
 
 MK: Other benchmarks that could be useful for NNs are CIFAR-10 (also mentioned by TS), CIFAR-100, and MNIST.
+
+SG: I have already found some implementations of the above DNN architectures. I am running some tests on Stereo, but I believe we can find most of the on GitHub.
 
 # References
 [1] @article{SGM_2019,
