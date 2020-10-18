@@ -101,15 +101,14 @@ energy and run-time performance implications.
 Here we can set a number of selection criteria
 such as the following:
 
-* Open Source
-* Activity (last commit no more than a year)
+* Open Source (All four)
+* Activity (last commit no more than a year) (All four)
 * Popularity (based on GitHub stars)
-* Evaluation (evaluated in related work)
-* Documentation
-* Programming Language (in order to be fair to the ML frameworks, we select only the Python framework as Python is the most popular PL for ML)
-* Working toy tutorial
+* Evaluation (evaluated in related work [6]--[9]) 
+* Documentation (All four)
+* Working toy tutorial (All four)
 * Evaluation on the same data (data used in one framework are applicable to all the other frameworks)
-* General tasks (select frameworks that can implement different tasks and not specific)
+* General tasks (select frameworks that can implement different tasks and not specific) (All four)
 
 To collect our candidates, we first used a script found in the [TopDeepLearning repository](https://github.com/aymericdamien/TopDeepLearning).
 The corresponding repository offers a Python script that performs a search on GitHub repository Titles and Project descriptions
@@ -117,12 +116,13 @@ fields to obtain and rank the repositories with the most GitHub stars based on a
 We modified the corresponding Python script's keyworks because some popular ML frameworks
 were missing from the results.
 After executing the script, we ended with the following list of [repositories](methods/top_ml_frameworks_initial.md) (executing 2020-10-18)
-From the initial list, we first excluded repositories that were not ML frameworks and we ended up with the following list.
+From the initial list, we first excluded repositories that were related to learning courses, papers, etc.
+and we ended up with the following [list](methods/top_ml_frameworks_remove_unrelated.md).
 
 Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
 * PyTorch
-* Scikit-learn (Image processing tasks are not to be implemented for this framework)
+* Scikit-learn (Although we may use it for deep learning, may forums do not suggest it as it is not supporting GPU usage)
 * Caffe
 
 TS: One concern here is that not all framework/libraries support all kinds of tasks. for example, opencv is a vision library; hence tasks other than image/vision might not be feasible.
@@ -231,3 +231,64 @@ SG: I have already found some implementations of the above DNN architectures. I 
   title = {{TensorFlow Datasets}, A collection of ready-to-use datasets},
   howpublished = {\url{https://www.tensorflow.org/datasets}},
 }
+
+[6] @incollection{paszke_pytorch_2019,
+	title = {{PyTorch}: {An} {Imperative} {Style}, {High}-{Performance} {Deep} {Learning} {Library}},
+	shorttitle = {{PyTorch}},
+	url = {http://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf},
+	urldate = {2020-10-18},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 32},
+	publisher = {Curran Associates, Inc.},
+	author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
+	editor = {Wallach, H. and Larochelle, H. and Beygelzimer, A. and Alché-Buc, F. d{\textbackslash}textquotesingle and Fox, E. and Garnett, R.},
+	year = {2019},
+	pages = {8026--8037},
+	file = {NIPS Snapshot:/home/sgeorgiou/Zotero/storage/5HHDN2XL/9015-pytorch-an-imperative-stylehigh-.html:text/html}
+}
+
+[7] @inproceedings{abadi_tensorflow_2016,
+	title = {{TensorFlow}: {A} {System} for {Large}-{Scale} {Machine} {Learning}},
+	isbn = {978-1-931971-33-1},
+	shorttitle = {{TensorFlow}},
+	url = {https://www.usenix.org/conference/osdi16/technical-sessions/presentation/abadi},
+	language = {en},
+	urldate = {2020-10-18},
+	author = {Abadi, Martin and Barham, Paul and Chen, Jianmin and Chen, Zhifeng and Davis, Andy and Dean, Jeffrey and Devin, Matthieu and Ghemawat, Sanjay and Irving, Geoffrey and Isard, Michael and Kudlur, Manjunath and Levenberg, Josh and Monga, Rajat and Moore, Sherry and Murray, Derek G. and Steiner, Benoit and Tucker, Paul and Vasudevan, Vijay and Warden, Pete and Wicke, Martin and Yu, Yuan and Zheng, Xiaoqiang},
+	year = {2016},
+	pages = {265--283},
+	file = {Full Text PDF:/home/sgeorgiou/Zotero/storage/Y6C7E5UG/Abadi et al. - 2016 - TensorFlow A System for Large-Scale Machine Learn.pdf:application/pdf;Snapshot:/home/sgeorgiou/Zotero/storage/ENW6ZDMR/abadi.html:text/html}
+}
+
+[8] @article{pedregosa_scikit-learn_2011,
+	title = {Scikit-learn: {Machine} {Learning} in {Python}},
+	volume = {12},
+	issn = {1533-7928},
+	shorttitle = {Scikit-learn},
+	url = {http://jmlr.org/papers/v12/pedregosa11a.html},
+	number = {85},
+	urldate = {2020-10-18},
+	journal = {Journal of Machine Learning Research},
+	author = {Pedregosa, Fabian and Varoquaux, Gaël and Gramfort, Alexandre and Michel, Vincent and Thirion, Bertrand and Grisel, Olivier and Blondel, Mathieu and Prettenhofer, Peter and Weiss, Ron and Dubourg, Vincent and Vanderplas, Jake and Passos, Alexandre and Cournapeau, David and Brucher, Matthieu and Perrot, Matthieu and Duchesnay, Édouard},
+	year = {2011},
+	pages = {2825--2830},
+	file = {Full Text PDF:/home/sgeorgiou/Zotero/storage/XW5Q59L8/Pedregosa et al. - 2011 - Scikit-learn Machine Learning in Python.pdf:application/pdf;Snapshot:/home/sgeorgiou/Zotero/storage/JCX8CN6X/pedregosa11a.html:text/html}
+}
+
+[9] @inproceedings{jia_caffe_2014,
+	address = {New York, NY, USA},
+	series = {{MM} '14},
+	title = {Caffe: {Convolutional} {Architecture} for {Fast} {Feature} {Embedding}},
+	isbn = {978-1-4503-3063-3},
+	shorttitle = {Caffe},
+	url = {https://doi.org/10.1145/2647868.2654889},
+	doi = {10.1145/2647868.2654889},
+	urldate = {2020-10-18},
+	booktitle = {Proceedings of the 22nd {ACM} international conference on {Multimedia}},
+	publisher = {Association for Computing Machinery},
+	author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
+	month = nov,
+	year = {2014},
+	keywords = {computer vision, machine learning, neural networks, open source, parallel computation},
+	pages = {675--678}
+}
+
