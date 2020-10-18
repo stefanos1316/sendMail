@@ -1,0 +1,9 @@
+* Open Source
+* Activity (last commit no more than a year)
+* Popularity (based on [GitHub stars](https://github.com/aymericdamien/TopDeepLearning)
+* Evaluation (evaluated in related work)
+* Documentation
+* Programming Language (in order to be fair to the ML frameworks, we select only the Python framework as Python is the most popular PL for ML)
+* Working toy tutorial
+* Evaluation on the same data (data used in one framework are applicable to all the other frameworks)
+* General tasks (select frameworks that can implement different tasks and not specific)

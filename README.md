@@ -12,7 +12,9 @@ impact of the IT sector.
 Such a choice is even more paramount since the data-sets
 are always increasing and more training is required to
 precisely predict.
-
+Moreover, once a model is trained, it is then used multiple
+of times in the inference phase.
+Therefore, it is important to evaluate the performance of the inference phase too.
 
 # Related Work
 Works done in the past three years (2018 and 2019) from [top-tier ML conferences](http://www.guide2research.com/topconf/machine-learning):
@@ -47,11 +49,9 @@ from a machine learning algorithm.
 [3] investigates the energy requirements of CNN and compares
 its energy/accurasy. Moreover, it provides a detailed workload characterization
 to facilitate the design of energy efficient deep learning solutions.
-[4]
 
 
 # Research Questions
-
 Primary RQs to be answered:
 1. Which are the most energy-efficient machine learning
 frameworks?---Here we investigate the overall
@@ -98,13 +98,12 @@ energy and run-time performance implications.
 
 
 # Frameworks
-
 Here we can set a number of selection criteria
 such as the following:
 
 * Open Source
 * Activity (last commit no more than a year)
-* Popularity (based on [GitHub stars](https://github.com/aymericdamien/TopDeepLearning)
+* Popularity (based on GitHub stars)
 * Evaluation (evaluated in related work)
 * Documentation
 * Programming Language (in order to be fair to the ML frameworks, we select only the Python framework as Python is the most popular PL for ML)
@@ -112,11 +111,19 @@ such as the following:
 * Evaluation on the same data (data used in one framework are applicable to all the other frameworks)
 * General tasks (select frameworks that can implement different tasks and not specific)
 
+To collect our candidates, we first used a script found in the [TopDeepLearning repository](https://github.com/aymericdamien/TopDeepLearning).
+The corresponding repository offers a Python script that performs a search on GitHub repository Titles and Project descriptions
+fields to obtain and rank the repositories with the most GitHub stars based on a number of keywords.
+We modified the corresponding Python script's keyworks because some popular ML frameworks
+were missing from the results.
+After executing the script, we ended with the following list of [repositories](methods/top_ml_frameworks_initial.md) (executing 2020-10-18)
+From the initial list, we first excluded repositories that were not ML frameworks and we ended up with the following list.
+
 Top GitHub frameworks for Machine Learning based on stars:
 * Tensorflow
 * PyTorch
-* Caffe
 * Scikit-learn (Image processing tasks are not to be implemented for this framework)
+* Caffe
 
 TS: One concern here is that not all framework/libraries support all kinds of tasks. for example, opencv is a vision library; hence tasks other than image/vision might not be feasible.
 Two alternatives to mitigate this: 1) choose only generic frameworks 2) task specific frameworks.
@@ -149,7 +156,7 @@ Moreover, I have found Resnet implementations for the frameworks
 we have selected that are using the cifar10.
 Also, regarding the standard ML algorithms, we may use some of the following:
 
-* Nearest Neighbor
+* k Nearest Neighbor (KNN)
 * Naive Bayes
 * Decision Trees
 * Linear Regression
