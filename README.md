@@ -17,6 +17,8 @@ of times in the inference phase.
 Therefore, it is important to evaluate the performance of the inference phase too.
 
 # Related Work
+
+## Conferences
 Works done in the past three years (2018 and 2019) from [top-tier ML conferences](http://www.guide2research.com/topconf/machine-learning):
 
 [NeurIPS](https://papers.nips.cc/):
@@ -52,7 +54,7 @@ to facilitate the design of energy efficient deep learning solutions.
 
 ## Journals
 
-[EMSE]
+[EMSE](https://www.springer.com/journal/10664)
 *[What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
 
 
