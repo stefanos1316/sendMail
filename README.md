@@ -50,6 +50,11 @@ from a machine learning algorithm.
 its energy/accurasy. Moreover, it provides a detailed workload characterization
 to facilitate the design of energy efficient deep learning solutions.
 
+## Journals
+
+[EMSE]
+*[What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
+
 
 # Research Questions
 Primary RQs to be answered:
