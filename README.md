@@ -55,7 +55,7 @@ to facilitate the design of energy efficient deep learning solutions.
 ## Journals
 
 [EMSE](https://www.springer.com/journal/10664)
-*[What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
+* [What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
 
 
 # Research Questions
