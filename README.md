@@ -169,6 +169,14 @@ Also, regarding the standard ML algorithms, we may use some of the following:
 * Linear Regression
 * Support Vector Machines (SVM)
 
+# Unsupervised Algorithms
+
+MK: Are we going to include algorithms based on unsupervised learning (without known labelling)?
+For instance, we can consider the use of machine learning techniques
+such as LSA, LDA, and word embeddings to create clusters from high-dimensional text datasets.
+IMHO, it would be very interesting if we can use for that
+data sets from the software engineering community.
+(To check the EMSE paper presented above.)
 
 # Tasks
 There is a really nice and diverse [data-set](https://github.com/tensorflow/datasets) for research purposes
