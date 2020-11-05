@@ -1,9 +1,11 @@
 # machine_learning_frameworks_analysis
+
 Here we store everything related to the "An analysis on the energy and run-time performance of machine learning frameworks".
 Below there are some points that we could fill in in order to help us in this research.
 
 
 # Motivation
+
 According to [1] the energy needed to train AI is now rising seven times
 faster than ever before.
 Therefore, selecting the proper algorithms to train and predict
@@ -19,6 +21,7 @@ Therefore, it is important to evaluate the performance of the inference phase to
 # Related Work
 
 ## Conferences
+
 Works done in the past three years (2018 and 2019) from [top-tier ML conferences](http://www.guide2research.com/topconf/machine-learning):
 
 [NeurIPS](https://papers.nips.cc/):
@@ -45,12 +48,19 @@ None related study was found for this conference.
 * [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
 * [A comprehensive study on deep learning bug characteristics](https://dl.acm.org/doi/pdf/10.1145/3338906.3338955)
 
+[ICCSA 2016]()
+* [A Public Bug Database of GitHub Projects and its Application in Bug Prediction](https://www.researchgate.net/publication/304664263_A_Public_Bug_Database_of_GitHub_Projects_and_Its_Application_in_Bug_Prediction)
+
 
 [2] discusses methods on how to obtain energy measurements correctly
 from a machine learning algorithm.
 [3] investigates the energy requirements of CNN and compares
 its energy/accurasy. Moreover, it provides a detailed workload characterization
 to facilitate the design of energy efficient deep learning solutions.
+[10] has a data-set of Java bugs collected from the GitHub.
+The authors of the corresponding paper has used this [data-set](https://www.inf.u-szeged.hu/~ferenc/papers/GitHubBugDataSet/)
+to train 13 machine learning algorithms.
+Another data-set used widely by researcher to detect duplicate defects reports is this [one](https://github.com/logpai/bugrepo).
 
 ## Journals
 
@@ -59,6 +69,7 @@ to facilitate the design of energy efficient deep learning solutions.
 
 
 # Research Questions
+
 Primary RQs to be answered:
 1. Which are the most energy-efficient machine learning
 frameworks?---Here we investigate the overall
@@ -101,10 +112,13 @@ energy and run-time performance implications.
 
 
 # Copmuter Platform
-[Stereo](https://www.dell.com/downloads/global/products/pedge/t320_spec_sheet.pdf) equipped with [Nvidia RTX 2080 Ti](https://lambdalabs.com/blog/2080-ti-deep-learning-benchmarks/). 
+
+The actual hardware is not the Stereo but a new machine that is far stronger.
+Panos informed me that they are still expecting the motherboard to come.
 
 
 # Frameworks
+
 Here we can set a number of selection criteria
 such as the following:
 
@@ -305,5 +319,22 @@ SG: I have already found some implementations of the above DNN architectures. I 
 	year = {2014},
 	keywords = {computer vision, machine learning, neural networks, open source, parallel computation},
 	pages = {675--678}
+}
+
+[10] @inproceedings{toth_public_2016,
+	address = {Cham},
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {A {Public} {Bug} {Database} of {GitHub} {Projects} and {Its} {Application} in {Bug} {Prediction}},
+	isbn = {978-3-319-42089-9},
+	doi = {10.1007/978-3-319-42089-9_44},
+	language = {en},
+	booktitle = {Computational {Science} and {Its} {Applications} -- {ICCSA} 2016},
+	publisher = {Springer International Publishing},
+	author = {Tóth, Zoltán and Gyimesi, Péter and Ferenc, Rudolf},
+	editor = {Gervasi, Osvaldo and Murgante, Beniamino and Misra, Sanjay and Rocha, Ana Maria A.C. and Torre, Carmelo M. and Taniar, David and Apduhan, Bernady O. and Stankova, Elena and Wang, Shangguang},
+	year = {2016},
+	keywords = {Bug database, Bug prediction},
+	pages = {625--638},
+	file = {Submitted Version:/home/sgeorgiou/Zotero/storage/YX75HRQQ/Tóth et al. - 2016 - A Public Bug Database of GitHub Projects and Its A.pdf:application/pdf}
 }
 
