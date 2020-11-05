@@ -67,6 +67,9 @@ Another data-set used widely by researcher to detect duplicate defects reports i
 [EMSE](https://www.springer.com/journal/10664)
 * [What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
 
+IJSEA
+* [Benchmarking Machine Learning Techniques for software defect detection](https://arxiv.org/pdf/1506.07563.pdf)
+
 
 # Research Questions
 
