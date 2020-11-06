@@ -46,6 +46,7 @@ None related study was found for this conference.
 * [Understanding the Automated Parameter Optimization onTransfer Learning for Cross-Project Defect Prediction: An Empirical Study](http://taochen.github.io/publications/papers/camera-ready.pdf)
 * [Big Code != Big Vocabulary:Open-Vocabulary Models for Source Code](http://homepages.inf.ed.ac.uk/s1467463/documents/icse20-main-1325.pdf)
 * [An Empirical Study on Program Failures of Deep Learning Jobs](http://hongyujohn.github.io/icse20-main-199.pdf)
+* [SEWordSim: software-specific word similarity database](https://dl.acm.org/doi/abs/10.1145/2591062.2591071)
 
 [FSE](https://2021.esec-fse.org/)
 * [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
@@ -75,6 +76,13 @@ Another data-set used widely by researcher to detect duplicate defects reports i
 
 IJSEA
 * [Benchmarking Machine Learning Techniques for software defect detection](https://arxiv.org/pdf/1506.07563.pdf)
+
+[TSE](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=32)
+* [SEthesaurus: WordNet in Software Engineering](https://ieeexplore.ieee.org/abstract/document/8827962)
+
+## Misc
+
+* [Predicting Software Effort Estimation Using Machine Learning Techniques](https://ieeexplore.ieee.org/abstract/document/8486222)
 
 
 # Research Questions
