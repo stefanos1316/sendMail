@@ -43,6 +43,9 @@ None related study was found for this conference.
 * [What can Android mobile app developers do about the energy consumption of machine learning?](https://softwareprocess.es/pubs/mcintosh2018EMSE-MLEnergy.pdf)
 * [ReluDiff: Differential Verification of Deep Neural Networks](https://arxiv.org/pdf/2001.03662.pdf)
 * [Improving the Effectiveness of Traceability Link Recoveryusing Hierarchical Bayesian Networks](https://arxiv.org/pdf/2005.09046.pdf)
+* [Understanding the Automated Parameter Optimization onTransfer Learning for Cross-Project Defect Prediction: An Empirical Study](http://taochen.github.io/publications/papers/camera-ready.pdf)
+* [Big Code != Big Vocabulary:Open-Vocabulary Models for Source Code](http://homepages.inf.ed.ac.uk/s1467463/documents/icse20-main-1325.pdf)
+* [An Empirical Study on Program Failures of Deep Learning Jobs](http://hongyujohn.github.io/icse20-main-199.pdf)
 
 [FSE](https://2021.esec-fse.org/)
 * [A Comprehensive Study on Challenges in Deploying Deep Learning Based Software](https://2020.esec-fse.org/details/fse-2020-papers/92/A-Comprehensive-Study-on-Challenges-in-Deploying-Deep-Learning-Based-Software)
@@ -66,6 +69,9 @@ Another data-set used widely by researcher to detect duplicate defects reports i
 
 [EMSE](https://www.springer.com/journal/10664)
 * [What Makes a Popular Academic AI Repository?](https://arxiv.org/abs/2010.02472)
+
+[ACM Computing Surveys](https://dl.acm.org/journal/csur)
+* [A Survey of Machine Learning for Big Code and Naturalness](https://dl.acm.org/doi/abs/10.1145/3212695)
 
 IJSEA
 * [Benchmarking Machine Learning Techniques for software defect detection](https://arxiv.org/pdf/1506.07563.pdf)
