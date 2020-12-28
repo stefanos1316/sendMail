@@ -220,7 +220,8 @@ TS: Potential candidates:
 	* NLP-based - [IMDB reviews sentiment analysis](https://www.tensorflow.org/datasets/catalog/imdb_reviews) or [Text summarization](https://www.tensorflow.org/datasets/catalog/multi_news)
 	* [image classification](https://www.tensorflow.org/datasets/catalog/cifar10),
  	* [regression](https://www.tensorflow.org/datasets/catalog/forest_fires)
-
+        * defect prediction data-set ([PROMISE](http://promise.site.uottawa.ca/SERepository/datasets-page.html), [NASA](https://github.com/klainfo/NASADefectDataset))
+ 
 MK: We need to find tasks that are already implemented (and are open source software).
 Then, we need to write these tasks into other frameworks.
 Let's focus on Python-based frameworks as a starting point.
