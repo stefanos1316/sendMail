@@ -4,6 +4,32 @@ Here we store everything related to the "An analysis on the energy and run-time 
 Below there are some points that we could fill in in order to help us in this research.
 
 
+# Installation
+
+First, install and create the virtual environment.
+
+```bash
+apt-get install python3-venv
+cd frameworks
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+To exit from the virtual environment just execute the `deactive` command.
+To install all the necesary python packages execute the `pip3 install -e ".[deploy]"`
+After installing all the python packages you can start executing
+the deep learning algorithms.
+Before executing the experiments make sure ot run the commands below or add them inside a script
+
+```bash
+sudo sh -c 'echo -1 >/proc/sys/kernel/perf_event_paranoid'
+sudo sysctl -w kernel.perf_event_paranoid=-1
+sudo bash /governor.sh pe
+```
+
+
+
 # Motivation
 
 According to [1] the energy needed to train AI is now rising seven times
@@ -171,44 +197,6 @@ with specific framework in order to gain more energy savings, but instead they w
 So I think we should stick with the (1) and choose more generic frameworks.
 
 
-# Supervised Algorithms
-There are two categories of machine learning algorithms
-we can test: (1) standard machine learning algorithms (e.g., linear regression, naive bayes, k-means)
-and (2) deep learning algoriths (e.g., Feedforward Neural Networks, Convolutional Neural Networks, Recurrent Neural Networks).
-I am not sure how much time it will take to implement just one of this
-using a framework.
-However, we need to find a method on how to select the best candidates.
-
-MK: It would be more interesting to look at deep learning algorithms.
-If we check both, deep learning and starndard algorithms,
-we can possibly have another RQ for that.
-Note that we should use the tasks for all
-stardard and deep learning algorithms.
-
-SG: After reading some papers from FSE and ICSE, I believe that people
-do not use a standard methodology to pick the candidate algorithms.
-But, I have found that most of them are using Resnet (e.g., 110)
-and Covn2D for the neural networks.
-I believe we should included in this work.
-Moreover, I have found Resnet implementations for the frameworks
-we have selected that are using the cifar10.
-Also, regarding the standard ML algorithms, we may use some of the following:
-
-* k Nearest Neighbor (KNN)
-* Naive Bayes
-* Decision Trees
-* Linear Regression
-* Support Vector Machines (SVM)
-
-# Unsupervised Algorithms
-
-MK: Are we going to include algorithms based on unsupervised learning (without known labelling)?
-For instance, we can consider the use of machine learning techniques
-such as LSA, LDA, and word embeddings to create clusters from high-dimensional text datasets.
-IMHO, it would be very interesting if we can use for that
-data sets from the software engineering community.
-(To check the EMSE paper presented above.)
-
 # Tasks
 There is a really nice and diverse [data-set](https://github.com/tensorflow/datasets) for research purposes
 available under the Tensorflow repository [5].
@@ -232,6 +220,29 @@ TS: Agree with MK
 MK: Other benchmarks that could be useful for NNs are CIFAR-10 (also mentioned by TS), CIFAR-100, and MNIST.
 
 SG: I have already found some implementations of the above DNN architectures. I am running some tests on Stereo, but I believe we can find most of the on GitHub.
+
+
+# Algorithms
+There are two categories of machine learning algorithms
+we can test: (1) standard machine learning algorithms (e.g., linear regression, naive bayes, k-means)
+and (2) deep learning algoriths (e.g., Feedforward Neural Networks, Convolutional Neural Networks, Recurrent Neural Networks).
+First, we will focus on deep learning algorithms and if we have more time (or maybe extend it for a journal)
+then we can use standard machine learning algorithms.
+To select the popular deep learning algorithms for each task,
+we first collected all the machine learning paper published in ICSE starting from 2020.
+Then, we classify for each task the used deep learning algorithms.
+The online sheet `algorithm_from_icse` to see the most popular deep learning algorithms
+for each task we defined in the previous section.
+
+
+# Goal
+
+* Find the popular deep learning algorithms for each task
+* Implemented tasks use the above algorithms with Tensorflow and Pytorch
+* Created script to execute tasks and collect measurements
+* Analyze results
+* Start with paper writing
+
 
 # References
 [1] @article{SGM_2019,

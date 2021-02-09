@@ -1,4 +1,6 @@
 *.swo
 *.swp
 
-frameworks/pytorch/cifar10/data/*
+frameworks/model
+frameworks/env
+frameworks/pytorch/data/*

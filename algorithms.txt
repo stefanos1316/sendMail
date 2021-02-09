@@ -1,0 +1,29 @@
+Image classification
+====================
+
+
+
+
+Natural Language Processing
+===========================
+bag-of-words
+transformer 
+NLM
+Hierarchical Attention Network
+CNN
+DT
+RF
+LSTM
+
+Word embeddings
+===============
+
+
+Regression
+==========
+
+
+
+Comment categorization
+======================
+
