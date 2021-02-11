@@ -7,9 +7,12 @@ Below there are some points that we could fill in in order to help us in this re
 # Installation
 
 First, install and create the virtual environment.
+Note that the linux-tools-`uname`-generic cannot be install on OSX or Windows-like machines.
+This tools is deticated to linux and facilitates the extraction of energy measurements from RAPL interface.
 
 ```bash
-apt-get install python3-venv
+apt-get install python3-venv linux-tools-`uname -r`-generic
+pip3 install pre-commit
 cd frameworks
 python3 -m venv env
 source env/bin/activate
@@ -20,14 +23,24 @@ To exit from the virtual environment just execute the `deactive` command.
 To install all the necesary python packages execute the `pip3 install -e ".[deploy]"`
 After installing all the python packages you can start executing
 the deep learning algorithms.
-Before executing the experiments make sure ot run the commands below or add them inside a script
+
+
+# Optional steps to get energy measurements
+Before executing the experiments make sure ot run the commands below or add them inside a script.
+These commands are needed to execute sudo-less `perf` to fetch energy measurements from RAPL interface.
+
 
 ```bash
 sudo sh -c 'echo -1 >/proc/sys/kernel/perf_event_paranoid'
 sudo sysctl -w kernel.perf_event_paranoid=-1
-sudo bash /governor.sh pe
+sudo bash framework/governor.sh pe
 ```
 
+
+# Contribution instructions
+* To install packages and test models, always use the virtual environment (`source env/bin/activate`)
+* Make sure you added the required packages inside the `framework/requirements.txt` to faciliate the reproducability of our work (execute `pip freeze > requirements.txt` inside the frameworks direcotry)
+* Use comments in your code
 
 
 # Motivation
