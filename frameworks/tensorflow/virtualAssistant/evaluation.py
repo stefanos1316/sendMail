@@ -3,7 +3,8 @@ from sklearn.metrics import precision_recall_fscore_support
 
 # from keras.callbacks import EarlyStopping
 import time
-from matplotlib import pyplot
+
+# from matplotlib import pyplot
 from numpy.random import seed
 import tensorflow as tf
 
@@ -77,11 +78,11 @@ def train_test_validate(
     # Fit the model on train data
     # early_stopping = EarlyStopping(monitor='val_loss', patience=10)
     # history = model.fit(X_tr, Y_tr, batch_size=256, epochs=100, validation_split=0.2, callbacks=[early_stopping])
-    history = model.fit(X_tr, Y_tr, batch_size=256, epochs=1, validation_split=0.2)
-    pyplot.plot(history.history["loss"], label="train_loss")
-    pyplot.plot(history.history["val_loss"], label="val_loss")
-    pyplot.legend()
-    pyplot.show()
+    model.fit(X_tr, Y_tr, batch_size=256, epochs=100, validation_split=0.2)
+    #  pyplot.plot(history.history["loss"], label="train_loss")
+    # pyplot.plot(history.history["val_loss"], label="val_loss")
+    # pyplot.legend()
+    # pyplot.show()
 
     # Evaluate the model on test data
     scores = model.evaluate(X_te, Y_te, verbose=0)
