@@ -23,7 +23,6 @@ pip install -r requirements.txt
 ```
 
 To exit from the virtual environment just execute the `deactive` command.
-To install all the necesary python packages execute the `pip3 install -e ".[deploy]"`
 After installing all the python packages you can start executing
 the deep learning algorithms.
 
