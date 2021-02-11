@@ -1,0 +1,8 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: build_requirements
+        name: Build again requirements.txt
+        entry: bash -c 'cd frameworks && pip3 freeze > requirements.txt'
+        language: system
