@@ -1,6 +1,8 @@
 *.swo
 *.swp
 
-frameworks/model
-frameworks/env
+frameworks/model/*
+frameworks/env/*
 frameworks/pytorch/data/*
+
+data/WordEmbeddings/*

@@ -13,6 +13,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import sys
 
+
 def prepare_data():
     # number of subprocesses to use for data loading
     num_workers = 0
@@ -22,16 +23,17 @@ def prepare_data():
     valid_size = 0.2
 
     # convert data to a normalized torch.FloatTensor
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        ])
+    transform = transforms.Compose(
+        [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    )
 
     # choose the training and test datasets
-    train_data = datasets.CIFAR10('data', train=True,
-                                download=True, transform=transform)
-    test_data = datasets.CIFAR10('data', train=False,
-                                download=True, transform=transform)
+    train_data = datasets.CIFAR10(
+        "data", train=True, download=True, transform=transform
+    )
+    test_data = datasets.CIFAR10(
+        "data", train=False, download=True, transform=transform
+    )
 
     # obtain training indices that will be used for validation
     num_train = len(train_data)
@@ -45,14 +47,24 @@ def prepare_data():
     valid_sampler = SubsetRandomSampler(valid_idx)
 
     # prepare data loaders (combine dataset and sampler)
-    train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size,
-        sampler=train_sampler, num_workers=num_workers)
-    valid_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, 
-        sampler=valid_sampler, num_workers=num_workers)
-    test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size, 
-        num_workers=num_workers)
+    train_loader = torch.utils.data.DataLoader(
+        train_data,
+        batch_size=batch_size,
+        sampler=train_sampler,
+        num_workers=num_workers,
+    )
+    valid_loader = torch.utils.data.DataLoader(
+        train_data,
+        batch_size=batch_size,
+        sampler=valid_sampler,
+        num_workers=num_workers,
+    )
+    test_loader = torch.utils.data.DataLoader(
+        test_data, batch_size=batch_size, num_workers=num_workers
+    )
 
     return train_loader, valid_loader, test_loader
+
 
 # define the CNN architecture
 class Net(nn.Module):
@@ -89,6 +101,7 @@ class Net(nn.Module):
         # add 2nd hidden layer, with relu activation function
         x = self.fc2(x)
         return x
+
 
 def train_model(train_loader, model):
     # specify loss function (categorical cross-entropy)
@@ -132,16 +145,16 @@ def evaluate_model(valid_loader, model):
     predictions, actuals = vstack(predictions), vstack(actuals)
     # calculate accuracy
     acc = accuracy_score(actuals, predictions)
-    print('Accuracy: %.3f' % acc)
+    print("Accuracy: %.3f" % acc)
 
 
-# check if CUDA is available
+# check if CUDA is available, if not use CPU
 train_on_gpu = torch.cuda.is_available()
 
 if not train_on_gpu:
-    print('CUDA is not available.  Training on CPU ...')
+    print("CUDA is not available.  Training on CPU ...")
 else:
-    print('CUDA is available!  Training on GPU ...')
+    print("CUDA is available!  Training on GPU ...")
 
 train_loader, valid_loader, test_loader = prepare_data()
 
@@ -154,7 +167,7 @@ if train_on_gpu:
 
 if "train" in sys.argv:
     train_model(train_loader, model)
-    torch.save(model.state_dict(), './models/pytorch_cnn_cifar10.pt')
+    torch.save(model.state_dict(), "./models/pytorch_cnn_cifar10.pt")
 else:
-    model.load_state_dict(torch.load('./models/pytorch_cnn_cifar10.pt'))
+    model.load_state_dict(torch.load("./models/pytorch_cnn_cifar10.pt"))
     evaluate_model(test_loader, model)
