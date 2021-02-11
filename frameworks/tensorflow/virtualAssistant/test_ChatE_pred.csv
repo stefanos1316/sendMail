@@ -9,7 +9,7 @@ searching the webs ive found `lein deps :tree` but its output is quite large and
 227_clojurians_2017,Gus,"I’m a little bit confused — ^bytes is supposed to be a valid type hint and I’m supposed to be able to type hint the return value of a function by hinting the function name, right?",0,NonAnswer,NonAnswer
 227_clojurians_2017,Aldo,"<@Amado> as sad as it is, I'm not actually sure all the information required to know whether a dependency is used or not exists statically",0,NonAnswer,NonAnswer
 234_clojurians_2017,Laci,Is there a best practice to read/write ZIP files in Clojure? I have found the fs library today and the Java way but unsure what's the recommendation.,1,Question,Question
-234_clojurians_2017,Rebeca,I've only ever used the java.util.zip package; works fine,2,Answer,Answer
+234_clojurians_2017,Rebeca,I've only ever used the java.util.zip package; works fine,2,Answer,NonAnswer
 485_clojurians_2017,Billye,"Anyone know a good way to do synchronous REDIS pub/sub? Basically publish a message, and wait for the message response before moving forward evaluating?",1,Question,Question
 485_clojurians_2017,Loretta,"<@Billye>  in a pub/sub model, you publish a message, but you don’t receive any response. Maybe you mean that you’d like to wait until the publish has completed before continuing. I’m not a redis expert by any means ,but I don’t think it’s possible to do this in redis (Kafka, by contrast, allows you to both pass in a callback function and also returns a Future that you can use to determine completion of the publish).  Consider whether you actually need to know when the publish is complete, as one of the main benefits of a pubsub architecture is that the publisher really knows very little about who will consume its messages",2,Answer,Answer
 485_clojurians_2017,Billye,"<@Loretta> Yep I've used the classic pubsub structure, but what I'm describing is a special use case. No worries though I think I figured it out.",0,NonAnswer,NonAnswer
@@ -288,7 +288,7 @@ I agree that writing any sort of complex task is not worth it, however.",0,NonAn
 34_clojurians_2019,Tammera,"I would say that alternatives in syntax are actually worse than having inconsistent, but only one, syntax",0,NonAnswer,NonAnswer
 346_clojurians_2019,Donetta,"Is there a good way to convert a qualified map into an unqualified one?; Like, if I want to get some sample data via gen/sample or gen/generate and work on qualified specs, but turn that output into plain unqualified maps?; None",1,Question,Question
 346_clojurians_2019,Celestine,"If you know you have a flat map, with no nesting, `(reduce-kv (fn [m k v] (assoc m (keyword (name k)) v)) {} my-map)` will probably do. Never mind, just realized you explicitly asked about a nested hash map. But there's an argument for not nesting maps like that...",2,Answer,Answer
-346_clojurians_2019,Becki,beware that you can introduce collisions if you have something like `{:database/id 4 :somethingelse/id 6}`,0,NonAnswer,NonAnswer
+346_clojurians_2019,Becki,beware that you can introduce collisions if you have something like `{:database/id 4 :somethingelse/id 6}`,0,NonAnswer,Answer
 925_clojurians_2019,Rosia,"I'm generating the following code using reflection on a javaclass to generate a reify that will implement all methods on the class. The end result looks like this:
 <https://gist.github.com/jjttjj/95ff42fedd49893d51a4333da3abe436>
 The type hints on return values and arguments are needed to avoid ambiguity.
@@ -360,7 +360,7 @@ Pretty much followed compojure-api docs though",0,NonAnswer,NonAnswer
 121_clojurians_2018,Elwood,"Pretty cool! thanks a bunch, <@Wilton> ,  <@Marina>",0,NonAnswer,NonAnswer
 137_clojurians_2018,Darlene,"general open source question: if a project is stale (4+ years since last commit) and the maintainer of the project does not seem to be active anymore (no activity for the last few years), I created a pr a number of months ago and things seem to be dormant. Assuming I want to be a good member of the community and not step on anybodys toes etc, what's the correct way to proceed from here? Project is under epl. I can of course rewrite the entire thing myself from scratch (it's a one pager), but would have preferred to contribute. I need the result in another downstream project I'm working on. Tried contacting the maintaner but the email bounced. Opinions and ramblings welcomed...",1,Question,Question
 137_clojurians_2018,Tuyet,fork,2,Answer,Answer
-137_clojurians_2018,Marine,"fork, change maven coords and you're good to go",2,Answer,NonAnswer
+137_clojurians_2018,Marine,"fork, change maven coords and you're good to go",2,Answer,Answer
 137_clojurians_2018,Tuyet,you tried,0,NonAnswer,NonAnswer
 137_clojurians_2018,Darlene,"ok, so just forking and renaming is not considered bad mojo?; <@Tuyet> right, that's kind of where I'm at right now",0,NonAnswer,NonAnswer
 137_clojurians_2018,Manuel,"If the project is dead, nah. It's totally ok. But just preserve the copyright / license",0,NonAnswer,NonAnswer
@@ -404,7 +404,7 @@ There's an argument to say that list is incomplete. One of my concerns is over n
 I need to use this more. I always end up with `(into {} (map-indexed vector …))`",2,Answer,NonAnswer
 683_clojurians_2018,Remona,<@Yelena> same,0,NonAnswer,NonAnswer
 721_clojurians_2018,Brenna,"Does anyone know of an efficient way to work over a matrix from a random point within the matrix, not using row or column major order, but more of an adjacent style ordering?",1,Question,Question
-721_clojurians_2018,Divina,<@Brenna> what does the data structure look like? Seems like row and column addressing are standard. Would you make a zipper or something similar? Don't know of another common way to do it,0,NonAnswer,Answer
+721_clojurians_2018,Divina,<@Brenna> what does the data structure look like? Seems like row and column addressing are standard. Would you make a zipper or something similar? Don't know of another common way to do it,0,NonAnswer,NonAnswer
 721_clojurians_2018,Brenna,"For example, if I have this vector of vectors:
 ```[[0 0 0]
  [1 0 0]
@@ -663,7 +663,7 @@ Something like carmine does at : <https://github.com/ptaoussanis/carmine#basic-c
 2002_clojurians_2018,Marina,there is <#C06GSN6R2|ring-swagger> for c-api related things.,0,NonAnswer,NonAnswer
 2002_clojurians_2018,Shila,Oh alright sorry,0,NonAnswer,NonAnswer
 2074_clojurians_2018,Yun,Anyone using protocol buffers with Clojure? Which library is the best for that?,1,Question,Question
-2074_clojurians_2018,Helaine,Has anyone written or used a Github Bot that runs `cljfmt fix` on your project? That would be super handy,0,NonAnswer,NonAnswer
+2074_clojurians_2018,Helaine,Has anyone written or used a Github Bot that runs `cljfmt fix` on your project? That would be super handy,0,NonAnswer,Answer
 2137_clojurians_2018,Lela,"Hi, I just switched from http-kit to jetty. I have an endpoint that when i request it, i get a ""java.lang.StackOverflowError"" ... the same endpoint returns fine in http-kit and also, when i repl onto the server and try calling the function directly with the same parameters, it also returns ok. Anyone have any suggestion as to how i would debug this ?",1,Question,Question
 2137_clojurians_2018,Shan,"I’ve a question about `swap!`. According to the doc:
 ```
@@ -686,7 +686,7 @@ Thanks a lot!",0,NonAnswer,NonAnswer
 2164_clojurians_2018,Tod,"So how could I handle this?; The idea is for the program to explode and notify on any failure, but if I don't catch the error in the loop I'll get the exception but not the stoppage",0,NonAnswer,NonAnswer
 2164_clojurians_2018,Leonia,(try (loop ... (recur ...)) (catch ...),2,Answer,NonAnswer
 2260_clojurians_2018,Landon,"Hi!; Do you have any suggestions how can I implement `--verbose` switch for `clojure.tools.logging`? That is, enable `log/debug` output to console.",1,Question,Question
-2260_clojurians_2018,Tyesha,"What’s the underlying logging engine that you’re using? (eg log4j, logback etc); (and, does it have to be `--verbose` or can it be any command line param?)",0,NonAnswer,NonAnswer
+2260_clojurians_2018,Tyesha,"What’s the underlying logging engine that you’re using? (eg log4j, logback etc); (and, does it have to be `--verbose` or can it be any command line param?)",0,NonAnswer,Answer
 2260_clojurians_2018,Landon,How can I know what's the overlying engine?; I've just included `clojure.tools.logging` and started using it.,0,NonAnswer,NonAnswer
 2323_clojurians_2018,Hugh,Hello everybody. I’m very excited about spec library and I’d like to enable instruments for everything that has spec. Is there a good way to do so? Just don’t want to write (instrument ‘my-fun) for every single function in my app,1,Question,Question
 2323_clojurians_2018,Joel,<@Hugh> according to the api docs if you just call `(instrument)` it will instrument all instrumentable vars <https://clojure.github.io/spec.alpha/clojure.spec.test.alpha-api.html#clojure.spec.test.alpha/instrument>; haven’t tried it myself tho,2,Answer,Answer
@@ -1285,7 +1285,7 @@ function { param1, param2, param3 } = ...
 791_elmlangB_2017,Theola,Perfect. Thank you <@Ward> :smile:,0,NonAnswer,NonAnswer
 791_elmlangB_2017,Ward,NP :party_parrot:; Also good to watch this elm-europe talk from richard (the author of that repo) for the philosophy/experience that informed the design decisions that he made <https://www.youtube.com/watch?v=DoA4Txr4GUs&amp;t=47s>,2,Answer,NonAnswer
 893_elmlangB_2017,Lynell,"Hi! Does anyone have examples on how to use elm-validate, or other validation examples (like phone number length, social security numbers, email format, etc..?; are there any tutorials?",1,Question,Question
-893_elmlangB_2017,Doreen,"each day, elm makes less sense to me",0,NonAnswer,NonAnswer
+893_elmlangB_2017,Doreen,"each day, elm makes less sense to me",0,NonAnswer,Answer
 893_elmlangB_2017,Lee,"<@Doreen> That is probably because you are coming with a lot of ideas that work for other paradigms, but don't hold up here and you are just discovering that.; <@Jermaine> You either need the function which makes that submit button take a `Msg` as a parameter or you need to wrap the data type the submit button is using via `Html.map`",0,NonAnswer,NonAnswer
 893_elmlangB_2017,Jermaine,got it,0,NonAnswer,NonAnswer
 893_elmlangB_2017,Rolande,"Hi folks. Anyone knows what's wrong here .```        UrlMsg (Err error) -&gt;
@@ -1690,7 +1690,7 @@ I'm not experienced enough with Elm to go into it too heavily, I only dabble on 
 1616_elmlangB_2017,Shyla,Yeah it's nice; Also there's <http://package.elm-lang.org/packages/eeue56/elm-html-test/latest> and <http://package.elm-lang.org/packages/rtfeldman/test-update/1.0.0> to supplement elm test,2,Answer,NonAnswer
 1778_elmlangB_2017,Darius,"If I have a model change that triggers a view change, and I want to use a task to set focus on an input field that gets drawn because of update, what's the right way to coordinate that?; Do I need a subscription?",1,Question,Question
 1778_elmlangB_2017,Jenny,S,0,NonAnswer,NonAnswer
-1778_elmlangB_2017,Burma,Check out <https://github.com/JoelQ/example-elm-searchable-dropdown/commit/24d2f31a7e8e14daa9933e5af13de771216e0ba0> for an example of doing exactly that,2,Answer,NonAnswer
+1778_elmlangB_2017,Burma,Check out <https://github.com/JoelQ/example-elm-searchable-dropdown/commit/24d2f31a7e8e14daa9933e5af13de771216e0ba0> for an example of doing exactly that,2,Answer,Answer
 1778_elmlangB_2017,Jenny,"Some progress with using tasks here, but still struggling.  I am trying to do this:
 ```
 Task.perform GetUserDocuments (Request.getDocumentsTask route query token)
@@ -1748,7 +1748,7 @@ viewFoo : Int -&gt; Int -&gt; String -&gt; String -&gt; Html Msg
 , that's up to your preference (usually ""is this amount of arguments getting uncomfortable?""), there are patterns though -- like using extensible records. Richard Feldman's talk from ElmEurope talks about these your questions! <https://www.youtube.com/watch?v=DoA4Txr4GUs>",2,Answer,NonAnswer
 1920_elmlangB_2017,Jona,"<@Monroe> and <@Joey> Thanks, very helpful advice to get me started!",0,NonAnswer,NonAnswer
 1987_elmlangB_2017,Stephine,i have form in my UI that takes a json input. are there any libraries to help me validate json ?,1,Question,Question
-1987_elmlangB_2017,Inez,"<@Stephine> just curious, what do you mean by validate?; possible questions: is the input JSON? does it fit a given “shape” or schema? does its content pass specific tests?",0,NonAnswer,NonAnswer
+1987_elmlangB_2017,Inez,"<@Stephine> just curious, what do you mean by validate?; possible questions: is the input JSON? does it fit a given “shape” or schema? does its content pass specific tests?",0,NonAnswer,Answer
 1987_elmlangB_2017,Stephine,"<@Inez> both semantically and syntactically; so both, whther the input is a json and whether it matches a particular scehma; schema*",0,NonAnswer,NonAnswer
 1987_elmlangB_2017,Monroe,"I would extract the common parts to
 ```
@@ -2688,7 +2688,7 @@ For example:
 3 - file - headers `third, second, first`
 etc
 What do you think what the best way to unite these files?",1,Question,Question
-1811_pythondev_2019,Jettie,"csv.DictReader, csv.DictWriter",2,Answer,NonAnswer
+1811_pythondev_2019,Jettie,"csv.DictReader, csv.DictWriter",2,Answer,Answer
 1877_pythondev_2019,Conchita,"I just finished my first project at my new gig; Now I want to complete the documentation for the project; Any tips on how to write good documentation? This is an internal tool, mainly for our developers",1,Question,Question
 1877_pythondev_2019,Jimmy,There is whole talk somewhere about validating email. The conclusion was just send an email with a validation link it's way easier,0,NonAnswer,Answer
 2150_pythondev_2019,Cherish,"I have a few classes setup, where class `C` inherits from class `B`, which inherits from class `A`. When I create an instance of class `C`, I can call and see the successful output of a method `foo` defined in class `A` that it inherited, however there's a `print` statement in `foo`'s definition that doesn't seem to be printing somewhere visible to me, which I was hoping to use for some debugging, any tips on finding that print statement's output?",1,Question,Question
@@ -2773,7 +2773,7 @@ In [13]: i = ""0""
 
 In [14]: if i == ""0"" or not i:
     ...:     print('Falsey')
-Falsey```",2,Answer,Answer
+Falsey```",2,Answer,NonAnswer
 185_pythondev_2018,Kacie,"A string “0” is truthy; As is “false” ; Because it’s a string; <@Delphia> so the *pythonic* way to do comparisons would be something like ; if *not* variable:; if variable, etc ",2,Answer,NonAnswer
 185_pythondev_2018,Delphia,"<@Noel> <@Kacie>Thanks! I noticed that about those 4 values and how ""0"" is a truthy (rightfully so imo lol)",0,NonAnswer,NonAnswer
 185_pythondev_2018,Kacie,Integer 0 is in fact falsely,0,NonAnswer,NonAnswer
@@ -2915,7 +2915,7 @@ abcde: true```",0,NonAnswer,NonAnswer
 1092_pythondev_2018,Sadye,What is wrong with openpyxl then? Why couldn't you use it?,0,NonAnswer,NonAnswer
 1092_pythondev_2018,Refugia,"<@Keren> csv is not an option, as i have other conditional formatting colors in the excel; <@Sadye> i could find a way to insert a blank row in excel. could u guide me for pointers i should search for this task ?; let me try. thanks <@Sadye>",0,NonAnswer,NonAnswer
 1308_pythondev_2018,Rebecka,"Hey I am looking to build a python text editor(cli) , would appreciate any suggestions and advice before starting, how should I approach?",1,Question,Question
-1308_pythondev_2018,Elisha,oeee that sounds like a heck of a project,0,NonAnswer,Answer
+1308_pythondev_2018,Elisha,oeee that sounds like a heck of a project,0,NonAnswer,NonAnswer
 1308_pythondev_2018,Tommie,<@Rebecka> I suppose that's for a training project. Perhaps pick some ncurses python bindings. That'll get you far enough.; ncurses is a very old and stable library that allows you to draw to terminals in a high level fashion; It's well suited for this task,2,Answer,Answer
 1414_pythondev_2018,Tangela,Any good resource to learn regex?,1,Question,Question
 1414_pythondev_2018,Gwyn,"I think globals have to be outside of a function scope ? (I have no idea, it would just make sense)
@@ -3037,7 +3037,7 @@ And that the try/catch are totally unecessary ?; Well I put it there long ago wh
 1566_pythondev_2018,Aleida,"<@Kacie>?!; Can you be a little bit more polite?; You know, you can just ignore these postings.; <@Rob> nobody will do your homework for you. What's the point of your question?
 Even if we answer, you'll learn nothing because learning (mainly) is a process of self-knowledge. You need to learn how to ask right questions to yourself and how to find answers; And if you found something, you tried and it didn't work, only then you can go to others and ask for help. Otherwise all of that is pointless",0,NonAnswer,Answer
 1566_pythondev_2018,Tana,"I am trying to get users from a file...; I retrived the users and I want to display ""n"" top users; <@Jerry>",0,NonAnswer,NonAnswer
-1566_pythondev_2018,Julianne,<@Tana> you are missing a plus sign on line 9.,0,NonAnswer,NonAnswer
+1566_pythondev_2018,Julianne,<@Tana> you are missing a plus sign on line 9.,0,NonAnswer,Answer
 1566_pythondev_2018,Tana,"its there... ""+"" sign is there <@Julianne>",0,NonAnswer,NonAnswer
 1566_pythondev_2018,Aleida,"<@Tana> you stated the task and described what you have, but you never asked a question",0,NonAnswer,NonAnswer
 1566_pythondev_2018,Tana,"I retrived the users and I want to display ""n"" top users",0,NonAnswer,NonAnswer
@@ -3451,7 +3451,7 @@ My specific use case is that I would like to change stuff inside N child element
 2297_elmlangG_2017,Trinidad,"yes, i'll pm you my version, it's .... a bit hard on the eyes",0,NonAnswer,NonAnswer
 2297_elmlangG_2017,Sharron,haha thanks!,0,NonAnswer,NonAnswer
 2389_elmlangG_2017,Loree,Hi folks! Is there a easy way to know on JS side if someone on Elm side listening for event?; so I have onscroll event and need it only on one lightweight page. and it kills performance on more complex pages; I thought to just use ports to send flag if JS should listen for onscroll or not specially for this page. is there a better solution available?; btw on Elm side I am already subscribing only when this page is active and ignoring events otherwise. but it drops FPS anyway. maybe some message bus overflow,1,Question,Question
-2389_elmlangG_2017,Leona,I'm not sure why you would need to go with a JS solution for this. Where and how are you setting an event handler on the onscroll event?; Can you not only have this handler activated only on the one page where it is supposed to be used?,0,NonAnswer,Answer
+2389_elmlangG_2017,Leona,I'm not sure why you would need to go with a JS solution for this. Where and how are you setting an event handler on the onscroll event?; Can you not only have this handler activated only on the one page where it is supposed to be used?,0,NonAnswer,NonAnswer
 2389_elmlangG_2017,Loree,<@Leona> is there a way to set onscroll on `body` via elm only?,0,NonAnswer,Answer
 2389_elmlangG_2017,Lindsey,why do you want a scroll handler on `body`?,0,NonAnswer,NonAnswer
 2389_elmlangG_2017,Loree,there is some kind of parallax-like animation on homepage,0,NonAnswer,NonAnswer
@@ -3903,7 +3903,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 4035_irc_angularjs,leehambley,"oh, thanks - could have googled that myself I guess :)",0,NonAnswer,NonAnswer
 4035_irc_angularjs,Foxandxss,"well, that implementation is meh; well, try it; debounce uses a timeout if I am not mistaken anyway; brb",0,NonAnswer,NonAnswer
 4141_irc_angularjs,chanced,"ugh; sublimetext, you pos; i retract that.. better than anything else; has anyone tried github's atom? it looks like it could be incredible",1,Question,Question
-4141_irc_angularjs,davidcramer,chanced its missing a lot of functionality and is significantly slower than sublime,0,NonAnswer,NonAnswer
+4141_irc_angularjs,davidcramer,chanced its missing a lot of functionality and is significantly slower than sublime,0,NonAnswer,Answer
 4141_irc_angularjs,chanced,davidcramer: gotcha,0,NonAnswer,NonAnswer
 4141_irc_angularjs,davidcramer,has potential for sure,0,NonAnswer,NonAnswer
 4141_irc_angularjs,chanced,ah,0,NonAnswer,NonAnswer
@@ -3957,7 +3957,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 4383_irc_angularjs,olivvv,Hi. What the right way to modify a .$modelValue ??,1,Question,Question
 4383_irc_angularjs,s3shs,"olivvv, you mean in a directive?",0,NonAnswer,NonAnswer
 4383_irc_angularjs,olivvv,s3shs:yes,0,NonAnswer,NonAnswer
-4383_irc_angularjs,s3shs,The directive link function gets a scope argument. Just do scope.myVar = newValue;,2,Answer,NonAnswer
+4383_irc_angularjs,s3shs,The directive link function gets a scope argument. Just do scope.myVar = newValue;,2,Answer,Answer
 4383_irc_angularjs,olivvv,"s3shs:yes, but that makes conflict when there is several directives on the same element",0,NonAnswer,NonAnswer
 4383_irc_angularjs,s3shs,"olivvv, you need to set priorities on those directives. Or start sharing data another way. Your code sounds too scary.",0,NonAnswer,NonAnswer
 4383_irc_angularjs,olivvv,s3shs:scary ?? nowhere I read it was forbidden to have several directive on the same element. The purpose of those directives is compatible.,0,NonAnswer,NonAnswer
@@ -4596,7 +4596,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 9742_irc_angularjs,renlord,BahamutWC: Okay. I'll try it out. Thank you,0,NonAnswer,NonAnswer
 9782_irc_angularjs,kirfu,Anyone have any examples for writing proper documentation on your angular code?,1,Question,Question
 9782_irc_angularjs,BahamutWC,kirfu: you could use grunt-ngdocs,2,Answer,Answer
-9782_irc_angularjs,robdubya,"kirfu <a href=""https://github.com/balderdashy/angularSails/blob/master/src/sailsSocket/socket.js"" rel=""nofollow"" target=""_blank"">https://github.com/balderdashy/angularSails/blob/master/src/sailsSocket/socket.js</a>; inline docs",2,Answer,NonAnswer
+9782_irc_angularjs,robdubya,"kirfu <a href=""https://github.com/balderdashy/angularSails/blob/master/src/sailsSocket/socket.js"" rel=""nofollow"" target=""_blank"">https://github.com/balderdashy/angularSails/blob/master/src/sailsSocket/socket.js</a>; inline docs",2,Answer,Answer
 9782_irc_angularjs,BahamutWC,"or <a href=""https://github.com/angular/dgeni"" rel=""nofollow"" target=""_blank"">https://github.com/angular/dgeni</a>",0,NonAnswer,NonAnswer
 9782_irc_angularjs,robdubya,"output <a href=""http://balderdashy.github.io/angularSails/#/api"" rel=""nofollow"" target=""_blank"">http://balderdashy.github.io/angularSails/#/api</a>",0,NonAnswer,NonAnswer
 9782_irc_angularjs,wafflejock_,"yeah I had some problems with getting going with ngdoc, eventually got it working but had some issues, I do generally like the output though still need to learn some of the details about setting up links appropriately and things",0,NonAnswer,NonAnswer
@@ -4672,7 +4672,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 10085_irc_angularjs,Rubynaut,a215: i read this :/; +had,0,0,0
 10085_irc_angularjs,a215,"double check, should work; i'm not the best person to ask probably",0,0,0
 10138_irc_angularjs,tiron,"as someone a bit overwhelmed by angular (but with some js/jquery experience), can anyone recommend a good book? Or are the egghead tutorial/videos a better idea? The docs seem to be in a bit of disarray and some of the plunker examples aren't loading correctly.",1,Question,Question
-10138_irc_angularjs,zumba_addict,"I learned from Egghead and forgetting what i know about Jquery; start coding too, that's how I learned very fast; i'm still new too",2,Answer,NonAnswer
+10138_irc_angularjs,zumba_addict,"I learned from Egghead and forgetting what i know about Jquery; start coding too, that's how I learned very fast; i'm still new too",2,Answer,Answer
 10138_irc_angularjs,tiron,"zumba_addict: from the video tutorials? I've been watching them but I still feel as though it's touch and go on some pretty big concepts and I'm having a hard time distinguishing all the different parts (services vs factories vs directives, etc)?; or do they have text tutorials with live examples as well?",0,NonAnswer,NonAnswer
 10138_irc_angularjs,zumba_addict,angularjs.org docs; pretty good; they have tons of examples or plunkers,2,Answer,NonAnswer
 10138_irc_angularjs,tiron,zumba_addict: like I said above it seems like they are a bit all over the place? Or maybe it's just me?; zumba_addict: a lot of the plunkers dont' work for me?; plunker says failed to laod manifest,0,NonAnswer,NonAnswer
@@ -4889,7 +4889,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 5560_irc_opengl,dindinx,"yes; <a href=""http://www.amazon.com/gp/product/0321197895/103-9961629-4246211?v=glance&amp;n=283155"" rel=""nofollow"" target=""_blank"">http://www.amazon.com/gp/product/0321197895/103-9961629-4246211?v=glance&amp;n=283155</a> &lt;= this one; it is a pretty good book, if you ask me :)",2,Answer,NonAnswer
 5560_irc_opengl,_Felix,eh,0,NonAnswer,NonAnswer
 5698_irc_opengl,obi_1,"anyone know here fbo example without glut? (after second run of my loop with this code included: <a href=""http://rafb.net/paste/results/VxOs5A57.html"" rel=""nofollow"" target=""_blank"">http://rafb.net/paste/results/VxOs5A57.html</a> I get crash from glClear)",1,Question,Question
-5698_irc_opengl,LtJax,"obi_1, getting any gl errors?",0,NonAnswer,NonAnswer
+5698_irc_opengl,LtJax,"obi_1, getting any gl errors?",0,NonAnswer,Answer
 5698_irc_opengl,obi_1,"LtJax: checking; LtJax: seems I don't (I've added this code in my main loop: <a href=""http://rafb.net/paste/results/f7LgQ658.html)"" rel=""nofollow"" target=""_blank"">http://rafb.net/paste/results/f7LgQ658.html)</a>",0,NonAnswer,NonAnswer
 5698_irc_opengl,LtJax,"obi_1, how about the framebuffer completeness?",0,NonAnswer,NonAnswer
 5698_irc_opengl,obi_1,LtJax: I have no framebuffer related erros too...,0,NonAnswer,NonAnswer
@@ -4935,7 +4935,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 6317_irc_opengl,Srecko,"NullAshton> just quit GM; start to code.; applications, they lead to games, later",0,0,0
 6317_irc_opengl,NullAshton,"Gamemaker makes it easy to make a game, without messing with most of the game engine stuff.; But that's for a school club thingie.; And now I have a motivation again to work with openGL.; For 3d games.; Or at least a pretty tech demo.; But copying code is convienent...; Oh, that's what you mean by copying code.; I thought you mean copy/pasting parts of your code. x.x",0,0,0
 6514_irc_opengl,dderr,anyone have any suggestions for gui libraries that can be used inside of a game,1,Question,Question
-6514_irc_opengl,TypoNAM,"dderr: none that I've found, so I'm writing my own gui subsystem :P",0,NonAnswer,NonAnswer
+6514_irc_opengl,TypoNAM,"dderr: none that I've found, so I'm writing my own gui subsystem :P",0,NonAnswer,Answer
 6514_irc_opengl,dderr,"TypoNAM : you check out GiGi, its decent though lots of dependencies",2,Answer,NonAnswer
 6514_irc_opengl,TypoNAM,"dderr: hmm it appears GiGi is causing some high CPU usage problems from what I've read on the FreeOrion forums, so if you are going to use it you might experience the same thing; yuck... FreeOrion uses .NET framework, now that's just not right; for their Windows port I mgiht add, they're working on a Linux, and got a Mac OS X port, don't get why the hell they're using .NET on Win32, native C++ would have worked just fine with libSDL, I guess those developers are a few fries short of a happy meal; dtv?; :P; hehe",0,NonAnswer,NonAnswer
 6730_irc_opengl,dderr,what is the best approach for sending glfloats over a network? I am concerned w/ endianess as well as 32 vs 64 bit,1,Question,Question
@@ -4952,7 +4952,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 6849_irc_opengl,smogzer,i was linking to the mesa gl instead of the nvidia one; thanks anyway,0,NonAnswer,NonAnswer
 6849_irc_opengl,TypoNAM,because that extension isn't apart of OpenGL 1.2 spec which most compilers' headers come with; :P,0,NonAnswer,NonAnswer
 7845_irc_opengl,Janit,"Hi all, I want to get into GUI programming for linux. Can someone explain me what is OpenGL and how is related to X window api",1,Question,Question
-7845_irc_opengl,tahooie,"Janit, Have you looked at wxWidgets?",0,NonAnswer,NonAnswer
+7845_irc_opengl,tahooie,"Janit, Have you looked at wxWidgets?",0,NonAnswer,Answer
 7845_irc_opengl,Janit,ok,0,NonAnswer,NonAnswer
 8297_irc_opengl,acidblood,"Hi, I was wondering what's a good library to decode MPEG-1 streams, so that I can load them as textures and display in OpenGL.",1,Question,Question
 8297_irc_opengl,Srecko,"veal, acidblood, no idea, sorry",2,Answer,NonAnswer
@@ -4978,7 +4978,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 8564_irc_opengl,feelgood,hmm well I'm unsure of how you would deal w/ GL extensions in Haskell; uh yeah.... well you have bigger problems performance wise if you are using Haskell :P,0,NonAnswer,NonAnswer
 8564_irc_opengl,darrint_,heh. Thanks for the pointer. The code is helpful.; I hafta run.,0,NonAnswer,NonAnswer
 8862_irc_opengl,`m0,hi how do you guys usually draw a cube; do you draw one face at a time?; or do matrix manipulation?; or some sort of fancy stuff; is there a good way to import 3ds to opengl; I don't want to download any extra libraries; k; which library do I use; I know google has millions answers; I am wondering which one do you guys prefer,1,Question,Question
-8862_irc_opengl,lightbringer,I don't prefer .3ds; Are you doing any animation in your model? If it's a pretty simple model I'd recommend you stick with .ojb; .obj,2,Answer,NonAnswer
+8862_irc_opengl,lightbringer,I don't prefer .3ds; Are you doing any animation in your model? If it's a pretty simple model I'd recommend you stick with .ojb; .obj,2,Answer,Answer
 8862_irc_opengl,`m0,I am practicing,0,NonAnswer,NonAnswer
 8862_irc_opengl,lightbringer,Then I'd recommend sticking with .obj,0,NonAnswer,NonAnswer
 8862_irc_opengl,`m0,hmm okay,0,NonAnswer,NonAnswer
@@ -5005,7 +5005,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 9130_irc_opengl,Andon,"Indeed, swapchains are a true blessing in D3D. Especially when you can varry their backbuffer dimensions independantly.; vary, for that matter.",0,NonAnswer,NonAnswer
 9130_irc_opengl,feelgood,yep,0,0,0
 9230_irc_opengl,samkl,has anyone worked on game physics?; well....i am trying to give spin to a ball; i know the angle that my ball has to get rotated; for axis z and x; and if the motion is only on one axis then the result is fine; but if the motion is in both axes then glRotate does not give good results since i rotate first x and then z; is there any better way of doing it?; what would the difference be?; iglrotate does the same thing doesnt it?; yea me too; how would i do the rotate as one though?; hmmm,1,Question,Question
-9230_irc_opengl,lightbringer,So you've got an up vector for the ball and and angle it should be rotated around that up axis?,0,NonAnswer,NonAnswer
+9230_irc_opengl,lightbringer,So you've got an up vector for the ball and and angle it should be rotated around that up axis?,0,NonAnswer,Answer
 9701_irc_opengl,Zemyla,I have a question. Is there a simple way to tell if a moving point collides with a moving line in a certain timestep?,1,Question,Question
 9701_irc_opengl,JernejL,"Zemyla, use newton physics engine; i recommend it - physicsengine.com; it is great for any kind of collision detection; and dynamics too!",2,Answer,Answer
 9701_irc_opengl,Zemyla,"This seems to be quite a bit of overkill.; Plus, does it handle deformable objects?; Because none of the other engines I've seen do.; Basically, my problem is that I want to do a simulation of a balloon.; Hundreds to thousands of point objects inside a spherical mesh that is deformable.",0,NonAnswer,NonAnswer
@@ -5517,7 +5517,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 20446_irc_opengl,ktne,yes z is positive entering into the screen,2,Answer,Answer
 20446_irc_opengl,Muzzle,well we decide on our own guys; not if someone else should read some of my code and is used to do it another way; alrighty,0,NonAnswer,NonAnswer
 20733_irc_opengl,v3rmap,I'm planning to start learning OpenGL programming. Is there anyway I can use C# to write OpenGL programs?; what library should I use?,1,Question,Question
-20733_irc_opengl,hibread,im not sure what you after... library? you mean to assist you with setting up the window for rendering?,0,NonAnswer,NonAnswer
+20733_irc_opengl,hibread,im not sure what you after... library? you mean to assist you with setting up the window for rendering?,0,NonAnswer,Answer
 20733_irc_opengl,v3rmap,"hibread: if I write a program which makes OpenGL calls, I'm assuming I'd need to link that program to a library which implementes OpenGL calls.",0,NonAnswer,NonAnswer
 20733_irc_opengl,hibread,sorry i can't help you with c#; there are bound to be heaps of tutorials floating around; nehe has some c# ports,0,NonAnswer,NonAnswer
 20733_irc_opengl,v3rmap,"ok, I'll take a look, thanks guys; What if I used C or C++ instead. Is there a library anyone would recommend? (free is better)",0,NonAnswer,NonAnswer
@@ -5661,7 +5661,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 872_irc_c++-general,LBV_User,with specific size,0,NonAnswer,NonAnswer
 872_irc_c++-general,zxrf,"currently my type has 3 u32s at the beginning as a sort of a header, with the variable-sized part coming after these 12 bytes. so it takes 12 bytes in the trivial case. wouldn't std::vector take up more than this, around 24 bytes for an empty vector?",0,NonAnswer,NonAnswer
 881_irc_c++-general,mike11,"hello all, is there any class in the standard library for a ""static vector"" that provides a vector-like interface with a fixed compile-time capacity (that cannot be neither shrinked nor expanded)? and if not, what is the best way to emulate such behaviour? do I have to implement from scratch?",1,Question,Question
-881_irc_c++-general,vdamewood,"mike11: If you're not growing it or shrinking it, why not an array?",2,Answer,NonAnswer
+881_irc_c++-general,vdamewood,"mike11: If you're not growing it or shrinking it, why not an array?",2,Answer,Answer
 881_irc_c++-general,mike11,vdamewood: I want to be able to count the elements being pushed (what I want is sort of a vector with a compile-time upper-bound); I also want to remove and insert elements into it,0,NonAnswer,NonAnswer
 881_irc_c++-general,vdamewood,"Ohh... so the vector is variable sized, but the buffer isn't.",0,NonAnswer,NonAnswer
 881_irc_c++-general,mike11,"I am not sure I understand, if ""buffer"" == ""my desired static vector"" then yes :)",0,NonAnswer,NonAnswer
@@ -5692,7 +5692,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 2131_irc_c++-general,CoolerZ,"m_ben, how do you save and load matrices in eigen?; save to file and load from file",0,NonAnswer,NonAnswer
 2131_irc_c++-general,m_ben,I create the matrices/vectors in my program. I haven't really used eigen that much. I also haven't used it for extremely large matrices or vector which would require saving them in binary format. maybe ask in #eigen to see what others did before; there's also a Eigen mailing list,0,NonAnswer,NonAnswer
 2273_irc_c++-general,drogas,"Which library offers to read an nx2 array file?; bascially it is a binary file, when read in python it seems to have n rows and 2 columns of numbers",1,Question,Question
-2273_irc_c++-general,wPSvils,"drogas: doesn't sound like you need a library, if it's simple floats or ints serialized.",2,Answer,Answer
+2273_irc_c++-general,wPSvils,"drogas: doesn't sound like you need a library, if it's simple floats or ints serialized.",2,Answer,NonAnswer
 2273_irc_c++-general,drogas,"wPSvils: it is indeed written as float, but the second column is in reality the complex part so I will have to convert that into complex afterwards",0,NonAnswer,NonAnswer
 2273_irc_c++-general,wPSvils,"drogas: what does ""convert to complex"" mean?",0,NonAnswer,NonAnswer
 2273_irc_c++-general,drogas,"wPSvils: in python that simply means A_matrix = A_matrix[:,0] + 1j*A_matrix[:,1] i.e. multiplying it with 1j not sure what that would mean in C",0,NonAnswer,NonAnswer
@@ -6055,7 +6055,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 4678_irc_c++-general,c0mrade,k,0,0,0
 4825_irc_c++-general,ariejan,"Hi. I'm _very_ new to C/C++, writing code for an MCU (Atmega in this case). I understand header/implementation files and I like using them. However, my main.cpp contains lots of one-off functions and I need to put them in a specific order for the compiler to know about each function. What's a best practice to handle this? I'm not sure putting everything in a separate class would be helpful.",1,Question,Question
 4825_irc_c++-general,quarterback,"ariejan, Are you working with a ide supplied with the MCU board and they have predefined functions which execute in main loop?",0,NonAnswer,Answer
-4825_irc_c++-general,Haohmaru,"ariejan declare your functions in a header, write their actual code in the cpp file; also, you could ask avr-specific questions in #avrs",2,Answer,NonAnswer
+4825_irc_c++-general,Haohmaru,"ariejan declare your functions in a header, write their actual code in the cpp file; also, you could ask avr-specific questions in #avrs",2,Answer,Answer
 4825_irc_c++-general,ariejan,"@quarterback visual studio code with platformio, mostly to handle uploading and converting binaries to the MCU.",0,NonAnswer,NonAnswer
 4825_irc_c++-general,Haohmaru,beware: not many cpp fans there,0,NonAnswer,NonAnswer
 4825_irc_c++-general,ariejan,@Haohmaru so a 'main.h` to define my functions and that's it? Worth a try ;-) Thanks,0,NonAnswer,NonAnswer
@@ -6363,7 +6363,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 6528_irc_c++-general,RandomReader,"ah, that one!",0,0,0
 6528_irc_c++-general,kalven,the 'using' stuff was some other craziness,0,0,0
 6615_irc_c++-general,psichas,"im looking good read about winsock2 (windows networking) c++ and etc, but i found only msdn :) what books should i read too? :)",1,Question,Question
-6615_irc_c++-general,RandomReader,!give psichas windows,0,NonAnswer,Answer
+6615_irc_c++-general,RandomReader,!give psichas windows,0,NonAnswer,NonAnswer
 6615_irc_c++-general,nolyc_,"psichas: You should ask your Windows programming questions in ##c++-general, #winapi, ##windows-coding or irc://irc.efnet.org/winprog",2,Answer,NonAnswer
 6615_irc_c++-general,RandomReader,"the name ""Petzold"" comes to mind from distant memory, but that's all I've got at the moment .. the other windows channels may have suggestions too; the main winsock model hasn't changed so even old stuff is ok there, what has changed is newer APIs in newer versions of Windows for more specific scenarios; e.g. if you're doing a request/response protocol that serves files, like a non-dynamic http server, you can have the kernel handle part of the request and all the file i/o without you, that sort of thing",2,Answer,NonAnswer
 6809_irc_c++-general,Samian,hi; anyone know of a way to put a cpp program in windows in a mode that pauses it without taking up much cpu power?; actually nevermind; that was a vague question anyway,1,Question,Question
@@ -6547,7 +6547,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 9828_irc_c++-general,CaffeineVaccine,"there could give that has helped you throughout the years?; Hello, so my goal is to comprehend a fairly advanced C++ file that's around ~1000 lines of code. There's alot going on in it. So I'm wondering what the best strategies are to fully comprehend it are. I guess my plan, right now, is to just play around with it a little bit and basically just keep staring and staring and looking and reading the code until stuff finally clicks. Is there any advice that any veterans out",1,Question,Question
 9828_irc_c++-general,RandomReader,"CaffeineVaccine - I think C++ is one of the most difficult languages to read cold because the syntax is so context-dependent and un-Google-able .. but in general I think there are a couple main things I'm doing when reading code; one is just pattern recognition, like ""for (int i = 0; i &lt; foo; ++i)"" is probably iterating over something by index .. that's only as good as the patterns you already know, but it's a major part of dealing with code in general, and it's the sort of thing you basically just learn with experience; I don't read those individually unless I carefully slow down and focus, I skim it as ""iterating"" and only go back if there seems to be something strange / doesn't make sense / there's a potential bug; getting a sense of the overall code flow I tend to do by mentally tracing execution through logical groups, try to get an overview of it .. e.g. ""starts in main, calls some Config-things so probably initializes configuration, starts this loop so probably event-based, event Foo seems to do something with a GUI library, event Bar seems to do something with file I/O"" etc",2,Answer,NonAnswer
 9828_irc_c++-general,CaffeineVaccine,"RandomReader: Thanks for the advice. I think the best follow-up question to ask with that is, which resource should I turn to, to learn a bunch of patterns, since my pattern knowledge is fairly limited?",0,NonAnswer,NonAnswer
-9828_irc_c++-general,RandomReader,"I also tend to pick a logical group (e.g. single class if it's OOP, single file if it's a set of free functions) and try to get a sense of its interface, how it is intended to be used; in the high-level sense, like what functions are available, what kinds of parameters, etc .. and go back and forth between execution flow and this interface to get a sense of how it fits together; after that is when I usually dig into details of how function X actually accomplishes its thing, because I have a sense of what invariants it needs to maintain / what state needs to be set up for the next logical call for typical usage; which helps in figuring out what it *does*, since I have a vague notion of what it *should* do; as far as resources .. hmm; it's the sort of thing Scott Meyers covers well, he just doesn't explicitly describe them as ""patterns"", so any of his work would probably be useful; I feel like there's another book explicitly about patterns, but I can't find it at the moment, and it's not one I've read so no idea how good it is",0,NonAnswer,NonAnswer
+9828_irc_c++-general,RandomReader,"I also tend to pick a logical group (e.g. single class if it's OOP, single file if it's a set of free functions) and try to get a sense of its interface, how it is intended to be used; in the high-level sense, like what functions are available, what kinds of parameters, etc .. and go back and forth between execution flow and this interface to get a sense of how it fits together; after that is when I usually dig into details of how function X actually accomplishes its thing, because I have a sense of what invariants it needs to maintain / what state needs to be set up for the next logical call for typical usage; which helps in figuring out what it *does*, since I have a vague notion of what it *should* do; as far as resources .. hmm; it's the sort of thing Scott Meyers covers well, he just doesn't explicitly describe them as ""patterns"", so any of his work would probably be useful; I feel like there's another book explicitly about patterns, but I can't find it at the moment, and it's not one I've read so no idea how good it is",0,NonAnswer,Answer
 9828_irc_c++-general,CaffeineVaccine,RandomReader: Ok that's great feedback. I'll just be grinding through it I suppose,0,NonAnswer,NonAnswer
 9828_irc_c++-general,RandomReader,"for me it's basically just experience, I tend to learn in non-traditional ways but so much about programming has over-arching commonalities, just some of the syntax or feature details change; so that becomes a pattern; once you come across something that's ""wtf"" and then figure it out, and it seems elegant, you'll forever remember it exists as a pattern even if you later forget the details",0,NonAnswer,NonAnswer
 9828_irc_c++-general,CaffeineVaccine,RandomReader: Patterns on patterns. I'm striving to get to that point someday.,0,NonAnswer,NonAnswer
@@ -6608,7 +6608,7 @@ The problem is it doesn't work unless I do something else like click a button.",
 10810_irc_c++-general,Onionnion,"what'd be the single allocation method?; One of them is a const char*, other is just a char*",0,NonAnswer,NonAnswer
 10810_irc_c++-general,ville,"get the lengths, allocate, copy things over; you can automate that as well; could find something about that if you search ""string builder""; that's still going to be allocating as you stuff more stuff into it; std::string x = aa{xs} + ys; where aa is there to ""dirty"" the expression and rather than do anything immediately it results in bunch of expression templates being used. then the result of those needs to be implicitly convertible to std::string and when it does it evaluates the expression tree, adds up the sizes, reserves, copies the things at right offsets; and if that sounds like a lot of programmer work to avoid 3 allocations you're probably right; oh right, it's 3 allocations total now that there're move semantics. so you can avoid 2",0,NonAnswer,NonAnswer
 10907_irc_c++-general,snyp,What's the way to assign an object of base type to an object of derived type?; static cast?,1,Question,Question
-10907_irc_c++-general,Stanley00,"snyp: no, you don't do that",2,Answer,NonAnswer
+10907_irc_c++-general,Stanley00,"snyp: no, you don't do that",2,Answer,Answer
 10907_irc_c++-general,snyp,Don't or just plain can't?; I want to initialize the base part in one place and the derived part in another.,0,NonAnswer,NonAnswer
 10907_irc_c++-general,Stanley00,snyp: make derived constructor accept a base object then,2,Answer,NonAnswer
 10907_irc_c++-general,snyp,o.derived_member = 1;; Stanley00: ugh.. that means writing more code.,0,NonAnswer,NonAnswer

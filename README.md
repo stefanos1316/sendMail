@@ -23,7 +23,6 @@ pip install -r requirements.txt
 ```
 
 To exit from the virtual environment just execute the `deactive` command.
-To install all the necesary python packages execute the `pip3 install -e ".[deploy]"`
 After installing all the python packages you can start executing
 the deep learning algorithms.
 
@@ -44,7 +43,7 @@ sudo bash framework/governor.sh pe
 * To install packages and test models, always use the virtual environment (`source env/bin/activate`)
 * Make sure you added the required packages inside the `framework/requirements.txt` to faciliate the reproducability of our work (execute `pip freeze > requirements.txt` inside the frameworks direcotry)
 * Add many comments in your code
-* Files larger than 100 MiB should be stores in the LFS system
+* Files larger than 100 MiB should be stored in the LFS system
 
 
 # Motivation

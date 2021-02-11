@@ -49,3 +49,7 @@ Tasks from FSE (Stefanos)
 3) MNIST, EMNIST, FMNIST, and KMNIST (all of them are image related tasks)
 4) CIFAR-10, STL-10, ImageNet (all of them are imag related tasks)
 5) CODEnn-Java-Train, GitHub-Android-Train, and StackOverflow-Android-Train ()
+
+
+Check the internals like string manipulation or used image library to point out why frameowrk are faster
+than other
