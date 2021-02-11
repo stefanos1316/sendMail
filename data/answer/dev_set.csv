@@ -1,0 +1,834 @@
+thread,timestamp,speaker,message,is_rec
+404,24181,Chia,Does anyone have a pro tip for freeing up disk space on a SSD?,1
+404,24216,Joana,links,0
+404,24224,Benton,`rm -rf /`,2
+404,25435,Krissy,"BleachBit; and ZFS; (compression is freeing space, right?)",2
+404,25484,Benton,"Depends on what OS, but on mac there is a diskutility thing that is used to erase free space, I have seen that reclaim a bit. Also cleaning up a docker cache, if you use docker",2
+405,53786,Isreal,I want to use setattr inside a class’s init method. Should I use it on `self` or `self.__dict__` ?,1
+405,66018,Krissy,"Isreal: ``` &gt;&gt;&gt; class A: ... def __init__(self): ... setattr(self, 'a', 5) ... &gt;&gt;&gt; a = A() &gt;&gt;&gt; vars(a) {'a': 5} &gt;&gt;&gt; ```",2
+405,167633,Sherie,Isreal: Just use self,2
+415,263981,Hiedi,"If I have an unknown # of properties that come from a JSON document that I want to attach to a Python class and then use that new class for every record moving forward, what's the best way to do that? I was trying to grasp python class factories and was struggling a bit with it",1
+415,264295,Krissy,"wow, do you really want exactly that?; that's crazy!; ``` import json class A: def __init__(self, json_data): self.__dict__.update(json.loads(json_data)) text = '{""a"": 7, ""b"": 10, ""flag"": true}' a = A(text) print(vars(a)) ```; Hiedi: If it's crazy but works, it's not crazy :wink:; (but actually it IS)",2
+415,264734,Hiedi,"Well, the properties come from json source 1, and the attributes come from json source 2; so I want to just build out my template from source 1 and then loop through the thousands of records in source 2 with the template as my container.; the structure of the json is goofy though so i have to load it and process it separately from the standard .loads(). good times.",0
+417,274277,Thu,what the best way to check if the answer is yes and do something only of it yes; SyntaxError: unexpected EOF while parsing,1
+417,274514,Benton,"Thu: can you give more context? Are you trying to read from user input, or check a value?",0
+417,274928,Thu,read from a user,0
+417,275084,Benton,So what do you have now,0
+417,275350,Thu,"recent = int(raw_input(""Provide a number: "") or num_len ); trying to learn also shutil.copy",0
+417,275350,Benton,Please be sure to use code formatting,0
+417,275356,Thu,oh,0
+417,275380,Benton,"Break down your problem into small components, what is the current issue? ""Provide a number"" suggests to me that you are not looking for ""yes""",0
+417,275426,Thu,"nope; I am looking to see if some number was provided, if not use the full legth of the array",0
+417,275458,Benton,"""the array"" is pretty vague, I think you need to expand on your issue a bit more; <https://stackoverflow.com/help/how-to-ask>",0
+417,275496,Thu,let me think about this more on my own; Benton: thanks,0
+417,275517,Audrea,Sounds like you are trying to do an if statement,2
+417,275623,Thu,I think I figured a better way; brb,0
+418,275623,Kerstin,has anyone used pyflot? how is compared to bokeh?,1
+425,372914,Many,What is the best way to convert a list to a dict? The only thing is I want to specify my keys from outside the list. So the list is basically the values of the dict and I will provide the keys separately.,1
+425,372975,Krissy,"``` &gt;&gt;&gt; values = ['one', 'two', 'three'] &gt;&gt;&gt; keys = [1, 2, 3] &gt;&gt;&gt; d = dict(zip(keys, values)) &gt;&gt;&gt; d {1: 'one', 2: 'two', 3: 'three'} ```",2
+425,373137,Many,Perfect exactly what I was looking for.,0
+428,421362,Lilla,"Hi guys, im developing an app in React. It has some content that i need to send to a database, not sure how to get it to communicate. I'm using React, Axios, Django. Any examples or things i need to be looking at?",1
+428,421594,Jae,I'd suggest `django-rest-framework` for django. Will make the API construction easier,2
+428,421633,Lilla,Jae: so using a simple ajax request using axios or jquery i can post my contents over this API to the database?,0
+428,421705,Jae,"and if you're not doing so, use `create-react-app` to get a good project boilerplate with a very high quality webpack configuration; so, what happens is when you wire up `axios` in your react app, it creates a request to the server via GET, PUT, POST, etc; and while you can think of this as similar to jquery's `$.ajax()` method, its a little different",2
+428,421709,Lilla,ok,0
+428,421717,Jae,have you done anything like this before?,0
+428,421784,Lilla,"no thats why im kind of confused; ive been able to feed data into my react components; but now posting to the django setup; its not so clear in my mind; im going through the DRF tutorial; dos my axios post request need to point to a view URL that takes in a post, grabs what i send and stores?",0
+428,421861,Jae,"correct; and if you're using DRF, the URL is mapped to at least an `APIView` implementation; which contains a `get(self, request, ...)` or `post(self, request, ...)` implementation",0
+428,421892,Lilla,ok; so all that classic jazz if request.GET; etc.,0
+428,421903,Jae,out the window,0
+428,421962,Lilla,"Could you point me to any documentation, guides, tuts that i could look up? i fail to communicate what i am searching on google; brings up different stuff; a simplified example is what i need from somewhere to just establish an easy proof of work",0
+428,421986,Jae,"server side or client side?; I mean, the DRF tutorial is pretty good",0
+428,422001,Lilla,yeh perhaps client sided; sending the post request to the DRF API,0
+428,422005,Jae,ah ok,0
+428,422005,Lilla,processing it,0
+428,422058,Jae,"<https://daveceddia.com/ajax-requests-in-react/>; so that would help client side; server side, really depends on _what_ data you're sending; and whether you need to seiralize it to a model instance",2
+428,422092,Lilla,yeh i would i'll be sending json to the database; thanks for the help though; it confirms im heading in the right direction with DRF,0
+428,422160,Jae,"yeah; and what makes things easy is it can handle the serialization/deserialization for you; so you can send in a model representation via json from your client; and it will deserialize it to a model instance which you can do more stuff with; and then sending data back out to the client, it will serialize models to JSON",0
+428,422195,Lilla,"ok nice, and just ajax post to the url view which receives the data",0
+428,422213,Jae,"correct; or get, put, etc",0
+428,422222,Lilla,superb thanks man,0
+428,422227,Jae,:thumbsup:,0
+428,422238,Lilla,:100:,0
+429,425868,Reynaldo,"I'm evaluating celery/redis alternatives for task queuing and scheduling. Someone mentioned redislite and apscheduler. Does apscheduler do task queuing or just scheduling? Also, any other alternatives?; This is being used for a Django environment.",1
+429,425981,Lawanda,`concurrent.futures.ProcessPoolExecutor` is good at queuing when you don't need ETA scheduling,2
+429,426244,Reynaldo,"So if I'm just firing off a task (not scheduling), that would be a good way to go?; I like that.",0
+429,426419,Benton,"Redis-lite would be if you kept celery to make it easier to distribute, otherwise APScheduler could call manage.py commands in your app and be deadsimple",2
+429,426608,Reynaldo,"ah. gotcha.; I was looking at if there was maybe en embedded task queue manager, but I'm not coming up with much. APScheduler looks to be a good route.; Can you fire off tasks immediately without scheduling them using apscheduler?",0
+429,426876,Benton,"Yeah I think the decorator returns the original function. So you could just call it directly iirc; Interesting thought, embedded task queue manager. I think in many cases someone would just use Cron or windows scheduler",0
+429,427070,Reynaldo,True.,0
+429,427617,Dorthey,Reynaldo: we're also using huey,2
+429,427651,Reynaldo,I was actually just looking at that one. Can you start it right from django?,0
+429,427974,Krissy,Dorthey: from an author of Peewee?,0
+429,428076,Dorthey,<https://github.com/coleifer/huey>; not sure if they authored peewee but maybe; And what do you mean by start it from django?,0
+429,428112,Reynaldo,"Well, I'd like to not have to run and manage extra processes.",0
+429,428163,Dorthey,it will use workers like celery,0
+429,428198,Reynaldo,ah. ok.,0
+430,431761,Cassie,"hello everyone, I've requirement where dataset is large like 10 millions records, i want to use django rest framework in order to provide that data. Question : which one is the best ORM which is efficient for large datasets? 1. Django ORM 2. SQL alchemy",1
+430,431831,Cesar,SQLalchemy is more performant especially if you're using Core.,2
+430,431946,Cassie,Cesar: thanks for the suggestion. I've those data on microsoft SQL server.; would like to move to postgresql.,0
+430,431985,Jae,"yeah, will be cheaper in the long run; no sql server license :slightly_smiling_face:",0
+430,431989,Cesar,Cassie: <http://docs.sqlalchemy.org/en/latest/faq/performance.html>,0
+430,432082,Cassie,how about django ORM? Not good from performance point of view?,0
+430,432164,Agueda,if you use sqlalchemy you can reflect your mssql database and then create its exact schema in postgres.; and you could use sqlacodegen to create the models.; i've done this very thing to move a .net application to python.,0
+430,432168,Makeda,"I think ""performance on large data sets"" and ""ORM"" are mutually exclusive. ORMs exist for development convenience, not high performance.",0
+430,432188,Jae,"^; and furthermore, you should use pagination and such to actually retrieve the data",0
+430,432191,Makeda,"That's not to say you _can't_ get good performance - you can, if you know the ORM well and/or you have access to low level commands like SQLAlchemy Core",0
+430,432199,Cassie,Ultimate plan is this only. Move web API .Net to django API.,0
+430,432209,Makeda,"But they're not designed for that purpose, and will probably impede you somewhat",0
+430,432227,Jae,and there are times you will have to write and execute raw sql,0
+430,432229,Agueda,sqlalchemy's orm does a pretty good job in general.,2
+430,432333,Makeda,"It depends a lot on the nature of the querying. If you have good indexing set up and you're only working with a few records at a time, the ORM usually doesn't care if there are 10, 10000, or 1000000 rows in a DB; But if you're doing ""big data"" stuff where you routinely hit large amounts of the table... that's a different matter",0
+430,432343,Chia,reducing joins helps a lot too,0
+430,432367,Makeda,"yup, ORM joins are often nowhere near as efficient as raw SQL joins",0
+430,432429,Jae,one thing I like about django is you can print out the sql query for a given db access; and then look at it to see if you can improve it,0
+430,432432,Krissy,SQLAlchemy can do this too!,0
+430,432485,Jae,"by django, I mean the django framework, not the ORM; since it is possible to replace the default ORM with sqlalchemy (though I've never done this), but the API is largely the same",0
+430,432702,Agueda,"yea, you can mix sqlalchemy and django orm. it's all just python at the end of the day. however, if you swap out one for the other you lose all the benefits of the django orm and how it integrates with the framework.",2
+430,432991,Cesar,If performance is a factor than use SQLAlchemy core to work on this large data set. If deadlines are more of a factor that use Django ORM since you're already use DRF. Just make sure to use eager loading on relationships where you can to optimize queries. <http://ses4j.github.io/2015/11/23/optimizing-slow-django-rest-framework-performance/>,2
+431,434030,Nita,any good tutorials you all would recommend on packaging for somebody who's never done it?,1
+434,455519,Kerstin,hey what is the best way to write a list of json objects to a file; I was thinking of writing it into a csv; where each row is a basically a json object or should I save it as a json file?,1
+434,455571,Benton,"Kerstin: You should probably either do a CSV, which would mean breaking the JSON into columns in your CSV or just a file where each line is a new JSON object; You could make the JSON a column of the CSV, technically, but that would be kind of awkward to use again",2
+434,455592,Kerstin,yeah that is very awkward and hard to use I am thinking of latter,0
+434,455702,Benton,Are you going to want to search them for anything? If so - you may be best served to dump the contents into a database so you can query and such,0
+434,455730,Kerstin,yeah right now I just want to work with files and if needed we can move to db,0
+434,455755,Joaquina,how big is the file,0
+434,455817,Kerstin,its quite small 1200x250x4 float array is basically what it is,0
+434,455820,Joaquina,dump it as json then either transfor in refine in a matter of seconds or drop it on here if its small enough: <https://konklone.io/json/>,2
+434,455918,Kerstin,oh it is better if I automate it I just dumped as a json object; thanks guys!,0
+446,673548,Makeda,"Is there a generally-accepted 'best' unit-testing package? Or is it a subjective choice between nose, py.test, etc?",1
+446,673712,Krissy,`pytest`!; no thinking required,2
+446,673781,Makeda,"What are the advantages? I'm not a big fan of the setup/teardown syntax, but I could get used to it.",0
+446,673903,Krissy,"really easy fixtures, parametrized tests; ``` @pytest.mark.parametrize(""test_input,expected"", [ (""3+5"", 8), (""2+4"", 6), (""6*9"", 42), ]) def test_eval(test_input, expected): assert eval(test_input) == expected ```; And I really like how you don't need classes, because you really don't.",0
+446,673934,Makeda,"Okay. I'll try it for a week. And if I don't like it, I'll blame you. :wink:",0
+446,673964,Krissy,:dizzy_face:,0
+446,673973,Makeda,thanks,0
+449,837167,Jeana,Hi everyone. Which service or tool for crawling website with javascript? For me i used phantomjs and selenium. But their performance is so poor.,1
+449,837247,Heike,"I often use `requests` in combination with `BeautifulSoup` (using the `lxml` parser).; However, that's not a JavaScript solution. Sorry!",2
+449,837774,Lawanda,Jeana: is this some sort of single page web app?,0
+449,838045,Jeana,Kind of. Because some pages need to excute javasript for rendering full content. So i have to find some browser which can excute javascript for making dynamic crawler.; But according to real life experience. I see phantomjs or selenium is so slow; one minute they can only render 5-6 page; Which cannot serve my purpose,0
+449,838060,Heike,Maybe spread the workload out to multiple VMs and let each do a part of the URLspace?,0
+449,838136,Lawanda,Jeana: can't you just repeat queries that javascript is making and get the data from the backend directly?,0
+449,838250,Jeana,Lawanda: Can i make DM with you ?,0
+449,838322,Lawanda,Let's keep our conversation public; I'm not the only one who can help you,0
+449,838532,Jeana,Ok. I’m afraid that i will mess our channel. So the problem is i’m making a crawler which can extract the article main content of any news website.; So for making that i have to get the css and javascript for detecting which is article page and navigation page.; My only bottleneck is page rendering tools. For this i used phantomjs and selenium.; But with their pool performances i can’t really use this for production,0
+449,838545,Lawanda,"Yeah, you said that a couple of times already.",0
+449,838596,Willa,and not the only who need to solve it,0
+449,838607,Lawanda,Jeana: have you seen my previous question?,0
+449,838901,Jeana,"Yup already. But it can’t help. Some web pages make different requests ajax for rendering full content each page. So if i write some algorithm for detecting those request format and fake it. It will make my issue extremely complex. So for reducing the complex, i used some service which can return me the full content after javascript executing.; Lawanda: and sorry for repeating my issue. I just want to centralize again all of my issue.",0
+449,839025,Lawanda,"You still have to parse the returned page, right? Then how parsing different parts is it more complex than rendering everything and parsing parts as a whole?; You don't need to write an algorithm to detect requests. You just need to open the page, to look into web inspector and copy-paste related queries from ""Network"" tab; That's pretty much it",0
+449,839334,Jeana,Because I have to find a way to deal with “Any” pages not for specific one as you suggest.,0
+449,839469,Lawanda,"You have to find a way to deal with all pages you're interested in, yes. If that's such a huge problem, then your only way is to use selenium/headless chrome/whatever",2
+449,839598,Jeana,"Yes, so i want to ask if someone had deal with this problem already.",0
+449,839875,Heike,"Jeana: Apparently your problem is slowness and lack of processing capacity. Maybe using multiple machines is an option?; I mean, instead of machine 1 processing news sites A, B and C in succession, you start 3 machines, where machine 1 will process news site A, machine 2 news site B and machine 3 news site C. That will give a 3x speedup.",2
+449,840107,Jeana,Yes i’ve already done that. But i wonder if there is some tool can do this better than phantomjs either selenium. Right now i used 3 servers but only 200 page/ minute has been rendered. I used cache and proxy and image replacing for reducing the time cost. But it is only slightly better,0
+449,840187,Krissy,"sorry to interject, i haven't read everything, but one instance per core (minus 1-2 cores for main process) gives us about 30 headless browsers per machine; on a second-to-largest GCC instance; also, headless chrome :heart:",0
+449,840520,Jeana,I used to open 10 instance of headless browser per machine. But the time cost increases with instance of headless browser. More instance ---&gt; more time for rendering.; I don’t know if i’m doing something wrong with that,0
+449,840526,Krissy,how many cores on these machines?,0
+449,840544,Jeana,8 cores.,0
+449,840567,Krissy,10 is too many then :slightly_smiling_face:,0
+449,840636,Jeana,Anywho thanks for your suggestion with headless chrome. I will take a try with it; :slightly_smiling_face:,0
+449,845017,Jae,"so, phantom is notorious for being slow, and having problems; not surprising since its been a one-person project for a number of years now. given the challenges of browser development, phantom's state of functionality is impressive with that restriction; however, it is now deprecated and no longer supported since headless chrome came out; and unfortunately, this is an instance of where horizontal scaling will have to be used, where you distribute the tasks to be executed among a cluster of similar instances; just like with celery workers, there's a sweet spot that can be hit with tasks on each machine for optimium efficiency, but that takes alot of experimenting to do.; Jeana: what instance size are you running this on, and what provider? AWS, GCC, Azure?",0
+449,845315,Jeana,It’s running on my own server company. Not provided by any companies above.,0
+449,845480,Jae,then your only option is to either reduce the rate of crawling or add more hardware,2
+449,845536,Jae,because the primary issue is rendering the page and there is a significant lack of options for that,0
+449,845740,Jeana,Thanks for your advice Jason.,0
+449,846055,Jae,good luck,0
+452,892755,Lindsey,"Where I can find some projects to really get started at programming? Maybe an abstract question but, 1 year programming (and like two months in Python [I was fallen in love of Java, then I hated it]).; Then (today) I realized I need to put my -tiny- knowledge in practice...",1
+452,893678,Kerstin,"hmm there are lot of MOOC’s i.e. Coursera (which has introduction classes) and there are sites like HackerRack, code academy to help to code :slightly_smiling_face:; hope that helps",2
+452,893863,Sherie,Lindsey: <https://github.com/karan/Projects> that may help you,2
+452,894037,Lindsey,"Thanks, as I said, I know how to code, I'm searching for real-life projects to get real stress :stuck_out_tongue:",0
+452,894254,Benton,"Lindsey: Depends on what gets you excited :slightly_smiling_face: I started by automating away silly things I had to do for work every day. Later as I knew more I started writing some web-apps; You can do a clone of a site you like, something that tracks movies and how you like them, etc",2
+452,894312,Lindsey,Benton: Looks so difficult to me :disappointed:,0
+452,894397,Benton,"Which part? 1. Automate repetitive tasks: This should be pretty small to start, maybe you check for a stock price every day. Just do it with python instead of logging into a website 2. Small webapp: This is much bigger since you need to also know HTML and CSS",0
+452,894578,Joaquina,"Benton: thats how I also got started - i still get excited about all the new ways to do things, that I learn every day lol",0
+452,894652,Lindsey,"Will try it, If I get stuck... Well, this is why the channel was made :stuck_out_tongue:",0
+455,938102,Lisette,Hello. Any suggestions for a reliable package to implement token based authentication with Flask?,1
+455,938198,Makeda,You might want to try <#C0LN2AD7T|flask>,0
+455,942862,Benton,"Is this flask of Django? They each have a helper to generate the urls for static assets. For flask: `url_for('static', filename='style.css')` and Django you need to load the static plugin and use their helper (it escapes me off the top of my head)",2
+457,954107,Lavon,"Hello guys, has anyone tried Dan Bader’s Python Tricks The Book? I wanted to know if it is really good as it is claimed on the author’s page",1
+457,954195,Agueda,i’ve heard his stuff is good but i have no experience with it personally.,2
+461,983503,Benton,"Can anyone see any major drawbacks of having a simple boolean 'can_write` field on a user object for a very limited scope permissions (literally for the forseeable future: read/only and read/write)? We have a different user object per subdomain (not my call) - and rather than porting a whole permissions framework over, to me this seems reasonable",1
+461,987921,Gillian,"well , it's like the 'is_admin' field ,right?,isn't the best choice,but it's fine , i don't see any drawbacks ""for a very limited scope permissions""",2
+461,989425,Benton,I figure that's enough to not lock us in too much if we need more. A simple migration could get us to a more involved permissions model,0
+463,1047922,Makeda,"Only tangentially Python related, but does anyone know good ways of generating code-related documents offline? I'm struggling with static blog generators like Pelican because trying to coerce Pelican and Pygments and ReStructuredText to cooperate to do what I want is twisting my mind",1
+463,1048217,Katharina,"hmm, not python but have you looked at jekyll?",2
+463,1048336,Makeda,I'm on Windows and Jekyll is a bit awkward on that platform,0
+463,1048350,Katharina,"ah, okay, just thought id toss that one out there",0
+463,1048915,Agueda,sphinx should be able take care of the pygments and ReStructuredText parts.,2
+463,1049058,Makeda,"I think my problem is that ReStructuredText is really not that good; If you want more control over the formatting, for instance. Rules like ""Multiple successive blank lines are equivalent to a single blank line"" make it awkward to introduce whitespace for readability; And if I want to highlight the code, I can do that in blocks via Pygments, but not in literals",0
+463,1049140,Agueda,i’ve personally started writing my own markdown filters/extensions for things that I need.,0
+463,1049237,Arlie,"Not sure if anyone can help, but have a quick question regarding <#C5XHHMXHB|os_windows> , powershell more specifically.; <https://pythondev.slack.com/archives/C5XHHMXHB/p1498673610887626>",0
+463,1049268,Benton,I'd be surprised if that's the case... but is it not working for you?,0
+463,1049281,Arlie,provide**,0
+463,1049442,Makeda,"Agueda: That sounds useful, especially since I've found that both Markdown and reST each only do about 80% of what I want... a different 80%... but unfortunately I only need to do this one piece of documentation then I'll probably never need it again, so it's hard to justify the time expense",0
+463,1049491,Wanda,"Arlie: I believe powershell requires a path be stated to any executable not in the search path. But, a ./myscript.py is sufficient.; Or, in this case, .exe",0
+463,1049561,Wanda,"Cristina: I showed the lead engineer Sentry. System looks cool, but he thinks we would hit the 20k transactions per day fairly quickly. Do you know of similar systems without limits?",0
+474,1141921,Benton,"With python typehinting, what's the right way to show a generator return value?",1
+474,1141959,Benton,:facepalm: `typing.Generator`,2
+482,1298604,Pamella,Hey guys what are the best books to read regarding Python for fundamentals. I know for Django its two scoops,1
+482,1298699,Heike,Pamella: Do you already know how to program?,0
+482,1298773,Pamella,Yeah. Looking for something more design focused and best practices; Currently reading idiomatic python; But that's more of like a skim,0
+482,1298804,Heike,"Ah ok. I came from C++ a long time ago, and I found the standard Python tutorial quite a good read. And I found some 'Python for C++ programmers' online texts.",2
+482,1298930,Pamella,Not a big cpp fan haha,0
+482,1298997,Heike,I had no choice.,0
+482,1299048,Benton,Effective Python is good,2
+482,1299572,Gillian,Pamella: <http://www.allitebooks.com/fluent-python/>,2
+482,1300757,Pamella,Will take a look at both of those books :)) hopefully I can find a free download. The fluent python one is an early release; Meh I think the early release will be fine; Gillian: Thank you very much !,0
+482,1303146,Lamont,Heike: thanks for the link! do you know if it's significantly different than if I use jquery to do this? I had trouble with targeting the correct element,0
+484,1307290,Hassie,"Hi, I need a suggestion. I am planning to start a new project for logging user analytics using MongoDB. Which framework will be better to use with Mongo - Flask or Django?",1
+484,1307521,Agueda,flask,2
+484,1307552,Agueda,at one point in time around django 1.4 mongo was great with django but then ppl stopped maintaining some core libraries.,0
+484,1307579,Benton,"=+1 for that use case; Though if you are doing user analytics, you may need something lower latency since that may be a ton of events",0
+484,1307814,Agueda,i built my recent highlighter with elastic search. it worked really well. I would imagine throwing kibana on there could make for a neat analytics platform.; <https://www.elastic.co/products/kibana>,2
+484,1307818,Hassie,Agueda: Can you tell me more about it?,0
+484,1307990,Agueda,i’ve built an elk stack for logging at my old place of employment. it depends on what you mean by analytics :wink:.; you could analyze the data with scripts and use things like stochastic gradient descent and things like that or you can build dashboards.; not sure how you’re trying to check out these events.; we used the logs to determine if there were issues in the network.,0
+484,1308001,Hassie,"I will log request, pageviews and other user actions.",0
+484,1308056,Agueda,do you have any experience with flask?; or python web frameworks?; i try not to assume things.,0
+484,1308056,Hassie,Yes I've decent experience on django,0
+484,1308076,Agueda,k; just a sec let me bust out a code sample.,0
+484,1308140,Hassie,I can learn flask fast; pycharm is slow :stuck_out_tongue:,0
+484,1308219,Agueda,i also had to get my kid off of the table.,0
+484,1308289,Hassie,okay,0
+484,1308359,Agueda,for user analytics you could use django or flask. to get the user events you’ll need some sort of middleware. i’m not talking about that part. what i’m showing is how to get data into elastic search.; once you have data in elastic search then the kibana parts comes into play but you will also need to figure that part out.,2
+484,1308552,Hassie,ok; Waiting :slightly_smiling_face:,0
+484,1308566,Agueda,"ya, wondering if i should make a big gist. there are several things involved.",0
+484,1308615,Hassie,ok take your time :slightly_smiling_face:,0
+484,1308730,Agueda,dang i need to edit this in a bigger window. lol,0
+484,1308805,Agueda,"either way, in flask you’ll need to do something like that and establish a connection with elastic search.; when your app starts up.; there may be a flask-extension for it already; where you can simply add in the right settings.",0
+484,1308869,Hassie,ok then,0
+484,1309221,Agueda,i’ve updated it with the model. you need to create a model to describe how your document is structured.,0
+484,1309318,Agueda,oh cool. yea you can use this :smiley: <https://github.com/chiangf/Flask-Elasticsearch>,0
+484,1309437,Hassie,You used Flask + ES + Kibana?,0
+484,1309488,Agueda,no kibana; in my project recently.; my past project with ES and Kibana didn’t have flask,0
+484,1309512,Hassie,How did you build dashboard?,0
+484,1309884,Agueda,i built the dashboard with kibana.; flask is only involved in this process b/c it’s generating the event.; i’m just showing how to save data to elastic search in python with a flask view. once you have data in EL then you can use Kibana to do analytics. Kibana could be installed on a totally different server.; hmm.. i could probably PR this elastic search model code i have with this flask extension.; it’s nice mapping a document to a class.,0
+484,1309915,Hassie,"Yeah, that will be nice.",0
+484,1309953,Agueda,i know it’s a lot of pieces there and gaps but you get started down the path you will get each working :wink:.,0
+484,1309989,Hassie,i've few questions.,0
+484,1310011,Agueda,k,0
+484,1310244,Hassie,"Can you tell me about the architecture part, or process flow.; Is it something like this - 1. User creates an event. 2. Flask view logs data in ES. 3. Kibana gets data from ES and shows it in dashboard.; Aren't you using any async tasks queues like rabbitmq or kafka?",0
+484,1310869,Agueda,you could but in the most basic sense you would use the middleware to do a post on elastic search with the data about the event.,0
+484,1311019,Hassie,I found this blog post for similar usecase - <http://engineering.hackerearth.com/2015/02/26/logging-millions-requests-what-it-takes/|engineering.hackerearth.com/2015/02/26/logging-millions-requests-what-it-takes/> They used kafka + rabittmq + mongodb + S3 + redshift to build complete architecture; ES will be better than this?,0
+484,1311200,Agueda,"oh idk about that. i haven’t used all those before. what i proposed was for something simpler but it could grow to using those things once you need “web scale”. hence, the “logging millions of requests everyday”.",0
+484,1311515,Hassie,"okay, thanks :slightly_smiling_face: Now I should connect the dots using the code you provided.; One quick question, how many servers u used? What will be minimal cost to setup this?",0
+484,1311618,Agueda,"yea, i’m thinking i may need to do an example app for this now.; do you already have a site you’re trying to integrate this into?; or your just interested in getting it going on your own site?",0
+484,1311695,Hassie,I want to integrate it to a website running on Django.,0
+484,1311736,Agueda,<https://qbox.io/blog/how-to-elasticsearch-python-django-part1>,0
+484,1311916,Hassie,cost involved?,0
+484,1311966,Agueda,oh idk the cost we had our own vm infrastructure.,0
+484,1311986,Hassie,How many VMs you used?,0
+484,1312730,Agueda,there was a central server that ran logstash and the elastic search server with kibana so 2 servers. we also had another server running OSSEC.; it’s been a few years now. i’ve slept since then and don’t remember all the details as i’m not involved in networking admin anymore.; <https://qbox.io/blog/welcome-to-the-elk-stack-elasticsearch-logstash-kibana>; i remember our biggest problem was storage.; there was also grokking all the different kinds of logs.; the one big gripe about ES is that it’s easy to get data in there but hard to take it back out. to combat this while you save a document for EL to index you can also create a record in a relational db. this will help for other kinds of reporting.; for logs we didn’t care about the relational db part. we needed to analyze them in real-time and then archive them.; you can also get ES running super quick with docker.,0
+484,1312745,Hassie,Why RDBMS and not MongoDB?,0
+484,1313000,Agueda,well ES is already a document store. using something like Mongo would be redundant but i guess if you wanted to you could.; it’s generally not a good idea to try and do things a relational database can do in a document database like joins. i suggested saving to a rdbms in the process mainly so you can take advantage of an rdms at the same time. this won’t be needed for every application.; this is my docker-compose.yml for ES: ``` version: '3' services: elasticsearch: image: nickstenning/elasticsearch-icu ports: - '127.0.0.1:9200:9200' ``` you can type `docker-compose up` and it will start the service for you.,0
+484,1313087,Hassie,"So I should store data in both, ES and RDBMS if I want to access it frequently?",0
+484,1313157,Agueda,i don’t know what you should do b/c i don’t know the requirements i was just letting you know what you could do :wink:; &gt; i suggested saving to a rdbms in the process mainly so you can take advantage of an rdbms at the same time. this won’t be needed for every application.,0
+484,1313385,Hassie,"Hmm. By storing document in RDBMS, did you mean creating schema based on keys in document?",0
+484,1313624,Agueda,"yea, you can save the data to the db and get back from the database the inserted record. That would look like this maybe `{""id"": 1, ""name"": ""a1gupta"", ""role"": ""1"", ""created_on"": ""2017-10-11 343434""}`. once you get what the database has you send it to ES.; that’s how you would make a search engine with ES btw. which is what i did recently. you can take those same values in the dict and pass them as query params to a search endpoint.",0
+484,1313971,Hassie,Agueda: Thanks . I think I should start now to understand it better. :upside_down_face:,0
+484,1315230,Agueda,code it the way you see it :smiley: it looks like there may be a few problems to solve before getting to ES like getting the events you want.; i’m sure there are some django plugins that can help you with that.; ppl in the <#C0LMFRMB5|django> channel would know.,0
+497,1630604,Antone,Hi peeps. What is the most state-of-art machine learning technique or research project on learning langauge?,1
+497,1630697,Antone,*language (clearly i have a reason for my research),0
+497,1630742,Makeda,What do you mean by 'learning language'? This is a VERY wide field; Are you familiar with word2vec? It's not the 'most' state of the art but it represented a big step forward a few years ago and is widely used,2
+497,1630777,Makeda,"(You might also reach a more specific audience in <#C2J4B66PK|machine_learning> , but there are fewer people there)",0
+499,1647382,Joana,"what's the best way to join on a string x time the same value ?; like `', '.join('hello' for _ in my_list)`; But it seems a bit overkill",1
+499,1647531,Anja,Joana: : is there a better way than that?,0
+499,1647587,Jae,`'hello ' * n`; where `n` is the number of times to repeat,2
+499,1647615,Jung,But won't it add a space at the end?,0
+499,1647760,Joana,"Jae: that does each letter; can do that `('hello',) * n`; Jae: I completly missed your point in fact :smile:; got it",0
+499,1647781,Dorthey,"`('hello, ' * n).strip(', ')`?; I feel the original was good enough tbh",2
+499,1647827,Jung,Wait. Got it :ok_hand:@ndevox,0
+499,1647914,Joana,I hoped something existed for that. I'll stay with the for loop more readable,0
+831,315,Marna,"in case someone picks this up later, i find myself writing a lot of cypher queries and executing them via tquery, but i'm constantly mapping through results to pluck the :data values and ignore all the other stuff i don't care about (incoming relationships, meta properties, etc.). i'm now resorting to spectre to stay sane. is there a better way?",1
+839,68600,Shanelle,"Hey guys, building the first production clj/cljs app for my company. I'm looking for a best practice tip for using Stuart Sierra's component with a (postgres) database connection. ``` (ns my-app.components.db (:require [com.stuartsierra.component :as c] [clojure.java.jdbc :as jdbc])) (defrecord Db [spec connection] c/Lifecycle (start [this] (let [conn (or connection (jdbc/get-connection spec))] (assoc this :connection conn))) (stop [this] (if connection (.close connection)) (assoc this :connection nil))) ``` It happened once in development that after a postgres io error, the connection would close and would render the app db-less. How do you guys handle this / what's a typical db component past the simple examples found online?",1
+839,68652,Lila,use a connection pool library instead using the database connection directly; c3p0 is a popular choice,2
+839,68664,Shanelle,was thinking about that. Thanks!,0
+841,80003,Dollie,"hey guys, I'm looking forward to design an extensible library. but I'm not sure which is the best approach to it, do you know any reading matterial about this ?",1
+841,80346,Eusebio,What's the library's purpose?,0
+841,80386,Dollie,a web framework,0
+841,80434,Harriette,*hides behind corner* Frameworks are evil.,0
+841,80506,Dollie,Harriette: what do you mean ?,0
+841,80965,Patricia,"Dollie: if you haven’t already, you should give lispcast’s recent article series on clojure webframeworks a read: <http://www.lispcast.com/why-web-frameworks> , <http://www.lispcast.com/arguments-against-frameworks> , &amp; <http://www.lispcast.com/clojure-web-framework>",2
+841,81025,Barbara,Dollie: best library possible is a bunch of little functions that compose correctly (e.g. a domain-specific algebra),2
+841,81153,Dollie,"Patricia: thanks, I'll watch them; Barbara: thanks",0
+841,81335,Barbara,"maybe one practical example is something like XPath vs. Lenses for traversing data structures; if you design w/ XPath in mind, the API will look one way, w/ Lenses probably another; and will compose differently; (or not at all)",0
+841,87614,Dollie,Patricia: are you the author ?,0
+841,87664,Patricia,I am not,0
+841,87866,Dollie,"it's a good material, but i'm not agree with some of those ideas",0
+841,88489,Dong,"If one thing is clear, it's that we have both too many and not enough frameworks",0
+841,88618,Dollie,"Dong: yeah that's true, At the end of the day frameworks are just tools, there are lots of good and bad tools around; I don't think that not using a framework makes you an expert. It might makes you a fool because your trying to go to a war with a water pistol",0
+845,137651,Chanell,"hey guys! I want to read a stream with unknown number of lines (e.g. a file) and fire an async get request per each line (lets say using an http-kit async get with `(go (&gt;! c response))` as a callback). then, read the responses one by one into another file. is there an elegant way of closing the channel making sure I am not missing any async puts into the channel? I can do so with putting my own guard msg at the end but it feels awkward.",1
+845,138277,Kymberly,I'm not sure I understand what you're trying to do exactly; any reason why the producer can't just close the channel when the stream runs out?,0
+845,141187,Chanell,Kymberly: the producer might close the channel before the last response is put there,0
+845,142345,Kymberly,"How so? The producer being (in my mind) the single sequential process that reads from the stream and puts on the channel, it should be able to not close the channel before it's finished reading the stream; maybe you're missing a channel; read file -&gt; channel -&gt; http calls -&gt; channel -&gt; write file ?; if that's the general shape and you want to ensure some parallelism in the ""calls"" step, maybe look at what the `pipeline` functions have to offer in core.async?; I would suppose they already handle closing the channel in the right order",0
+848,157886,Loralee,"what is the ""best"" way to store a c3p0 pool to be accessed by multiple namespaces?",1
+848,158140,Patricia,"mdrago1026: You can use something like <https://github.com/tolitius/mount> or <https://github.com/stuartsierra/component> to manage complex required system dependencies. Or for something simple like a c3p0 pool, which keeps track of it’s own errors for the most part, I tend to just use something like `(defonce conn-pool (delay (create-c3p0-connection))` and everywhere else you want to refer to it you can `require` the config namespace and reference the pool with `@conn-pool`",2
+848,158253,Loralee,awesome. thanks a ton. I will take a look at these,0
+848,158494,Patricia,"Loralee: on a very random, unsolicited side note, I prefer <http://brettwooldridge.github.io/HikariCP/> over c3p0. Nothing inherently wrong with c3p0, and I’ve used it in production quite a lot, but hikariCP fits better with what I’m used to in Clojure (in terms of “it just kind of does the correct thing”)",0
+848,158626,Loralee,very interesting. let me read up on this. I've heard of Hikari and simply always default to c3p0 since that's what i always have used,0
+848,158657,Patricia,"way more than the speed of things (which is not insubstantial), this is why I prefer hikaricp: <https://github.com/brettwooldridge/HikariCP/wiki/Pool-Analysis#c3p0>",0
+848,158816,Loralee,wow this is neat; I'm going to try this out,0
+856,231576,Soila,"if I have an initial value `100`, and I want to apply successive arbitrary functions to it which will result in a final value, what's a good way to do so? I'm looking for something that would allow me to do this: `(some-fn 100 [:inc :dec :set-50 …])`; or something in the spirit of that at least :wink:",1
+856,231679,Le,could be a really elegant reduce in there; `(reduce (fn [val fn] (fn val) 100 [functions go here])`,2
+856,231859,Roderick,Why in Clojure we are encouraged to use `recur` instead of making self-calls? I imagine is for performance reasons but couldn't find much information about it.,0
+856,231895,Soila,`(reduce (fn [val fn] (fn val) 100 [dec dec dec])` gives an error: `Wrong number of args (1) passed to: core/reduce`,0
+856,231935,Le,your parents are off; ah because mine were; `(reduce (fn [val fn] (fn val)) 100 [functions ...])` ,2
+856,231966,Honey,&gt; your parents are off; :joy:,0
+856,231971,Barbara,Roderick: <https://clojure.org/about/functional_programming#_recursive_looping>,0
+856,231975,Le,haha,0
+856,231988,Soila,"that works beautifully, thank you",0
+856,231989,Honey,that’s some deep stuff,0
+856,232002,Barbara,"&gt; Since Clojure uses the Java calling conventions, it cannot, and does not, make the same tail call optimization guarantees. Instead, it provides the recur special operator, which does constant-space recursive looping",0
+856,232003,Le,didn't mean to get so personal :slightly_smiling_face:,0
+856,232022,Soila,"oh, they are, trust me :wink:",0
+856,232084,Roderick,"hcarvalhoaves: Awesome, that makes sense. Thank you Henrique.",0
+856,232145,Le,"`((apply comp [dec dec dec]) 100)`; you could also just apply compose; which is very much the mathematical definition of what you want to do. really conveys the intention; ""compose these functions and apply them""",2
+856,232589,Soila,"ah, I like that solution",0
+858,239631,Summer,"I'm curious how you all configure your web services? There seem to be a large number of libraries out there to do this. Is there one that is generally considered ""the Clojure way""?",1
+858,241148,Fredric,juxt/aero is nice. Or just env vars (with or without environ),2
+860,269827,Nikole,"Does anyone happen to know of any decent OAuth2 client libraries? There’s a lot around, but all the ones I’ve found are weirdly designed :confused:",1
+860,280100,Ingeborg,weavejester: The best I could find was clj-oauth,2
+860,281626,Hilary,"in clojure/match, can I do [x &amp; ys] // x matches first elem of vector, ys matches rest or do I have to do ([x &amp; ys] :seq) ?",0
+861,322370,Vance,Anyone have a good way to split a vector (of CLI args in my case) into pairs?,1
+861,322390,Vance,"I have e.g. `-m 4 -y 2016` and want to end up with `[[""-m"" 4] [""-y"" 2016]]` or maybe a map",0
+861,322485,Ivy,"I believe you may be looking for `zip`; Alternatively, `(partition 2 [""-m"" ""4"" ""-y"" ""2016""]) =&gt; ((""-m"" ""4"") (""-y"" ""2016""))`",2
+861,322644,Vance,hm tbh I don't get what zippers do from reading the docs lol; *feels dumb*,0
+861,322652,Ivy,"I've not used zip in Clojure at this point, but in my experience zip functions pair 2 values together",0
+861,322674,Vance,ah like zipmap?,0
+861,322714,Ivy,But I think it's more often something like `'(1 2 3) '(4 5 6) =&gt; (1 4) (2 5) (3 6)`,0
+861,322798,Vance,oh yea I remember that one. I think that's the reverse operation. let me try the partition.; your partition example does exactly what I want; thanks :slightly_smiling_face:,0
+861,322800,Miquel,"clojure has ""zippers"" which are an abstraction for navigating complex nested structures, and zipmap which creates a hash-map out of a collection of keys and a collection of values",0
+861,322835,Danny,"zippers are for driving a turtle around a nested structure, optionally editing it along the way. so for example xml-zip gives you a zipper that can walk through the data structure returned by clojure.xml/parse. you can go next-next-next, or at any node you can ask what are all the parent/ancestor nodes, etc.",0
+861,322968,Vance,I see. That sounds way more complex than my program :slightly_smiling_face:; One day :wink:,0
+861,322973,Danny,ok. don't forget clojure.tools.cli.,0
+861,323034,Vance,"Thanks, I'll check it out. This is more to teach myself a few things anyway, and it seems like partitioning a vector sounds like a useful thing to know.",0
+869,323137,Sharice,"Wondering what people do for translations in their application? The key based stuff puts me off (<https://translation.io/blog/gettext-is-better-than-rails-i18n>), and I'd like to use industry-accepted systems (PO, XLIFF, MessageFormat). Doing this for cljs &amp; clj.",1
+875,530593,Sharri,"Is there a nice way to get specific elements, by index, from a vector, returning a new vector?",1
+875,530688,Alice,`(mapv #(get v %) indices)`,2
+875,530695,Sharri,Thanks,0
+875,531711,Aleta,or even just `(mapv v indices)`,2
+875,531845,Alice,"that won't return a vector; oh sorry; I misread that as ""map""; good catch!; vectors are functions of their indices; I forgot about that",0
+875,535024,Mohammad,"yes, just have to be careful with index out of bounds with the `(mapv v indices)` version. Can filter out `nil`s from the `get`-based version and not have to worry about exceptions. Unless you want an exception with a bad index, in which case the vector-as-a-function solution works perfectly",0
+876,557711,Althea,Do we have some nice tools for remotely debugging JVMs? I have a Clojure app thats leaking memory,1
+876,558230,Millicent,"Althea: i've used yourkit with great success. there is also visualvm which is a lot freer, but i haven't used it",2
+876,558425,Althea,"Millicent: , I’ll check ‘em out, thanks",0
+878,562422,Edda,Hey! Could anyone recommend me a great Clojure book for someone who is new to the language but mostly familiar with functional programming? I have already read Clojure for the Brave and the True,1
+878,562662,Earlean,"I purchased Living Clojure and thought it was great. I've also heard good things about The Joy of Clojure, but as a more advanced follow-on book",2
+878,563179,Edda,Thank you!,0
+878,563653,Amina,"The Joy of Clojure is advanced, and I’m not sure if you need that much info upfront. I maintain that Programming Clojure by The Pragmatic Bookshelf is by far the best resource available, and written in a style that is true to the language. There is a new 3rd edition coming up, see <https://pragprog.com/book/shcloj3/programming-clojure-third-edition>.",2
+878,564200,Arlinda,`Clojure Applied` is also one to look at,2
+878,564647,Edda,Amina: thank you! How advanced are we talking about here with regard to the Joy of Clojure?,0
+878,564811,Amina,"You should have written something in the language already to really benefit from the book.; I wouldn’t rush into it, personally - I’m into my second year doing Clojure commercially after years of FP in Erlang and hobby toying around with Clojure/Scala, and I’ve yet to seriously touch the book. I find that actually writing code is more useful than reading about it - which, admittedly, is much easier to do when you’re paid to do it!; This is also the reason why I like Programming Clojure so much - the book doesn’t faff around and goes straight to the point, all the while (indirectly) teaching you all the good habits required for writing nice, clean, composable Clojure code.",2
+878,564872,Edda,Amina: I’ll definitely get myself a copy then! Have you read the ebook? Or is there a way to get a paperback?,0
+878,564938,Amina,"I have both the paper and the electronic version of the second edition, which covers version 1.3. Personally I would get the beta ebook for the 3rd edition and just read that, all PragProg books are super easy to read on screen and very well hyperlinked, plus it’s nice to have a bit of color as well.",0
+878,565074,Edda,"Amina: Ok, thanks a lot for the advice",0
+878,565174,Amina,"Np. I also recommend <http://4clojure.com|4clojure.com> if you haven’t come across that already, it’s a good way to learn an idiomatic way of solving isolated problems using the standard library. And above all, try to get a job with it. That’ll boost your understanding much quicker than any book ever can.",2
+878,565309,Edda,"Amina: I am actually pushing to use clojure on a new project at my current job; thus my interest; I didn’t know 4clojure; thanks!; Amina: Out of curiosity, what has your experience been going from Erlang to Clojure ?; It’s one of those languages (Erlang) that is on my “to learn” list but never quite got around to doing it; And did you have a good time with Erlang?",0
+878,565536,Amina,"Clojure is a much better language. Erlang is more interesting from a concurrency perspective than an FP one, since the FP there is completely incidental (it was deemed necessary to implement the platform) rather than intentional. Both teach you something new, so if you feel like learning something else after Clojure I can recommend it. I enjoyed my time with Erlang but after 4+ years of it I think I’ve exhausted the platform, and I personally don’t think it’s the right fit in 90% of modern distributed/concurrent system development as a lot of the big selling points (failure handling, concurrency etc.) have been implemented outside of the VM these days and I just think that’s the right way to do it instead of having to think about these explicitly within a service.",0
+878,566194,Colene,"hmm, seems that eastwood doesn’t like defrecord forms produced by [org.clojure/clojure “1.9.0-alpha17”]",0
+883,590180,Alfonzo,Hey I am new to Clojure and I was wondering if you guys could share some of your favorite resources for learning Clojure. I have already checked out Clojure For The Brave And True but I am learning Clojure for the purpose of eventually building React apps with clojurescript and reagent. Thanks!,1
+883,591156,Edda,Alfonzo: check out my earlier message: <https://clojurians.slack.com/archives/C03S1KBA2/p1498559140283392>,0
+883,592546,Le,"i highly recommend this book by alex miller <https://pragprog.com/book/shcloj3/programming-clojure-third-edition>; interesting code and examples, good narrative, and pretty comprehensive. It's made for new people. It also isn't scared of java so you'll have a good introduction to the host language if you're unfamiliar",2
+893,723095,Kesha,"Maybe my google-fu is failing me, but is there a simple way to unzip a file on disk to a a directory using Clojure? Everything I've found is about unzipping a single file, but I have a zip that has several. I want to unzip it and then read a specific one into memory.; Trying to build an ETL tool that downloads a zip file, unzips it, reads a specific file into memory, and then does some stuff to it.; Ideally I could use .getNextEntry or something similar and read to memory when it matches a regex",1
+893,724845,Filiberto,Kesha: if you just need the information there is no need to unzip to files - you could read it file directly from the zip into memory,2
+893,724885,Kesha,Oh that would be ideal! How would I do that with a specific file that's in the zip file? (One of multiple that are zipped in the archive),0
+893,725621,Filiberto,"I’m live translating this from some groovy code I wrote a while back (we’ll see if I get lynched here), but you can iterate through the entries within a zip file and then call the ZipEntry `(.getInputStream zip-file zip-entry)` and then I believe you should be able to use slurp to get the contents of the input stream; to find the right entry within the zip you can filter on zipEntry.name; cigrainger: give me a few - will fire up a repl and see if I can cook up some example code. I’m not senior with clojure but I have spent a lot of time with file manipulations and zip files : )",2
+893,725690,Kesha,Awesome! Thanks. I'll play around with your suggestion re: ZipEntry as well. That was the general direction I was going but I couldn't find much and I'm not great with clojure yet either.,0
+893,725941,Deon,Filiberto: Have a look at <https://stackoverflow.com/questions/5419125/reading-a-zip-file-using-java-api-from-clojure#5419767>,2
+895,728040,Lesha,"Hey! I was wondering if repeated subvecs would ever allow the excluded data to be garbage collected if there was no way to access it any more? Or would I need to use `(vec (rest x))` if I wanted to _actually_ drop the first item in a vector?; I would use a persistent queue but I want in place updates too, performance of `(vec (rest x))` being O(n) is a non-issue for me too, looking for the ""idiomatic"" solution more than anything :slightly_smiling_face:",1
+895,728875,Taneka,"damn didn't realize `for` re-evals the inner range expression; ```boot.user=&gt; (for [x (do (println ""x"") [1 2]) y (do (println ""y"") [1 2])] [x y]) x y y ([1 1] [1 2] [2 1] [2 2])```",2
+895,728955,Rubie,it's by design; how would `(for [x [[1 2] [3 4]] y x] y)` work otherwise,0
+895,728979,Taneka,i was p confused for a bit because i was using `(q/random ...)` (from quil) inside the inner one xD; yea makes sense :open_mouth:,0
+896,742593,Audra,Someone Please suggest real-time-messaging clojure library. I might also need Screen Sharing and video chat.,1
+896,743805,Miquel,"jgeraert: `doseq` works great for this, but there's also `run!` which like this usage of map takes a function and a collection as args, but is run for side effects eagerly.; Vernell: meant to tag you above",0
+896,743883,Vernell,"Miquel: Ah I see, thanks for the tip :slightly_smiling_face:",0
+900,783472,Claribel,"Hello, I have a small question about spec. How does one specify a constant value in a regex spec? Like a vector that always must start with a keyword. I can do something like this `(spec/cat :type #{:message} :contents string?)` (as part of a multi spec), but is there a way to say the first thing in the sequence must be `:message`?",1
+900,785901,Paige,"is there an idiomatic way to create a keyword in the current namespace, or is `(keyword (str *ns*) s)` pretty much it?",1
+900,785960,Lila,don't do that; the behavior of `*ns*` is almost certainly not what you expect it to be,0
+900,785969,Paige,you might have better luck asking in <#C1B1BB2Q3|clojure-spec>,0
+900,785979,Lila,"there is no such thing as the ""current namespace"" at runtime",0
+900,786043,Paige,"what about at compile time? is there a shortcut for a keyword in the namespace I’m writing the code in? something like `::`. I could do `(keyword ""app.models.user"" s)` but that seems verbose and potentially brittle to refactoring",0
+900,786164,Miquel,if you want it to be the namspace calling your function/macro then `*ns*` works - but that won't give you the ns your definition came from,0
+900,786498,Lila,"I am not sure how to read that, but it doesn't seem to be correct; `*ns*` is set by the compiler when *compiling* code, when running code its value is arbitrary",0
+900,786555,Miquel,"sorry, right - it will be the arbitrary value of `*ns*` at runtime for a function, but for a macro it will be the ns being defined",0
+900,786721,Lila,"some execution environments preserver the value of `*ns*` between compilations (the repl), but common environments do not; macro expansion happens at compile time, so macros can observe a meaningful value of `*ns*`; when a function is being compiled, the compiler uses `*ns*` to figure out which vars it uses, but those vars are then embedded in the generated bytecode, and when the bytecode is run, it never looks at the value of `*ns*` again",0
+900,787705,Hassan,What we do at World Singles is to have `(def ^:private my-ns *ns*)` near the top of each namespace where we need the “current namespace” and then use `my-ns` instead of `*ns*`.; That way it’s bound to the file’s namespace at load/compile time and doesn’t change during program execution.,2
+903,811032,Linda,"Hello everyone, I have an app which generates documents (for example blog posts). Each document has an ID and consists of Text, Tables, Lists etc. and is completely defined in EDN. I want to store these documents but due to not consistent, changing keys it is not easy to store this in a RDBMS-Table. So at the moment I have a table in my h2db which has two colums ""ID"" and ""data"", where data is a cblob and stores the edn serialized as a string.. Is there a better ""clojury""-way to store edn documents?",1
+903,820161,Wm,Linda: Maybe serialize it using something like <https://github.com/ptaoussanis/nippy/blob/master/README.md>,2
+903,821335,Ji,Linda: there’s also <https://github.com/cognitect/transit-format> which is what we’re using which is a good fit if you want to use it in a browser because it can be used on top of json,2
+903,821441,Wm,"Linda: Ji: However, transit isn't for storing data (yet) &gt; NOTE: Transit is a work in progress and may evolve based on feedback. As a result, while Transit is a great option for transferring data between applications, it should not yet be used for storing data durably over time. This recommendation will change when the specification is complete.",0
+903,821624,Ji,Wm: right… we just ignored that. it does seem fairly stable at this point there’s not much activity in the repo anymore. Was wondering if that recommendation was going to change…,0
+903,822359,Linda,"Wm: I was thinking about using nippy, because of their built-in compression functionality. But my main concern is not the serializing part, but using the clob or blob for storing the data. Accessing the document doesn't feel native (sql query, reading clob, deserialize data). I hoped there was an mongodb-equivalent for clojure/edn :sweat_smile:",0
+903,822784,Stepanie,what about datomic?,2
+903,823039,Linda,"Its a low budget project, Im looking primarily for open/free software",0
+903,823107,Ignacia,datascript,2
+903,823315,Stepanie,datomic starter is free,0
+903,823503,Linda,"Stepanie: : but after 1 year there will be no updates and my project relys on an old unmaintained version, if I understand the description correctly?",0
+903,823660,Fredric,Yup; No go for serious work imho,0
+903,823687,Stepanie,"ah didnt know that, havent used it myself yet :stuck_out_tongue:",0
+905,839451,Colleen,"Hi, all! Does anyone have some good recommendations on resources covering/showing proper use of records and protocols? I’ve been using Clojure happily for three years without them, mostly on a hobby basis, and feel that I understand them pretty well, but when I start using them or thinking about how to do it, I feel like I’m going all OOP. Hopefully the question makes sense.",1
+906,843220,Irma,"what’s the idiomatic way to guarantee some unknown value is inside a sequence, where that value could or could not already be in a sequence?; ``` (into [] val) ;; fails if val isnt already in a seq (conj [] val) ;; always works but might nest, i.e. [[val...]] ```; (oh and not be nested, if already in a seq)*; is it simply `(flatten (conj`?",1
+906,843232,Miquel,(if (sequential? val) val [val]); flatten is terrible,2
+906,843305,Dong,generally the best answer though is to arrange your data so this doesn’t occur in the first place,0
+906,843317,Miquel,the best thing is to not write code that sometimes returns a collection and sometimes a single item (but I realize you aren't always the one who implemented the source of the data),0
+906,843345,Dong,things that are either &lt;foo&gt; or &lt;collection of foo&gt; tend to be always broken and/or special cased,0
+906,843353,Irma,"^ agree with alexmiller, except in this case it’s relating to an `(assoc` vs an `(assoc-in`.. as in someone might hand me a value to put at `[:foo :bar]` or just `:bar`",0
+906,843386,Miquel,and they create contagious complexity in consuming code...; Irma: there's a reason assoc and assoc-in are two different functions though,0
+906,843494,Irma,"if you’re familiar with http patch semantics, i’m trying to implement something following the `{:op ""replace"" :path ""/foo/bar"" :value ""bob""}`. the issue is with `:path`, which could be some arbitrarily nested path into a resource; so i figure assoc-in with a “guaranteed to at least be a sequence” is a good solution",0
+906,843504,Miquel,"always turn path into a collection, even if it's a one item coll",0
+906,843525,Irma,hmm .. that sounds smarter,0
+906,843553,Mohammad,"and it's (computationally) cheap, versus the complexity that results otherwise",0
+906,843590,Irma,"thanks guys, great help",0
+906,844319,Kayce,"does anyone know of alternatives to slingshot for easily creating custom exceptions, or is it pretty much “de facto” if you don’t want to compile a bunch of custom exception types?",0
+906,844610,Fredric,ex-info and ex-data is all you need,0
+906,845128,Scott,Irma: i think of e.g. transforming a scalar to a single element collection as desugaring that happens in the first layer of code that processes some input,0
+906,845465,Jazmin,not efficient.. just possible :stuck_out_tongue_winking_eye:,0
+906,845689,Wilhelmina,"Kayce: - I've used `hara.event` before and enjoyed it. It's a little more than custom exceptions, though. It changes how control flow works with exceptions to be more like how Common Lisp does exceptions.",0
+909,888789,Reid,"does anyone have recommendations on a good job scheduling library for Clojure? checked out Quartzite earlier, but had some difficulty getting it to play nicely with my loading of env vars from mount",1
+923,1089360,Charles,"Hello everyone, is there any book/online resource about functional architectural patterns? Something like Patterns of Enterprise Application Architecture by Martin Fowler but from a functional point of view...",1
+923,1090511,Tameka,Rich Hickey's Talks can be considered as source of some patterns I think,2
+923,1090953,Deon,Charles: <http://mishadoff.com/blog/clojure-design-patterns/>,2
+923,1091090,Charles,"Deon: Tameka: Thanks ,",0
+923,1091323,Hoyt,any spectacular clojure alternative to <https://github.com/Raynes/conch>?; clojure's built-in `sh` is limited (no support for processing stdout/stderr as streams),0
+1255,108463,Wenona,What's the best strategy when elm is reusing an input node (and erroneously displaying the old value)? * Should I try to force a new empty value to the input? * Should I look into `Html.Keyed`? I feel that this would be incompatible with packages like `rundis/elm-bootstrap`,1
+1258,118334,Debera,Would Elm / Electron be a good choice for xplat desktop app dev?,1
+1258,118694,Steffanie,"You'll probably need some JS+ports to handle the electron-specific API's, but it's certainly feasible; Bertie: also, has some experience with this. Probably not a good idea for your first elm project, though, but still.",2
+1258,118849,Debera,"Steffanie: thanks for the info. agree not for a first project, but it's what I'd use it for if I like Elm",0
+1258,118895,Steffanie,"there are some resources, too - a cursory google for `elm electron` reveals some useful links, and quite a few outdated links",0
+1258,124077,Bertie,Florentina: Steffanie: I'd defer to other folks like at this point,0
+1258,125477,Steffanie,"Fair enough :) also, enjoy your first day at nri!",0
+1258,130631,Bertie,thanks!! it's been way cool,0
+1260,133781,Sharie,"I’m trying to rewrite a react/redux version of Game Of Life in elm. I have a few buttons on the page that allow you to change the update speed, for example from every 350ms to every 50ms. I started to make a subscription like so: `Time.every (model.speed * Time.millisecond) NextGen`, but I’m wondering if I should use the AnimationFrame package instead. Is `Time.every` fine for my use case? If not, how do I set a specific update frequency using the AnimationFrame package?",1
+1260,134048,Pamila,"The animation stuff is to avoid jitter, but for a game of life I would expect `Time.every` to be fine; I'm not even sure what problem CORS is trying to prevent.",2
+1260,134085,Sharie,"Pamila: Ok, thanks . Just curious, do you know how to tweak the animation speed using AnimationFrame? Or are you pretty much locked into the browser’s refresh rate?",0
+1260,134179,Pamila,It seems to be locked to the re-renderspeed of the browser,0
+1260,134660,Chris,"Sharie: You could keep track of the last time you updated your game cells, and in your animationframe func if the time delta is less than your preferred framerate, then skip the update",2
+1260,134822,Sharie,"Chris: Ah ok, thanks , good to know…",0
+1263,155001,Shelia,"Any idea if there are more straightforward examples of pure component api design other than elm-sortable-table? Specifically, I am interested in how one folds in Cmds to the design, given the lack of an update function in the table api?; I assume that you could store them in the component model and pull them out in the parent update…; or not.. actually I don’t really see how to handle Cmds…",1
+1263,155340,Charlyn,Shelia: there are no components; any updating you want to do to the model and any `Cmd`s you want to emit are done in the top level `update`; that `update` can call any functions it wants to produce those `Cmd` and do those model changes,2
+1263,155372,Shelia,Charlyn: - you can obviously follow nested TEA and map child update to parent… sitll works; by component i am not talking about a stateful component but a pure component.,0
+1263,155384,Charlyn,you’re taking about a function,0
+1263,155417,Shelia,the rest of the world calls them components… and they serve the same purpose,0
+1263,155422,Shae,"i'm thinking something like this: ``` Component.elm: type ComponentMsgType = ... update : ComponentModel -&gt; ComponentMsgType -&gt; (ComponentModel, Cmd ComponentMsgType) update model msg = ... Main.elm: type Msg = ... | ComponentMsg ComponentMsgType update model msg = case msg of ComponentMsg componentMsg -&gt; let (newComponentModel, componentCmd) = Component.update model.componentModel componentMsg in ({model | componentModel = newComponentModel}, Cmd.map ComponentMsg componentCmd) ```",2
+1263,155465,Florentina,"Steffanie: Debera: I'd say electron is a great fit for that, looks like the npm package already handles the hard part for cross platform there. Of course it's worth understanding that electron is a memory hog and may not be ideal for every use case. I made an open source electron/Elm app and it's been an awesome experience for me and my users! More than happy to share more if you have more if you have any questions.",0
+1263,155488,Charlyn,"Shelia: you can call the function a ‘component’ if you want, but it’s confusing and leads to misunderstandings",0
+1263,155530,Shelia,Shae: interesting; Charlyn: - I would argue that the opposite is actually true,0
+1263,155554,Charlyn,eg. the above common pattern is obvious when you think of it as a function,0
+1263,155592,Shelia,Charlyn: try selling elm at work and getting into semantic nit picking when coworkers ask about how rich a set of library components there are…,0
+1263,155638,Charlyn,the question ‘how do I return `Cmd`s from a function?’ is a weird question to ask; ‘how do I emit `Cmd`s from a child component?’ makes it sound much more complicated,0
+1263,155642,Shelia,that isn’t the question. the question was how to adapt the pattern in elm-sortable-table to handle Cmds,0
+1263,155649,Florentina,"Steffanie: Debera: I've been using a union type for my ipc messages, and setting up just a single port for all ipc messages. That's worked great for me actually. <https://github.com/dillonkearns/mobster/blob/master/src/Ipc.elm> <https://github.com/dillonkearns/mobster/blob/master/setup.html#L161>",0
+1263,155947,Shelia,Shae: your example looks like the .17 nested TEA pattern; I thought that the advice was to move away from this pattern,0
+1263,155978,Shae,"oh, this is just something i came up with as a first guess; didn't know that this was an anti-pattern; do you have any links about it?",0
+1263,156052,Shelia,@weiszman the pattern was completely scrubbed from “An Introduction To Elm” for .18. It was in the .17 version if i remember correctly,0
+1263,156058,Charlyn,Shelia: elm-sortable-table has a bunch of functions that modify it’s `State` type and a `view` function to display it as Html. If you want it to produce `Cmd`s then write a function that takes a Msg you want to `Cmd` to produce and have it return the `Cmd`,2
+1263,156069,Shelia,Shae: sorry i mean,0
+1263,156112,Shae,ah i see. i started with .18 so guess that's why i never encountered that,0
+1263,156362,Charlyn,"``` getTheTime: (a -&gt; msg) -&gt; Cmd msg getTheTime msg = Task.perform msg Time.now ```; if your Cmd needs data from a `State` value, then pass that in too",0
+1263,156395,Shelia,Charlyn: elm-sortable-table does away with the table.update and Table.Msg . You configure a function to transform State -&gt; Msg right? That gets called in the table view… the role of table.update seems to be baked in to the table.view,0
+1263,156610,Charlyn,`view : Config data msg -&gt; State -&gt; List data -&gt; Html msg` view is a function that takes a `Config` and a `State` and some data and returns some Html to display; elm-sortable-table exposes functions to operate on the `Config` and `State` values instead of hiding those functions behind `Table.Msg` values being passed to a single `Table.update` function,0
+1263,157176,Shelia,"Charlyn: yes. I see that. However, I don’t really see how you extend the pattern to account for the desire to produce a Cmd from the table. IE Lets say i am creating random-sortable-table which i want to handle from within the table… I don’t see where as the author of random-sortable-table i would orchestrate this….; Charlyn: and i know that i am being sloppy with my terminology. because i understand that the table isnt actually producing the random value….",0
+1263,157218,Charlyn,in response to a user action?,0
+1263,157291,Shelia,Charlyn: in response to an event defined in the table’s view and without having to define another Msg on the part of the consumer (other than the single Msg handling table state ),0
+1263,157303,Charlyn,"a user action produces a `Msg` which the Elm runtime passes on to your `update` function, from there you can call any function you want to.",0
+1263,157540,Shelia,but I ( the author of random-sortable-table ) don’t have an update function if i am following elm-sortable-table pattern. I have a view function. thats it.; The consumer of my api has an update function….,0
+1263,157689,Shelia,"Charlyn: i guess a more general question is why is nested TEA considered an anti pattern, and what is the alternative given the desire to hide implementation details from a consumer of an api?",0
+1263,157760,Charlyn,it’s considered an anti-pattern because it creates a lot of boilerplate which tends to lead to confusion,0
+1263,157794,Shelia,I have read this but i have not seen a clear alternative which allows for the same flexibility,0
+1263,158048,Shelia,"Charlyn: I have seen a lot of admonitions against using it, but the examples which An Introduction To Elm inserted in .18 in place of Nested TEA don’t apply to a package author…",0
+1263,158248,Charlyn,"Shelia: if you wanted to allow a column to be sorted randomly, you’d create a function that takes a random seed value and returns a `Table.Sorter` for that column",0
+1263,158419,Shelia,Charlyn: that was an off the cuff example. I am looking for a general strategy to adapt the pattern provided in elm-sortable-table to handle Cmds from the point of view of the api/package author.,0
+1263,158454,Steffanie,"I think the realization we've had was that there is no ""one size fits all"" solution - different requirements need different levels of abstraction, and defaulting to TEA as the abstraction boundary for everything does not simplify life for the consumer of packages. The abstraction boundary should be `function` which _sometimes_ means you need a view, update and state, and sometimes doesn't mean that.",0
+1263,158502,Charlyn,the general strategy is to write a function that returns the `Cmd` you want and put that function in your module.,0
+1263,158849,Shelia,"Steffanie: that seems completely reasonable to me.; Charlyn: i believe that i am not articulating the question sufficiently. I understand how to write a general function which returns a command. I don’t however see in the specific case of the pattern in elm-sortable-table how to extend the pattern to handle commands. Perhaps it is just staring me in the face and i don’t see it….; Steffanie: - I would have hoped that the literature teaching elm would have avoided scrubbing the pattern, as opposed to simply providing a number of different patterns… a la GOF",0
+1263,159037,Charlyn,"that’s it, you just add a function that the caller can call. You might want to have the caller pass in the `Config` and `State` to help construct the `Cmd`; that’s all a `Table.update` would be doing anyway",0
+1273,215025,Hallie,Hello! Does anyone know if there is a good package implementing 'search' in a select2; ?,1
+1273,219630,Roselia,"Hallie: , I was looking for something similar and started looking at implementing select2 in Elm , is there a project like this already ?",0
+1273,219733,Hallie,Roselia: I don't know. I need to implement something using select2 search. I am just starting.,0
+1273,224069,Caitlin,Roselia: Hallie: Check out <https://github.com/thebritican/elm-autocomplete>,2
+1273,226455,Hallie,Caitlin: Thanks!,0
+1286,294920,Yulanda,Hi! What's the best way to control the selected option of a `select`? I want to set it from the model :thinking_face:,1
+1286,295852,Esmeralda,Yulanda: that's done with the `selected` attribute <http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html-Attributes#selected>; so typically you might do something like `List.map (\item -&gt; option [ selected (item == model.activeItem)] [ {- some html -} ]) allItems` in your view,2
+1286,296218,Yulanda,"I see, thanks",0
+1292,315227,Lea,"Is it considered bad style to create a type with a single constructor wrapping a record? The down side is that you have to pattern match the constructor to get at the record in order to use dot notation. The up side is the strong nominal typing guarantee.; E.g. `type Foo = Foo { x : Int, y : Int }`",1
+1292,315655,Lea,I guess Evan also pointed out that wrapping the record can be used to hide the representation from library users. I probably have no need for that in my case.,0
+1292,317380,Dyan,"Lea: I would not consider it bad style at all. In our application we tried to do that as much as possible where it made sense, for the reason you described. Elm has great pattern matching, so it's very easy to access said fields in a function definition, etc. E.g ``` myFunc (Foo {x, y}) = x + y ```; If I recall correctly, you don't need the parentheses if you only have one argument; And if you need to reference the entire value again, you can use the `as` keyword: ``` myFunc (Foo {x, y} as fooValue) = ... ```",2
+1292,318326,Lea,"Good point, thanks. I have been accessing the record via: ``` myFunc (Foo foo) = foo.x + foo.y ``` ...so that's another option. What's tricky is if you have a list of foos and you want to map an accessor over them.",0
+1292,318645,Charlyn,Lea: The common pattern for that is to define a `map` function for your type that applies functions to the unwrapped record value,0
+1292,318789,Lea,"That makes total sense, considering it's a separate type, and Elm likes to keep its map functions clearly distinct.",0
+1304,419351,Cassaundra,"I'm building a webapp with rails, and I'm looking towards frontend. In the past I've used pure JS (which can be a pain). I've been experimenting with React, and while it's cool, I feel like it's a bit overkill (not to mention if the end-user doesn't enable JS, the whole page breaks). I was looking into integrating elm with existing HTML (instead of replacing everything with elm), which seems to be possible with Elm embeds. However I'm a little confused as to how they interact. Can different elm embeds interact with each other? For instance, if I were to have a persistent audio player similar to the one on soundcloud, could I make that audio player an embed, but have multiple controls for that component in other embeds? Hopefully that makes sense...",1
+1304,419777,Yessenia,Cassaundra: Each embedded Elm app would be separate and they would need to communicate using ports just like they would have to if they were communicating with any other JS application. You will need a thin layer of JS in the middle that will coordinate the messages between the various Elm apps that you have. It is quite doable.,2
+1304,421223,Charlyn,Cassaundra: of course you can do the same thing with React; I wouldn’t worry to much about people having JS disabled,2
+1304,421682,Cassaundra,Yessenia: would that solution still allow me to take advantage of stuff like subscriptions and models (like in the clock example)?,0
+1304,421792,Yessenia,"Cassaundra: Yes, standard Elm and in fact incoming ports will come via subscriptions.",0
+1304,421977,Cassaundra,do you happen to have any resources on that subject? I can't seem to find much of use but perhaps I'm looking in the wrong places/with the wrong keywords.,0
+1304,422178,Yessenia,Cassaundra: Are you talking about ports? I would start here if you haven't read this already: <https://guide.elm-lang.org/interop/javascript.html>,0
+1304,422240,Cassaundra,"Ah, thanks!",0
+1308,452497,Nakita,"Anyone know any recent examples of someone creating a dropdown so that when you click outside of it, it closes? Would be really helpful, thanks in advance :slightly_smiling_face:!",1
+1308,453988,Muriel,I've always just put an invisible overlay over the background behind popups and handled the click there and dismiss the popup. But maybe I'm old school and there's a better way,2
+1308,454011,Antonina,Nakita: there was *just* a discussion about exactly this in <#C13L7S5GR|elm-dev>!; <https://ellie-app.com/3tm2WSV9JTza1/0>; credit where due: <https://elmlang.slack.com/archives/C13L7S5GR/p1498165749675291>,2
+1308,454036,Nakita,Antonina: I’ll take a look! Thank you very much :+1:,0
+1308,454158,Muriel,That's really neat :slightly_smiling_face:,0
+1312,470273,Mayola,"hello everyone, I hope you're all great. I would like to ask a general question about Elm ; I'm about to start learning and I'd like to know if I am doing the right choice (even though, considering how everyone trying Elm is in love with it, it must be the right choice at some point anyway :wink: ). So I have 2 questions, my first one is about learning Elm, and the other one is about what you can do once you are able to use it : first, what previous knowledge do you need to learn Elm ? I have an intermediate level in JS, HTML and CSS, and I'm going back to work after a year off so I might be a bit rusty. And then, once you are able to use Elm, what more do you need to learn, to be independant to build a web app? (When I say independant, I mean, by your own, you can build your app, back and front, of course you don't know everything and maybe you'll struggle and ask help on the way but you have the basic knowledge to do it, and to get the knowledge you miss on your way. Versus : some parts are totally obscure to you.) Is it like, what you will learn on your Elm way will teach you what you need to know ? Or do you need to add some back-end and database deep knowledge ? Well, sorry for the long message and thank you very much for your answers :slightly_smiling_face:",1
+1312,470493,Shawanda,"Unfortunately at this time you can’t use Elm on the backend, so if your application requires centralized data storage or business logic of some sort, you’ll still need to handle that separately.",2
+1312,470608,Mayola,"zgohr, and I've read some things about Elm using Node or compiling to Node or something with Node… it doesn't help?",0
+1312,470653,Shawanda,I haven’t looked into it so I’m not sure how viable it would be,0
+1312,470679,Mayola,"ok - and so, in other words, what can you exactly do with elm ?",0
+1312,470751,Shawanda,Build the front-end of web applications,0
+1312,470807,Mayola,"ok, thank you",0
+1312,470849,Shawanda,"Very generally, it replaces the use of javascript and html",0
+1312,470867,Mayola,"and what about the previous knowledge that you need to start ?; ok, I see",0
+1312,470880,Bryce,"Mayola: as for the first question, about previous knowledge... knowing **some** programming language helps, although it's probably not necessary :slightly_smiling_face: today I've heard my friends from one startup say that when they hire somebody to work on their Elm codebase, in two to three weeks he is fully ""caught up"".",2
+1312,470883,Mayola,"should I consider it a sort of ""functional react ?""",0
+1312,470928,Bryce,Mayola: Elm architecture maps very closely to React+Redux; React = Elm's view Redux = Elm's update+model,0
+1312,470988,Mayola,"ok; this is still a bit abstract to me but I think I get the idea; but the guy who fully caught up Elm after few weeks was basically a web dev from other languages, right ?",0
+1312,471000,Bryce,yeah; JS guy,0
+1312,471210,Mayola,"ok yes; cause right now I'm not at that step, I'm just learning still; as I said, like intermediate JS - html - css level, but not more except many readings that give me some hint of the thing, but nothing like a real experience or a deep knowledge; and I'd like to become independant, so I'm wondering what's the best way to follow (or if it's still too far from me) - i don't intend to be a superstar dev, right now just understanding the whole web app process and being able to do ""something"" with it",0
+1312,471273,Shawanda,"wish i could answer you better, it’s pretty hard to generalize about anything. I think it comes down to what your goals are with it; A lot of us come from a javascript background and the preference for Elm comes from the distaste for javascript",0
+1312,471419,Mayola,"oh, ok, well personally I like javascript very much basically, maybe there are some real world problems coming from it, but I didn't have to experience them yet; ok and I have just an easy question, what resources do you recommend to learn elm? the one provided on elm's website ?; (or maybe it's not such an easy question, i don't know)",0
+1312,471587,Bryce,"Mayola: personally I'd try to do some programming exercises in it (on Exercism or Project Euler or something similar), but there are tutorials: <https://www.elm-tutorial.org/en/> or <https://guide.elm-lang.org/> ... and I'm sure there are others :slightly_smiling_face:",0
+1312,471593,Shawanda,See the resources at the bottom of this blog post -&gt; <https://medium.com/@birowsky/web-is-ready-for-you-on-line-elm-d3aa14dbf95>,0
+1312,471625,Mayola,Shawanda: Bryce: thank you very much,0
+1312,471673,Ricki,Thanks very much! I'm looking into this now.,0
+1312,471762,Chanelle,Mayola: I think the job pool will be much smaller for Elm unfortunately.; (Not sure if that's an important factor for you.),0
+1312,471840,Mayola,"Chanelle: , you're right. I don't really intend to work full time in a company, but I'd like to be able to work as a freelancer. Well I guess the problem is the sae; same",0
+1312,471938,Chanelle,I'd say it's worse for freelance work.,0
+1312,471950,Mayola,haha good,0
+1312,471953,Chanelle,With permanent positions you can seek out companies that use Elm.,0
+1312,471969,Mayola,yes you're right; definitely right,0
+1312,471993,Chanelle,And those that do will often advertise it since it's a tech that's easy to fall in love (or at least a slight infatuation) with :wink: - so it makes them attractive workplaces.,0
+1312,472085,Mayola,ok yes,0
+1312,472169,Chanelle,Hope that's more helpfull than preachy. :sweat_smile: :slightly_smiling_face:,0
+1312,472291,Mayola,"Chanelle: , yes, sure! :wink:; thank you",0
+1312,472582,Shawanda,"I have an interesting bug - basically a page with a form and submit (login) that upon success redirects to another page with another form. On the new form, the first two inputs contain the values that were in the first form. Elm’s model is correct, those old form values aren’t there.. The virtual dom seems to re-use the first page’s inputs.",0
+1312,472943,Miguel,Shawanda: Try using `Html.Keyed` and see if the problem goes away.,0
+1312,472952,Shawanda,Not interesting - i guess common in virtual dom scenarios. was curious how to handle with elm,0
+1312,472999,Miguel,"Yes, the virtual dom has to guess a bit to make things faster, it doesn't always get it how we want it, so we need to give some extra information.",0
+1312,473010,Chanelle,Shawanda: how's your view code for the second page/screen look like?,0
+1312,473087,Shawanda,"Miguel: ah, using a keyed node works. thanks",0
+1312,474887,Mayola,thank you for the kind answers everyone and have a nice evening!,0
+1313,483213,Aimee,"I’m having trouble understanding “multiple types” (I’m sure that’s not the correct term). E.g. “Program Never Model Msg”, or “Cmd Msg”, or “Http.Request value”, or “Result Error value”. Could someone point me to an explanation of these “compound types”?",1
+1313,483269,Audrey,"How would I do math operations on values greater than 2,147,483,647? Is there something in the core library that can handle this?",0
+1313,483348,Katie,"Audrey: Where did you get that number, by the way?",0
+1313,483393,Katie,"Audrey: In general, any language that compiles to Javascript will have an obnoxious time dealing with large integers, since Javascript doesn't have a native integer type. (Maybe things have changed since I last looked, though, due to webasm? I'm not sure)",0
+1313,483553,Pamila,Aimee: these types are called Union Types or Algebraic Data Types; depending on the community you're in,0
+1313,483609,Audrey,Katie: in my elm-repl: ``` &gt; 2147483647 2147483647 : number &gt; 2147483648 -2147483648 : number ```,0
+1313,483609,Aimee,Pamila: There’s nothing that looks like that at: <https://guide.elm-lang.org/types/union_types.html>…,0
+1313,483644,Katie,"Aimee: Aimee: Pamila: I don't think those are union/algebraic types, though. At least the aspect seems to be asking about; Those are all parametrized types",0
+1313,483673,Pamila,the parameterization in part of the algebra of algebraic data types,0
+1313,483685,Katie,"`Cmd Msg` means a command which, when it returns a response, has the ""shape"" of a `Msg`",2
+1313,483690,Aimee,"Katie: For example, where can I find the “definition” of “Program Never Model Msg”?",0
+1313,483714,Katie,"You can kind of ignore the parameters when working in your code. For instance, just think of `Cmd Msg` as just.... a command.",0
+1313,483745,Pamila,<http://package.elm-lang.org/packages/elm-lang/core/latest/Platform>,0
+1313,483836,Katie,"Aimee: <http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform#Program> &lt;-- this has the declaration. The definition is not available, though, since it is a primitive in the langauge; for `Program Never Model Msg`, it means you want to create a program (basically a ""main()"") which has model type `Model`, message type `Msg`, and has no flags (`Never`); but again, you can safely ignore the parameters when you read it aloud to yourself and just think this is a ""Program""",2
+1313,483847,Aimee,Is there an explanation of this “concept” anywhere?,0
+1313,483914,Pamila,read further down the page on the document; the description is there,0
+1313,483925,Katie,"The Elm docs won't have any good explanation of the idea. It's a very basic idea from functional programming. Your best bet would probably be to google ""parametric type"" or ""parametrized type"" and look for tutorials on Haskell",2
+1313,483946,Pamila,it's in there on the union_types page,0
+1313,483972,Katie,(good explanation as in a thorough explanation. The docs will just kind of touch on the idea),0
+1313,483988,Pamila,you need to read to the bottom though,0
+1313,483988,Aimee,There’s nothing about “parameterized types” at <https://guide.elm-lang.org/types/union_types.html>,0
+1313,484006,Pamila,"it's under the heading ""Generic Data Structures""",0
+1313,484054,Katie,"Yeah. ""Generic"" type is another term (although less precise, imo). It's what Java calls the concept.; a more basic example would like `List Int`; It's a list type... a list of what, though? A list of integers.",0
+1313,484087,Aimee,I understand “List Int”… a container holding ints. Some of the other ones are still baffling to me.,0
+1313,484091,Katie,"`Program Never Model Msg` is a program type.... ""a program of what, though?"" (meaning what is the associated type for its flags, model, and messages?)",0
+1313,484122,Katie,the list `[]` has type `List Int` but it doesn't contain any integers :slightly_smiling_face:,0
+1313,484124,Pamila,"if you are a C++ guy maybe you would recognize that as `Program&lt;Never,Model,Msg&gt;`",0
+1313,484166,Aimee,"Is it hierarchical or combinatorial? It sounds like it’s maybe the latter… that the order doesn’t matter? In other words, would “Program Never Model Msg” be the same as “Program Model Msg Never”?",0
+1313,484176,Katie,They are positional parameters,0
+1313,484184,Pamila,"no, the position matters",0
+1313,484194,Aimee,"I’m more of Python, C and Go guy.",0
+1313,484201,Katie,"Just like `foo(x, y)` is not the same as `foo(y, x)` in C; (or Python)",0
+1313,484204,Aimee,Hmmm… ok…,0
+1313,484220,Pamila,"hmm, one has no type, one has weak typing and one doesn't have generics; crap",0
+1313,484227,Katie,The first position is the flags parameter. `Never` is a special type that signals there are no flags,0
+1313,484237,Aimee,But that sounds like you’re straying into “Program -&gt; Never -&gt; etc.“.,0
+1313,484238,Katie,"The second is the model, the third is the message, ofc.",0
+1313,484283,Katie,"I would say, don't fret too much over them. You'll inevitably run into situations where you need them. And in time, it will just kind of click and make sense.",0
+1313,484290,Aimee,I’ll keep at it. It’s confusing to me…,0
+1313,484313,Katie,"the documentation is a double-edged sword, and while sometimes the types are very helpful, sometimes an example is more helpful, and it just depends on the situation.",0
+1313,484330,Aimee,I like the language a lot so far… but that one’s throwing me I have to say.; Thanks all.,0
+1313,484335,Pamila,make sure you read through the entire page,0
+1313,484363,Katie,"Pamila: like said, your language background carefully avoids any language that uses this notion ^^; But it appears in C++, Java, Haskell, and Rust, etc.",0
+1313,484384,Aimee,I should know more Haskell. No relation as far as I know.,0
+1313,484463,Pamila,Honestly elm is strictly easier than haskell. It's a gentle entry into FP but there are going to be concepts that are foreign to you.,0
+1313,484473,Katie,nod,0
+1313,484512,Aimee,"FYI, looking up “parameterized types”, found this: <https://stackoverflow.com/questions/38558964/understanding-generic-union-types-in-elm>.",2
+1313,484684,Pamila,still read through the page to the bottom as it does go over it,0
+1313,484713,Aimee,Pamila: Yep. Thanks !,0
+1313,485422,Ronnie,Can anyone help me find an example of working with Task values? I'd like to use Window.width in an update calculation. The Task section of Elm guide is empty.,0
+1313,485857,Pamila,Ronnie: so `Window.width` is a task which you use `Task.perform` on to get a `Cmd msg` which you return from update and later receive the message you requested containing the width; you can also subscribe to `Window.resizes` and you will receive a message every time the windows width or height changes; Eryn: Html.keyed is the thing you want I believe,0
+1313,486620,Ronnie,"Pamila: gotcha. In this case I’m trying to do (Window.width - Mouse.Position.x). In order to get the messages at the same time, do I need to batch them?",0
+1313,487394,Pamila,You can chain with `andthen`; In essence you construct a task which sends you that difference.,0
+1323,559055,Earlie,"Hey there folks! Quick question: is there a nicer way to achieve this result? <https://gist.github.com/r00k/834a1b5f8b5f9e8c53551b024a2b7070>; Specifically, I want to verify that all functions in a list return true when called with a given argument.",1
+1323,559378,Katie,"Earlie: And you want to keep the explicit list I take it, so that you can add to it later?; Isn't that exactly what `List.all` does?",2
+1323,560039,Earlie,Yep and yep :slightly_smiling_face:; Just wanted to get a second set of eyes.-,0
+1326,585270,Ricki,What do you recommend in the way of application icons. Material? Something else? I'd love to see an example of styling a button or something with an icon.; Oops: TheSeamau5/elm-material-icons doesn't work with 0.18,1
+1326,585718,Ok,"i'm thinking how do we handle a textbox that holds a field of type float. Whenever a user inputs a dot, it doesn't pass as a valid float (in the update) and then the re-render causes the textbox to remove the dot. Same goes for clearing/emptying out such a field .",0
+1326,586088,Ricki,Are you setting `value` ?,0
+1326,586135,Ok,Ricki: yes,0
+1326,586357,Luci,Ok: Maybe you should have two different checks for whether the input is valid. One for when the user is still typing and another for when they attempt to submit the value.,0
+1326,586808,Ok,yeah! i was thinking of that as well. Earlier method seemed like the easy way out :smile:; Another thought was to do the check onBlur but unfortunately we don't have the value on blur. Maybe i'll try to write a custom onBlur event handler; custom onBlur seems like a good way to do it. Just not sure if it punishes me sometime in the future :smile:,0
+1335,681942,Moses,"Hey, i would like to see how my elm code looks like after its compiled to JS. Whats the best way? When I compile with elm-make I cant find my own code.",1
+1335,682007,Steffanie,"Moses: look for `_user$project`. It will probably not be all in one place, but that's to be expected. Function names are preserved, so you can look for those, too. Be aware that the compiled JS is an implementation detail, though :slightly_smiling_face:",2
+1335,682092,Moses,"Sweet, thanks :slightly_smiling_face:",0
+1335,682093,Steffanie,"Larissa: probably a typo, that looks correct",0
+1667,41698,Florence,is there a currently most popular thing or stack of things for making talking to json apis and encoding/decoding slightly more convenient?,1
+1667,41790,Liberty,Florence: what exactly is inconvenient for you?,0
+1667,41967,Florence,"Well, it's been a while, but for example, when I'm first writing decoders and doing a bad job, something goes wrong, and there's no way to tell what it was. Maybe I just want to look at an example app with more going on than the <http://elm-lang.org|elm-lang.org> examples",0
+1667,42083,Liberty,"for the boring stuff there is <http://eeue56.github.io/json-to-elm/> - it automatically generates decoders as well as it can; if you have tricky json/specific problems, just ask here",2
+1667,42097,Florence,oh nice,0
+1667,42144,Liberty,I can also recommend to use the pipeline package/option <http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest>,2
+1667,42800,Florence,I wish I could look at the NoRedInk repo :wink:. What big open source apps are out there?,0
+1667,42831,Liberty,this one <https://github.com/rtfeldman/elm-spa-example>,2
+1667,42896,Liberty,"is had a bunch of decoders, for instance <https://github.com/rtfeldman/elm-spa-example/blob/master/src/Data/Article.elm#L68>",
+1667,42949,Florence,oh nice. that'll get me going.,0
+1672,120037,Johnson,"If I am benchmarking a function that takes a list, what is the best practice for generating that list?; I’m being a little vague on purpose to avoid asking a leading question.",1
+1672,120047,Sunny,probably depends on the specifics of the benchmark but I believe there is some fuzzing tools in elm-test,2
+1672,120315,Johnson,"Should the actual values in the list have a significant impact on the benchmarking results when the functions being compared don’t care about the particulars of the values?; And the same values are used for both functions for each benchmark run.; Basically, I was creating long lists with `List.repeat 0 N`. When I did this, one of the functions beat out the other by a decent amount. Then I changed how I was creating the lists to `List.repeat 5 N`. Now the other function is blowing the original winner out of the water (600% difference!). Clearly, there’s some kind of weird optimization going on with Lists that consist of only zero. Any clues?",0
+1672,120514,Polly,"If you're doing exactly that, then you have the arguments the wrong way round; List.repeat 0 n = the empty list",2
+1672,120733,Johnson,Polly: :facepalm:. Thanks .,0
+1672,120836,Polly,"Been there enough times - at least you had the sense to question it. I usually just commit with ""1 BILLION PERCENT PERFORMANCE INCREASE""",0
+1674,130237,Santa,I wonder how well Elm interops with web components. Does anybody here have any experience with that? It seems that there are quite a lot of nice UI elements.,1
+1674,130281,Micheline,Santa: check out this talk: <https://www.youtube.com/watch?v=ar3TakwE8o0>,2
+1674,130296,Santa,Checking out...,0
+1674,130368,Chrystal,I saw that Elm has union types. I thought the Elm's union types were actually Algebraic Data Types. Can someone explain the difference?,0
+1674,130400,Micheline,Chrystal: see this article: <http://blog.jenkster.com/2016/06/functional-mumbo-jumbo-adts.html>,0
+1674,130454,Micheline,"There's a lot of terminology around these ""things"" but for the purpose of Elm, ""Union Types"" == ""Algebraic Data Types""",0
+1674,130489,Chrystal,Ok I thought so. The article confirms my suspicion,0
+1674,130502,Micheline,From the guide section on types (<https://guide.elm-lang.org/types/union_types.html>): &gt; Note: Union types are sometimes called tagged unions. Some communities call them ADTs.,0
+1674,130522,Santa,"Micheline: Oh, yeah. That's what actually inspired me. Unfortunately the google map example is currently broken (<https://github.com/rtfeldman/elm-google-maps/issues/1>). I believe the bug is on the component side and there is a workaround.",0
+1674,130528,Coy,Santa: <https://github.com/knewter/elm_web_components_playground> is a thing I made,2
+1674,130544,Santa,Coy: Thanks .,0
+1674,130643,Chrystal,Sure but the generalisation that union types are called ADTs in other languages is not correct. Adt support type variables while union types should not; This is according to TAPL; (Types and Programming Languages book),0
+1674,130665,Santa,"My question leans toward practical experience. I'm looking for an alternative to elm-mdl and want something that ""just works"", so I can focus on business logic. I'd like to avoid being on a constant lookout for workarounds.",0
+1674,130703,Coy,"Santa: I've built a production app using polymer/web components and elm. There are a few concerns that the talk mentioned above covers, I think. In general, it ""Just Works"" with a few caveats depending on the components you're using.",0
+1674,130767,Santa,"Oh, that's great!; Did you use a lot of ""of the shelf"" components, or created your own ones?",0
+1674,130840,Micheline,"What Elm refers to ""Union Types"" are allowed to have type variables",0
+1674,130865,Chrystal,Exactly. They are ADTs,0
+1674,130875,Micheline,yes,0
+1674,130885,Santa,Coy: The demo you've linked too looks like a great resource. Thanks ! I'll look deeper into it.,0
+1674,130955,Chrystal,Wouldn't it be better to call them what they are? I think it would unify a great abstraction common to many other functional languages,0
+1674,131061,Genaro,Yeah! Haskell and Idris should get on board with what Elm and F# call them. :wink: <https://fsharpforfunandprofit.com/posts/designing-with-types-single-case-dus/>,0
+1674,131493,Chrystal,Probably not happening. I'll see if I can convince the F# and Idris people to name them ADTs :smiling_imp:,0
+1674,132056,Santa,Coy: That's a great video . I think I'm sold to at least try it. Also very good point about type safety. I guess it should be quite straight forward to make Elm wrappers for these `nodes` and `attributes`.,0
+1677,174931,Susanne,Hello folks! Is anyone aware of a pure elm way to make tooltips? Something like in bootsrap.,1
+1677,175107,Teresa,Pure CSS solutions exist,2
+1677,175166,Susanne,"Teresa: Oh, thanks !",0
+1692,261241,Letitia,Anyone got a good trick for moving all your Elm modules under a new namespace? i.e. ``` ModuleA =&gt; NewNamespace.ModuleA ModuleB =&gt; NewNamespace.ModuleB ```,1
+1693,263095,Anibal,"This is not elm-specific, but im throwing it out here: I realize again and again that I'm exceptionally terrible at web design. I can recognize good and bad design (most of the time) but I'm unable to create someting even remotely good looking from scratch. Are there some good ""web design basics for hopeless developers"" out there?; I love building web pages in elm, but it does not help me with my main problem, the lack of design skills...",1
+1693,263300,Exie,That's a very interesting question. You're absolutely not alone :slightly_smiling_face: I'd be interested in any resources like that too; I've read some interesting articles that might be relevant at <https://design.google/>,2
+1693,263715,Erwin,"Anibal: I'm in the same boat. I try to leverage whatever ""frameworks"" I can. I have been recently using elm-mdl (see <#C12KMAYJX|elm-mdl>) but I'm not sure about the long term viability of it now that Google's Material Design Lite is being replaced by Material Design Components. There is elm-bootstrap (see <#C3U2E3JRX|elm-bootstrap>), but I have not tried it yet. I'm a bit gunshy of making a committment to something not knowing if it will be around for a while. There are <#C13J25YQK|webcomponents> but does not seem to be a solid consensus about how and what that looks like just yet. My tendency is to use something like purecss for it's classes just to make things look a bit better.",2
+1693,264153,Letitia,"I wanted to move all of my elm files under a new directory, find and sed to the rescue…",0
+1693,264295,Anibal,"interesting. I've used bootstrap a lot before, but i think it makes the dom too complicated. I'll check out your links, thanks a lot :slightly_smiling_face:",0
+1693,265093,Letitia,"Anibal: I found this article on hierarchy was a good start, <https://webdesign.tutsplus.com/articles/understanding-visual-hierarchy-in-web-design--webdesign-84>; I also found that Gestalt theory had a lot in common with how I organise code in projects, <http://www.creativebloq.com/graphic-design/gestalt-theory-10134960>",2
+1693,265556,Daniell,yeah! sometimes i wish modules could be relatively namespaced based on the folder they were in. That'd be cool,0
+1693,266801,Letitia,When the elm-format AST is ready we should be able to put together a tool for applying refactorings like this.,0
+1698,281627,Nida,Anyone working on a language server protocol server for elm? Is there any other way to add completion/hover info/goto definition etc to an editor?,1
+1698,282169,Hertha,"Nida: check out <https://www.youtube.com/watch?v=ExGkdmey0n4>; not really a direct answer to your question, but anway :slightly_smiling_face:",2
+1698,282231,Nida,Hertha: thanks,0
+1705,323141,Merrill,"Hello peeps, is there a simplistic way to create a timer in Elm? Literally something as simple as, start at 10, and every second decrement by 1 till you get to zero.",1
+1705,323196,Norma,i’d prolly start with something like this: <http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Time#every>,2
+1705,323265,Merrill,"I have, my first attempt was using a subscription and running `Time.every second Tick`; however, the event that starts the timer may fall on a sub-second mark, so that first decrement from 10 to 9 doesn't always happen over 1 full second",0
+1705,323317,Leia,There's also <http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Process#sleep>,2
+1705,323341,Victor,"iirc, there are not many good ways around that (sub second issue), you may want to wait until the first tick and then start counting down.",0
+1705,323446,Merrill,"Victor: hmm yeah I was heading towards that solution, was just hoping for something more elegant; there is this... <http://package.elm-lang.org/packages/simonewebdesign/elm-timer/latest>",2
+1705,323483,Norma,"the suggestion for Process.sleep should work, it isn’t based on the system time but rather a unit of time",0
+1705,323537,Merrill,"Norma: I'll have a look into it, may do the job",0
+1705,323593,Norma,"hey… whadya know, i have done this already… <https://github.com/mordrax/cotwelm/blob/b72efbb428a6d190ff8a8a9ba61638efa2b8e89e/src/Arena/PlayerArena.elm#L80>; ~hits it every~ waits for 150ms",2
+1705,323709,Merrill,"sweet, I'll have a dig into it. I've only been using Elm for a week or two, so still getting my head around it",0
+1705,323797,Norma,"ah yeah, wouldn’t suggest you look too deep into that code… i don’t know what i was on when writing that, just how it’s called and threaded back into the Cmd. ianmackenzie is on the ball with `Process.sleep 10000`",0
+1705,323908,Merrill,yeah I can't say I quite fully understand what that one line is doing exactly; is it basically sleeping the update function for 150ms?,0
+1705,323984,Norma,"haha, ok so you’ve got: <http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Process#sleep> that takes in a `Time` and gives out a `Task` then you’ve got to perform that task <http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Task#perform> which performs a task, and gives you back a msg ( you provide the `a -&gt; msg` function",2
+1705,324067,Merrill,"ah right yeah, I see what's happening, you're then passing the message `Sleep (asyncCmd match matches resetCounter) resetCounter`",0
+1705,324078,Norma,so all i’m doing here: ``` Task.perform (\_ -&gt; Sleep (asyncCmd match matches resetCounter) resetCounter) (Process.sleep 150) -- summarises to Task.perform (\unused_ -&gt; msg) (Process.sleep 150) ```,0
+1705,324079,Merrill,which is then caught `Sleep cmd resetCounter -&gt;`,0
+1705,324580,Norma,"exactly, the `msg -&gt; Sleep ...`; so chuck whatever you want to do into that first function `(\unused_ -&gt; msg)`, then thread the output of the Task.peform which is a cmd into your update’s output (<https://github.com/mordrax/cotwelm/blob/b72efbb428a6d190ff8a8a9ba61638efa2b8e89e/src/Arena/PlayerArena.elm#L103>), then you’ve got your msg; There is a purpose to all this madness! See Elm is declarative. Process.sleep doesn’t actually sleep, Task.perform doesn’t actually perform anything. They are all just declaring that, they will do something. You’ll find this with Generators, Decoders, pretty much everything!!!; All these functions are pure, meaning they have no side effects, meaning they don’t do anything. O_O! So unlike in imperative languages where you go sleep 150 and expect it to sleep, here, Process.sleep 150 just gives back a Task that *will* sleep. Then it’s up to you when you call it.; It’s only when you hook up all your declarative functions to the program’s subscription that then allows elm to drive effects through your app",0
+1705,324645,Merrill,"it's definitely something to wrap your head around! but I'm honestly enjoying it; just having a look at how I would hook this up in my code, does something like this make sense?; ``` StartGame -&gt; ( { model | status = Playing }, Task.perform (\_ -&gt; Tick) (Process.sleep 1000) ) ```",0
+1705,324689,Norma,that should trigger your Tick process ~1000ms after a StartGame msg comes through,0
+1705,324715,Merrill,"I know in this situation I'm expecting that Tick will only be called once after 1000ms; alright, the compiler is having a fit haha.",0
+1705,324762,Norma,"I say roughly because js has a error margin with setTimeout of &lt; 8ms i think…; if you can’t work it out, chuck the msg here and the community will help, according to some we’re ‘excessively’ helpful",0
+1705,324809,Norma,"actually that is true, last time, i needed a foldl which reduced a Result, and got 3 answers in just as many minutes",0
+1705,324828,Merrill,"sure, incoming...; ``` The 1st and 2nd branches of this `case` produce different types of values. 12| case msg of 13| Clicked -&gt; 14| if model.status == Playing then 15| processClick model 16| else 17| ( model, Cmd.none ) 18| 19| StartGame -&gt; 20|&gt; ( { model | status = Playing }, Task.perform (\_ -&gt; Tick) (Process.sleep 1000) ) 21| 22| Tick _ -&gt; 23| updateTime model The 1st branch has this type: ( { click_count : Int , click_limit : Int , points : Int , status : Status , targets : List Target , time_elapsed : Int , time_limit : Int } , Cmd (Msg) ) But the 2nd is: ( { click_count : Int , click_limit : Int , points : Int , status : Status , targets : List Target , time_elapsed : Int , time_limit : Int } , Cmd (Time.Time -&gt; Msg) ) ```",0
+1705,324903,Norma,"Your Tick tag doens’t have a value, but your update function is expecting one; change ln 22: `Tick -&gt;`",0
+1705,324971,Merrill,ah brilliant! good spot :slightly_smiling_face:; that was leftover crud from when I was using `Time.every second Tick`,0
+1705,325030,Norma,"yes, you can pass values along with the tick if you want and that’s how you’d do it; `(\_ -&gt; Tick valueToUpdateInASecond)`",0
+1705,325347,Merrill,"awesome, thanks for your help mate :slightly_smiling_face: got myself a working timer!",0
+1705,325381,Norma,My task is complete. I shall go back to work.,0
+1705,325466,Merrill,:sunglasses:,0
+1708,375353,Otto,Anyone have experience using ports with file uploads? Is <https://www.paramander.com/blog/using-ports-to-deal-with-files-in-elm-0-17> still a good approach?,1
+1708,375478,Jeanett,Otto: that's what we're currently doing,2
+1708,375521,Otto,Jeanett: Cool thanks -- I need to process some CSV files,0
+1708,375615,Jeanett,"we're just using it to turn files into base64 and send them to the server like that; it works mostly fine; bear in mind that file processing is asynchronous, so you should watch out for that",0
+1708,375631,Otto,Yeah makes sense; Thanks though,0
+1708,375711,Jeanett,sure,0
+1708,376135,Joni,"I think I have something highly similar as an ellie, somewhere; <https://ellie-app.com/3qpgdbQFFfqa1/0> yep :smile:",2
+1708,376532,Erika,"Are there any elm tutorials on forms?; like input type=text and selects, checkboxes, etc",0
+1708,376708,Victor,Joni: I'm sad you can't just shove that base64 string into the src attribute of an image tag.,0
+1708,376903,Joni,Victor: that was laziness on my side - <https://ellie-app.com/3qpgdbQFFfqa1/1>,0
+1708,377030,Victor,":eyes:; I did that and it didn't work for me. wat.; Ah, I see the change you made :thumbsup:",0
+1712,390193,Minta,"good evening, gentle people! :tophat: let me see how condensed i can ask this...: my JSON contains URLs to imgs, but they're 404, so I do `onerror setAttribute`.; i am looking for a more elmish and beginner-friendly way.",1
+1712,390292,Micheline,I'm not sure I understand what you're trying to do; you're validating that the URLs aren't dead as part of decoding?,0
+1712,390299,Minta,"i have a view, where I show an image with an url that does not exist (404); no, I don't. is that what you would suggest?",0
+1712,390329,Micheline,not necessarily :slightly_smiling_face:,0
+1712,390499,Minta,"i was thinking of requesting them all with Http, and yes, when if not during decoding?; i am actually soon having a workshop with beginners and critical people and i hate to have that in my example app; so I guess I could just `List.map Task.perform` something something?; as an andThen? i'll give it a shot. thanks!; (not that that's any easier to grasp than injecting javascript)",0
+1712,390514,Soraya,"don't know what control you have over the server side, but sounds like something you might want to do before even sending to the client if you can?",2
+1712,390532,Minta,yes i had thought of that as my last resort excuse,0
+1712,390534,Sunny,can't out put stuff in the img tag specifically to handle this case?,0
+1712,390587,Minta,":slightly_smiling_face: should be handled on the server, uhm; Sunny: please explain?",0
+1712,390600,Soraya,(where it can be done in parallel etc.),0
+1712,390647,Micheline,Have your server guarantee that all urls in the JSON are good,2
+1712,390681,Sunny,"hmm never mind, I thought the brower would handle it different",0
+1712,390794,Minta,"Micheline: sure, i am just stuck with the situation of having to dissect this app in a company-internal workshop scenario, and it's critical that it is a smooth experience for the success of elm with my company.; so the server side does not matter, somehow. because it's not going to change until then",0
+1712,390808,Micheline,OK,0
+1712,390908,Sunny,"``` &lt;object data=""avatar.jpg"" type=""image/jpg""&gt; &lt;img src=""default.jpg"" /&gt; &lt;/object&gt; ```",2
+1712,390909,Minta,"this is probably about to not be elm-related much longer, as I might just have to not bring it up and explain the ways it could be solved, if it does",0
+1712,390910,Sunny,might work,0
+1712,390917,Minta,"oh, hey",0
+1712,390940,Soraya,do you know exactly what the URLs will be ahead of time? You could special-case the bad ones just for the demo,2
+1712,390977,Minta,"they are all ok now, it's just the code that will be iffy (and we are heavily looking at it together and there will be eyebrow-raising)",0
+1712,391018,Micheline,"Typically, broken image links on the web are handled by the browser by showing some default ""broken image"" thumbnail; Are you trying to do something different?",0
+1712,391025,Minta,good point,0
+1712,391037,Sunny,the html I posted allows you to do just that,0
+1712,391056,Minta,"i am about to try that, too",0
+1712,391056,Sunny,put the placeholder image in the img tag and the actual image from the json in the data field,0
+1712,391119,Minta,"i forgot to mention that it is an Svg.img... hope that won't matter...; `Svg.image` even, oh boy",0
+1712,391153,Sunny,"umm, the placeholder is Svg.image or you have preloaded to data and generated an Svg.image",0
+1712,391184,Minta,"` xlinkHref snack.imagepath`; crazy, i know",0
+1712,391249,Soraya,haha fun fun,0
+1712,391299,Micheline,This is a table of users with broken avatars,0
+1712,391307,Minta,"yes, i like that best. i just remove the `onerror`-handler",0
+1712,391311,Micheline,would you want to now show a row at all if the image was missing?,0
+1712,391322,Minta,"thanks joel. that, and that it should be checked server-side, is good now.",0
+1712,391324,Micheline,or show a different image than the browser default thumbnail?,0
+1712,391434,Minta,"yes; that's what i did; ```unknownImage : Float -&gt; String unknownImage size = let center = -(round (size / 2)) in setAttributePx ""width"" (round size) ++ setAttributePx ""height"" (round size) ++ setAttributePx ""x"" center ++ setAttributePx ""y"" center ++ ""setAttributeNS('<http://www.w3.org/1999/xlink>', 'href', '"" ++ Config.fallbackImageUrl ++ ""');""```; but I don't like it to be in the code when i show the gang; this is called `onerror` as an attribute of the image; but do you want to explain this to a beginner?; that's what i was going for and I got two solid outs. thanks again!",0
+1718,450429,Janita,"does anyone know what the most elegant way is to conditionally render an attribute in elm?; with html you can just do `if someBool then p [] [] else text """"`. what is the equivalent for attributes?",1
+1718,450463,Jeanett,what we do is append to a list,2
+1718,450511,Janita,yeah that's why I asked for the most elegant way. That was the only one I could come up with and it not that nice to use. :confused:,0
+1718,450551,Jeanett,"so something like ``` let attrsForAll = [ onClick Bleh ] conditionalAttrs = if (cond) then [ class ""condIsTrue"" ] else [] in div (attrsForAll ++ conditionalAttrs) []```; what do you think is not nice about it?",2
+1718,450601,Janita,I was hoping for a shorter solution. But I guess that's the only way to do it.,0
+1718,450638,Margit,"`none = attribute """" """"`; `if someBool then none else class ""hello""`",2
+1718,450696,Janita,ah that's nice; that's the shorty I was looking for :slightly_smiling_face:; Margit: Jeanett: thank you and,0
+1718,450886,Joni,"I think that'll blow up; empty string isn't a valid attribute name, so the eventual `setAttrbute` would blow up; try something non-sensical like `none = attribute ""foo"" """"` which... shouldn't blow up; <https://ellie-app.com/3yrYYJzM6mVa1/0> for example",2
+1718,450970,Margit,"Yes, or `data-foo`; <https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes>",0
+1718,450984,Joni,"oh yeah, that's probably safer even",0
+1718,451151,Janita,yeah it does blow up `ncaught DOMException: Failed to execute 'setAttribute' on 'Element': '' is not a valid attribute name.`,0
+1718,451163,Margit,Yep,0
+1718,451186,Janita,so I guess appending to the list is what I will use,0
+1718,451206,Margit,"Hm?; `none = attribute ""data-foo"" """"`",0
+1718,451207,Jeanett,"Janita: using ""data-foo"" will not blow up",0
+1718,451209,Margit,this will work,0
+1718,451325,Jeanett,"it'll remain shorter if you have one conditional attribute; I checked in Ellie, and it seems it's OK to have several of the same attributes in the Elm code",0
+1718,451358,Joni,"they'll just override, last one wins; (except for `style` and `class` which get special treatment)",0
+1718,451379,Jeanett,they do?; don't tell me they add up automatically?,0
+1718,451384,Joni,they do,0
+1718,451407,Jeanett,"all that time wasted manually doing something that other, more clever people, did for me... ^^",0
+1718,451463,Margit,"It doesn’t require intelligence, it requires the ability to modify the internals of the virtual-dom :stuck_out_tongue:",0
+1718,451560,Santa,"Ok, done: <https://github.com/elm-lang/error-message-catalog/issues/223>; Margit: Thanks for help",0
+1718,452275,Lady,dawehner: you mean `elm-jsonapi`?,0
+1718,452391,Janita,Jeanett: Joni: Margit: that was actuaaly The first time ever i caused a runtime error in elm. :-) Crazy that getting errors in Elm seems so weird where in js it happens all the time. Those solutions will get me where I need to go. Thank you.,0
+1718,452432,Dominica,I totally do. It's far more complete than many other things I've seen out there. For me at least though I'm wondering whether inlining those includes in the first place might be the better solution,0
+1718,452670,Mika,"but it complains debug is missing, rather than just giving me `Nothing` as I had hoped",0
+1718,452674,Margit,You can bring flags in as json and decode them,0
+1718,452688,Mika,aha,0
+1718,452702,Margit,`debug` should be `null` if you’re trying to use a maybe; But I would use a decoder myself,0
+1720,460926,Ervin,"Hello! I have to load a bunch of data from Json into my page, I am wondering what is the best way to do accomplish that without slowing down the loading of the page too much. Is it better to load all the data at the beginning, or to add a command to fetch the data when the user selects a certain type. For example, I have hospitals, nursing homes, hospices, etc.. data, is it better to fetch the data only when needed or to load everything in a model?; by a model I mean a record.",1
+1720,461003,Janine,"I would start by loading the data at the beginning, then see if it slows down the page; Then see what parts slow it down.; How much data are you talking about?",2
+1720,461512,Ervin,It takes about 5 to 7 seconds to load it.,0
+1720,461832,Liberty,"In a typical session, how much of that will your users have to load?",0
+1720,461966,Ervin,It all depends. Some my need all of that; sorry might need,0
+1720,461979,Margit,"Ervin: , what you are asking is a issue to do with the user experience and single page application design in general.",0
+1720,461993,Ervin,Right,0
+1720,462014,Margit,"First, identify the minimal amount of data required to display something useful to the user.",0
+1720,462016,Ervin,I am wondering what is the best practice,0
+1720,462059,Margit,"This might be nothing, this might just hospitals.; The initial request should as small as possible. 5-7 seconds is a long time to wait for a page to load.",0
+1720,462111,Ima,"can you page through the data? I have a page that fetches 10 items, which is pretty quick, then fetches 100, then collects the rest in chunks of 1000. user sees something quickly, but all the data gets pulled eventually",0
+1720,462130,Ervin,"I was a bit unclear, the page doesn't take that long to load but the data takes that long to be fetched.",0
+1720,462181,Janine,"Margit: Like is saying, I’d load the minimal amount to show something on the page, then load the rest in the background.",2
+1720,462403,Ervin,"Adding a div on the page with ```div [] [ text (toString model.rolodexlists)]```, where rolodexList is the array of the data I am getting takes that long to be updated; I am wondering if it is better to get the data in batches later instead of in the initialModel through an initial Command; 1720	462403	Ervin	Janine: How do you load it in the background?	0																						",0
+1720,462472,Janine,"The same way to load it, create a cmd to load the data; don’t think of it as background, I guess, as much as thinking of it as loading it second",0
+1720,462493,Ervin,Where do you add the command for it to be in the background? (I am pretty new to Elm),0
+1720,462679,Janine,"Sort of a process like this 1) from `init` return the cmd (http request) to load the initial data 2) when the data arrives in your `update`, set it in your model, then return the cmd (next http request) from this `update`; My first pass would be to load it all initially, though, not sorry about it. Get the system working even with the 7 seconds. Then, once you have it working (slowly), then you can start peeling it away. I like the old saying Make it work, make it right, make it fast (in that order)",2
+1720,462771,Lady,"Ah right, we had discussed this. Writing down my ideas would be a useful exercise for me as well! Hopefully I have some time for higher-level design thoughts this Sunday.",0
+1720,463594,Laraine,"Gigi: wow! I've just seen `elm-benchmark` in action. I'm blown away - super useful library, thanks so much Hicks :smile: . <https://elmseeds.thaterikperson.com/elm-benchmark>",0
+1721,464372,Lin,Hi all; I have an app (dashboard with widgets) in which I'm constantly editing the model and then running PUT requests to save it; I'm wondering what's the best way to be sure all the save requests are executed in the right order; (with js I was storing a promise and chaining future requests to the globally saved promise inside a service); is it possible to have something like saving a Task is the model and adding andThen at each update ?; and of course I also want to use debouncing and I'm wondering how to best implement it (there seem to be several libraries on the subject but do you have any recommandation?),1
+1721,464413,Liberty,"you can store a `Task` in the model and andThen, but the task isn't actually evaluated when you do that",2
+1721,464428,Laraine,<http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Task#sequence>,2
+1721,464480,Liberty,"also, elm is fundamentally asynchronous, so you'll have to deal with that; one solution could be to wait till the put request is finished before sending the next one",0
+1721,464732,Lin,"yes that's what I want to do (what I'm doing actually in js today); when I need to save a new version, I get my promise and use a `promise = promise.then(() =&gt; { return model.put(); }`; using Task sequence seems right in elm but the first task needs to start as soon as possible, but if a second one arrives it must wait for the first one to complete",0
+1721,464742,Michelina,Are there any ways to create a nontrival Task (ie not one created through succeed or fail) in the core package?,0
+1721,464767,Liberty,Michelina: define non-trivial?,0
+1721,464774,Michelina,I did :X,0
+1721,464804,Liberty,"well, you can combine primitives with `map` and `andThen`; so, yes",0
+1721,464909,Michelina,"`map` and `andThen` both require you already have a `Task`... so I guess to be more precise, one which does not contain any reference to `succeed` or `fail`. So `map (\x -&gt; x) (succeed True)` wouldn't really count, either.",0
+1721,464947,Liberty,"Lin: so I think you need to pick some nice data type to model what you want to do, for instance `type BackupRequest a = Sending { waiting : Maybe (Task Http.Error a) } | Done `",2
+1721,464948,Lin,"it seems I need to chain Cmd, not Tasks, which is not possible without a custom manual implementation... ?",0
+1721,464961,Liberty,"for custom stuff, tasks are the way to go",0
+1721,464991,Michelina,"Ah, it looks like the `Process` module exposes a few",0
+1721,465006,Liberty,"Michelina: well, `Time.now`",0
+1721,465009,Lin,"yes but once the task is started (attempt ?), you can't use it any more for `andThen`",0
+1721,465029,Liberty,TRUE; so you create a new empty task,0
+1721,465044,Lin,what for?,0
+1721,465067,Liberty,"actually, create a new task, that will be the next put",0
+1721,465089,Michelina,"Maybe I'm wrong, but `Task`s seem like they would be well-suited for working with random numbers.",0
+1721,465123,Liberty,"then as long as we're waiting for the server, swapping out that task with a newer version when the model is updated. once the request resolves, send the new task",0
+1721,465188,Lin,"yes that's even an improved version; but the implementation is completely manual, no help form the core library",0
+1721,465243,Liberty,what would you like to see in core? it seems simple enough to implement and may give you material to publish a package,0
+1721,465335,Lin,"not sure to be at the package level yet :wink:; but yes ok I'll try something like that with a pendingModelToBeSaved, swapping it with a new one when an update is made",0
+1721,465480,Janine,"For the data that changes, we usually have it in a type like (simplified) ``` type Savable a = Saved a | Saving a ``` Then, when a save is triggered, we don’t do it until it makes it back to `Saved` If you want to have a way to say “I want to save it when finished” then you can add another state to it, something like `SavePending`; So, the code only creates the PUT if it is in `Saved` state",0
+1721,465611,Ervin,"Janine: Thanks for the explanations, they are helpful!",0
+1721,465624,Janine,Ervin: Good luck.,0
+1721,465640,Ervin,Janine: Thanks!,0
+1721,465747,Lin,yes thx for the ideas,0
+1721,466544,Perla,Johnson: I’m wondering what the absolute timings in your benchmark are. I’ve found that for very short tasks things like requestAnimationFrame can add noise to Elm results; another thing that chrome tools can help tell you…,0
+1721,466569,Neoma,Can I get an _object id_ for an Elm _object_? I want to have a JS cmd pass back the id into Elm so I can locate a tree-node that needs highlighting.,0
+1721,466597,Margit,"No, you have to create them.; There are not objects in Elm in the same sense as elsewhere.",0
+1721,466666,Neoma,Is there a library for generating ids?,0
+1721,466722,Joni,"Perla: elm-benchmark uses interleaved samples of sufficient size, requestanimationframe isn't really that relevant here :slightly_smiling_face: (and the high-precision timing api)",0
+1721,466745,Perla,right on,0
+1721,466763,Joni,"<https://github.com/BrianHicks/elm-benchmark#how-are-my-benchmarks-measured> it's pretty cool, actually",0
+1721,466903,Sunny,"If you are rendering a bunch of objects in a list or a tree or something, then likely you have some identifier you can tag each node with that the js can pass back.",0
+1721,466915,Marilynn,lohabuyshan: <http://package.elm-lang.org/packages/danyx23/elm-uuid/2.0.2/Uuid>,0
+1721,466917,Sunny,a name perhaps,0
+1721,467094,Neoma,"The tree nodes can be identical in all respects, except ancestry of course.",0
+1721,467117,Sunny,the they can be uniquely identified by a path then,0
+1721,467171,Neoma,"Would you go with that, as opposed to an id per-se?",0
+1721,467173,Perla,this does seem cool,0
+1721,467241,Sunny,what's the difference between and uniquely identifing ID and a uniquely identifying path?; aside from one being slightly more opaque,0
+1721,467337,Coreen,"Johnson: responding here since the conversation has moved on a ways. The things that cause high stddev are usually other processes running or window painting happening. Browser benchmarks are tricky since it's basically a miniature operating system inside another OS.; so: quit browser tabs, run in an incognito window if you have a lot of extensions, and quit any electron apps (especially Slack, which spikes CPU randomly.); I'm happy to answer more questions in <#C3Y7SC0HF|elm-benchmark>; threads are a bit awkward :stuck_out_tongue:",0
+1721,467350,Neoma,"I may want to account for situation where in the interim the user can re-order the tree (for non-unique names of course), hence even though the path is fixed for now, path is not a universal solution.",0
+1721,467704,Sunny,I see; Random ids are going to require a task or some sort,0
+1721,468400,Laraine,not necesarely. you can use `step` function - is pseudo random - meaning if you call it with the same inputs you get the same outputs. See this mgold package. But you have a seed which you can store on your model - and you update the seed - and place it back on the model - every time you generate this random id. <http://package.elm-lang.org/packages/mgold/elm-random-pcg/5.0.0/Random-Pcg#step>,0
+1721,468439,Sunny,I suppose a PRNG in your model would also work :stuck_out_tongue:,0
+1729,542218,Mina,What are the common approaches to profiling Elm apps?,1
+1735,578355,Cristy,"Hi yall, any easy way to *encode* a data structure given its *decoder*?",1
+1735,579054,Soraya,haven't used it at all but this came around a while back. <http://package.elm-lang.org/packages/prozacchiwawa/elm-json-codec/latest>,2
+1735,579230,Cristy,Soraya: Hmmm looks interesting. thanks,0
+1735,581949,Margit,json-to-elm can do that for you,2
+1735,589713,Cristy,"wow that's very handy; But I do feel that having to create separate encoders and decoders could be better abstracted, such as that elm-json-codec project above",0
+1735,590418,Cristy,"How to use the browser's local storage from elm? I can't find any packages on elm-package for that. I did find this repo, but it doesn't seem to be elm-package installable: <https://github.com/gdotdesign/elm-storage>",0
+1735,590906,Soraya,"ports, at the moment; rfeldman's SPA example I found extremely useful to look at. <https://github.com/rtfeldman/elm-spa-example/blob/master/src/Main.elm> <https://github.com/rtfeldman/elm-spa-example/blob/master/src/Ports.elm> <https://github.com/rtfeldman/elm-spa-example/blob/master/index.html>",0
+1735,591003,Cristy,Soraya: thanks,0
+1736,606328,Santa,Hello! I want to fork and hack on an Elm library simultaneously with building my application and eventually PR the upstream repo. How would I set this up locally? In NPM land I would use `npm link`. Are there any established practices for Elm?,1
+1736,606562,Joni,you could use `elm_self_publish.py` found here: <https://github.com/NoRedInk/elm-ops-tooling>; which allows you to locally install a package into another package,2
+1736,606590,Santa,Joni: Thanks . Let me take a look.,0
+1736,607007,Santa,"Related question: is there a way to install forked Elm pacakge from git repo, like NPM can do?; I see this <https://github.com/gdotdesign/elm-github-install>; Can I do it with standard Elm tools?",0
+1736,607149,Joni,"Nope, standard elm package can't do that - since then all limitations like ""no packages with native"" are essentially out of the window...",0
+1736,607400,Santa,Hmm. Ok. I'll try simply link forked library's `src/` into my app's `src/` and see how it flies. I'm using `elm-live` for my app development and would like to preserve the rebuild on save for the library as well.,0
+1736,608705,Joni,"Then you could add a `vendor` library, clone the project in there, and add `vendor/somelib/src` to the `source-directories` of your `elm-package.json`; though, take care, because that allows using the non-exposed modules from that library, too :slightly_smiling_face:",0
+1740,631371,Gertie,Does anyone know a good elm-expressjs boilerplate? I was trying to do a small SPA with a small GraphQL server but I was wondering how to best organize my repo,1
+1747,671175,Clarinda,"This is probably a question that has been beaten to death. Is there a good way to do drag and drop. Basicaly my interface looks like this (<http://imgur.com/a/XYqBL>) and I want to be able to drag (to reorder) the lists, as well as the list items, which can also be dragged between lists.",1
+1747,671961,Norma,"there’s a couple of dragdrop packages on <http://package.elm-lang.org/> otherwise you can always write your own like this: <https://github.com/mordrax/cotwelm/blob/master/src/Utils/DragDrop.elm>; mine was inspired by React DnD ( great design, very hard to debug errs… ), in contrast, i spent a few days 2 weeks into Elm to write it and it’s been solid ever since",2
+1747,672083,Clarinda,"Norma: thanks, I fear is most example are only dragging on type of item and I have two (one being nested); so updating the model also seems difficult; That's a problem outside of drag and drop though",0
+1747,672195,Norma,"i drag items which are a union type, and inside, they hold composite records… the dragdrop module is flexible enough to allow different ‘types’ of things to be dragged; e.g: <https://github.com/mordrax/cotwelm/blob/b72efbb428a6d190ff8a8a9ba61638efa2b8e89e/src/Inventory.elm#L51>",0
+1747,672226,Clarinda,"Alright, I'll take a look at it.",0
+1747,672513,Norma,"then when you drop it off, you need to handle which ( of the two types ) you need to update in your model; if you’re looking at my version, it might be useful to have a quick read of react-dnd, esp dragsource and droptarget, i found the concept to be really great and it would explain my code alot better than me or looking at the code ( <https://react-dnd.github.io/react-dnd/docs-drag-source.html> ); it’s a layer that abstracts what you’re dragging (html) from where (source) to where (html) into what (target)",0
+1747,672624,Clarinda,"okay, I'll give that a read too.; I'm a little surprised this hasn't been abstracted into something painstakingly easy to do yet. I would think that it's such a common problem, it could be generalized over.",0
+1747,672655,Norma,"check out the elm packages, there’s a few of them, i haven’t tried them yet, haven’t needed to",0
+1747,673005,Clarinda,will do,0
+1748,678842,Rolf,does anyone have a clean way to write a msg where i can just specify what item in the model i want a textinput to update?; i normally use ID's but i want something a bit more generic,1
+1748,678990,Mina,Thanks!,0
+1748,679192,Lorinda,"Rolf: , I do something like `type Field = Username | Password` `Type Message = UpdateField Field String | ..`",2
+1748,679404,Rolf,hmm; so you would still have to specify a case in the update for explicit types; thanks though,0
+1753,719282,Leonardo,"Hi folks! What do you think is the best way to make a tree-like structure? I have this types ```type alias AreasTree = { id : String , name : String , path : String , children : AreasTreeChildren } type AreasTreeChildren = AreasTreeChildren (List AreasTree) ``` and get just a plain list via API where `path` is a key like `a.b.c`; at the end I want tree like AreasTree(a) -&gt; children (AreasTree(b)) -&gt; children(AreasTree(c)); I think fold will fit my needs, but I am not sure what is the best way to put `c` for example into nested structure; what I get from API is a list of ```type alias Area = { id : String , name : String , path : String }```",1
+1753,720741,Micheline,You may find this useful: <https://evancz.gitbooks.io/functional-programming-in-elm/recursion/binary-trees.html>; particularly the section on insertion,2

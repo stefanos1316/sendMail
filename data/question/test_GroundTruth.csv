@@ -1,0 +1,989 @@
+thread,timestamp,speaker,message,is_rec_question
+2_clojurians_2019,1546259235,Brain,"I'm currently doing some experimentation getting a vscode WebView REPL with REBL like viewing, although it's very prototype and early days currently. Full code editing would require literally throwing out vscode's editor and using a custom one however, since it's quite strict about what you can do within a vanilla text editor.; This is *definitely* a path I feel needs pursuing to it's fullest though, even if it means dropping vscode and building a dedicated electron application.; I never saw the Interlisp version of that, though I've read many times how friendly it was considered to be. The only experience I have with lispms is mid-90's Symbolics machines, are there any emulators, videos, or perhaps surviving documentation that describe it?",0
+5_clojurians_2019,1546277760,Latonya,"In what way can something be precise to each mm, but also auto-adjust text size?  I don't understand how those two desires can be satisfied at the same time.",1
+6_clojurians_2019,1546280661,Lana,"I feel like I must be missing something… why is it that when I call `keys` on a `sorted-map`, I don’t get a sorted collection? I am trying to implement a simple interval tree, and this gap is a sticking point.",0
+8_clojurians_2019,1546285239,Isa,"I don’t know any way to do it with precision to each 1 mm; Only with Java and even then it is super hard. But with Java code users can’ really give an input as a file; What is the best way in your opinion to convert input (file, XML, etc.) to PDF with precision to 1 mm?",1
+9_clojurians_2019,1546306659,Alix,"I'm confused about when to use what style of namespaced keys. I know how they work, I just don't know what is best from a maintainability standpoint. For example is `:user/email` a good namespaced key? Or should it be namespaced to the company such as `com.company.user/email`? Or perhaps namespaced to the project `com.company.project.user/email` or even a project file namespace such as `com.company.project.spec.user/email`. Should any way be used exclusively, or are there use cases where either style might be used? I'm thinking that `:user/email` still might result in naming collisions if two systems deal with `user` in a different way. I'm hoping to figure out an optimal solution for systems spanning many projects in an organisation.; I think I remember a Rich Hickey talk on this but I don't remember which one",1
+13_clojurians_2019,1546348531,Stefany,"I am doing some timeseries analytics with clojure, and I have noticed some strange performance issues in loading data. I load timeseries from CSV files (size 500KB each), and I find that slurping data in takes 10ms, and then the CSV parsing takes 100ms (I parse timestamp, and floats). I compared this to incanter csv load (which takes 300ms, so worse). I used taoensso.tufte for performance tracking. I wonder if there are any ideashow to improve performance of such stimple things? If reading from disk takes 10ms, then the parsing should be perhaps another 10ms, but not longer, as disks typically are the bottomleg.  I spend a lot of time just to get simple benchmarks, because I had to remove all the lazyness via ""doall"".  Any ideas on how to speed Clojure up? Any tricks or recommendations?",1
+15_clojurians_2019,1546354336,Nannette,"I really love Clojure and Clojure REPL is the most productive environment I have ever used. Now I encountered one puzzle with Clojure REPL that I can't figure out how to do it. I needed to create a couple of gen-classes for a Java API I'm using via Clojure/Java interop. Before those gen-classes using Clojure REPL was a breeze. If I wanted to refresh all namespaces in Clojure REPL I just called function
+(do (require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh))
+... in Clojure REPL. But after implementing those gen-classes I get error: ""namespace 'mygenclass' not found after loading 'mygenclass"". I was wondering if there is some standard procedure  or best practice with gen-classes I have missed?",1
+17_clojurians_2019,1546366110,Britteny,"went and upvoted the issue, since I happened to stumble on genclassing lately too; more upvotes might help :slightly_smiling_face:",0
+18_clojurians_2019,1546369956,Vita,could anyone provide some pointers on a macro I’m trying to write? I want a function or macro that I can call with a map of let bindings (symbols to values) and then execute some form in the body of that let. I have it working for some cases but not all.; None; really? :disappointed:,0
+20_clojurians_2019,1546375332,Celestine,There is a lot of machinery in that stack trace beyond `clojure.test` and I see you're also using `respeced.test$successful_QMARK_.invokeStatic (test.cljc:104)` which seems to be what is actually leading to the error here...; Ouch!; It's not compatible with `respeced`?,0
+21_clojurians_2019,1546392511,Ferne,"<@Vita> if you're taking code as input at runtime, I think that's basically the definition of what `eval` is for; if the code has unbound locals, which I _think_ is what you're describing, I've used a trick to wrap it in a function that takes the named arguments you want to supply
+
+e.g.,
+```
+(eval `(fn [{:keys [~@some-arg-names]}] ~the-expression-with-unbound-locals))
+```; then you can call that function with a map",0
+22_clojurians_2019,1546400419,Mariela,"Is there something like <https://github.com/lightyear/sql-logging#options> but for Clojure?
+
+tldr it aides you see if you have costly SQL being emitted, and actually points out the culprit LOC; On second thoughts, probably this library wouldn't make _that_ much sense in Clojure, given ""magical"" ORMs aren't the norm here... so emitted SQL should have no surprises
+
+...but still I can see myself using some simple metrics, e.g. query _x_ took 30ms",0
+24_clojurians_2019,1546422400,Kristine,"why does `(read-string ""07"")` return `7`, but `(read-string ""08"")` throws an exception?",0
+26_clojurians_2019,1546445804,Celestine,"Because everything dating back to C did it. Technically back to B, C's predecessor. B's predecessor BCPL used # for octal but B used that as an operator. So leading 0 means octal in almost every language out there today. ; Octal was much more common back in the day. I worked with octal a lot. Then later ""graduated"" to hex. So those early conventions were very strong for a generation of programmers, maybe even two generations. And those were the folks that designed and built all the languages we use today. ",0
+27_clojurians_2019,1546448837,Tressa,"if i have an input array of strings, and i want to pick those that are also in a predefined set of valid strings, is it better to use `(filter #{""valid1"" ""valid"",,,} input)` or some other way?",1
+28_clojurians_2019,1546451885,Shayla,input being a list?,0
+29_clojurians_2019,1546453562,Jasmine,"with a big enough N and enough sample points, dotimes is sufficient, imo",0
+30_clojurians_2019,1546459486,Tammera,"Haha, you are right andy. I actually made my statement before looking up whether newer gen languages would have adapted. As often, Rust serves as a positive surprise; Swift also goes for `0o` whereas Go goes for the traditional `0`. Interesting",0
+32_clojurians_2019,1546480911,Kirby,"Does anyone know of a good way to ""sandbox"" the loading of namespaces?
+I'm trying to find a way to load and evaluate a namespace from an external source without interfering with the bindings in my current Clojure process' instance of the same namespace.",1
+34_clojurians_2019,1546506775,Amada,Does anyone have an example of deploying a clojure library to clojars from gitlab-ci?,1
+35_clojurians_2019,1546512675,Bernard,in for answer,0
+38_clojurians_2019,1546539391,Hassie,"Is there any way to determine in custom macro whether passed symbol is macro or function?; my test is `(:macro (meta (var loop)))`; of course this doesn't work here
+```
+(defmacro is-macro? [sym]
+  (let [m? (:macro (meta (var sym)))]
+    `~m?))
+```; is there any way to resolve `sym` within a macro?",0
+39_clojurians_2019,1546550242,Antwan,None; got some... fun recursion,0
+40_clojurians_2019,1546553289,My,"Weird request, but working on a perf improvement to something and want to provide a realistic benchmark on public data. Tried randomly generating data, but issue is time is dominated by things that are artifacts of random data you wouldn't see in practice (for instance, all keywords are distinct and very long). I don't want to try to generate ""realsitic data since that seems bad and want to know if someone has some large public batch of EDN data laying around that might be 'representative' of real-world data, or even better something someone's used to benchmark before",0
+41_clojurians_2019,1546586815,Mariela,Is there something like <https://github.com/NoRedInk/rspec-retry> for clojure.test?,0
+42_clojurians_2019,1546590220,Stasia,"Ah, none that I'm aware of then",0
+43_clojurians_2019,1546599250,Wanita,how to get a hash of a data structure in Clojure?,0
+45_clojurians_2019,1546611349,Harmony,"Hello! I'm new here, I posted this message in <#C053AK3F9|beginners> but I think it's not the best place... here it goes:
+We are working on a project were Datomic is being used. We want to analyze de data using ML alorightms (we are data analyst). The thing is we don't event know where to start from!! Could someone point me in any direction?",0
+46_clojurians_2019,1546617921,Colin,`defrecord` can't catch closure? ```(let [x 3] (defrecord Foo [] IFoo (foo [this] x)))```,0
+47_clojurians_2019,1546620269,Sebrina,"Is there a way to run a clojure -main from outside the project dir like?
+```cd ~/Projects
+clj --dir ~/Projects/find-git-files -m find-git-files.cmdline ./```",0
+48_clojurians_2019,1546622963,Romona,"Struggling with lein's uberjar feature, I'm confused why we're not making this not easier for people; Here's my summary:
+
+- most of the time AOT compilation is not desirable
+- ns-level forms are executed during AOT compilation, which is confusing
+- the only reason why most people use AOT is to set the entry point for the uberjar so that you can `java -jar uberjar.jar` instead of the - often superior - `java -cp uberjar.jar -m foo.main`; The whole situation confuses people:
+
+- people don't understand how gen-class works or why it's necessary
+- leiningen warns and unnecessarily suggests that you should set `:aot :all` - which doesn't seem like a good default to me
+- if you specify `:aot [foo.main]` explicitly, that works but due to a bug in lein it compiles the ns twice if you also set `:main foo.main` <https://github.com/technomancy/leiningen/issues/2521>; Really all you want is to generate a class that does the equivalent of these two lines: <https://github.com/pesterhazy/lein-aot-example/blob/master/src/foo/main.clj#L7-L8>; AIUI most projects will be better off doing that than AOT'ing everything; ... given that the Clojure compiler is very fast, it doesn't blur the line between compile time and run time and other issues with AOT'ing; Is there something I'm missing here?",0
+49_clojurians_2019,1546626964,Sebrina,Oops! Too much context. Boiled the question down and asked in beginners channel where it more likely belongs :slightly_smiling_face:,0
+51_clojurians_2019,1546632592,Tammera,"hmm I noticed that pulling in git dependencies from a deps.edn is not possible when pulling over ssh with an ed25519 keypair. I know thats a limitation of the JGit library (<https://bugs.eclipse.org/bugs/show_bug.cgi?id=520927>), but shouldn’t that be something that is worth documenting in tools.gitlib’s readme?; Or is there some workaround I am missing",0
+52_clojurians_2019,1546639012,Venice,"Hey, all. I'm using deps.edn and building my project on Gitlab. It takes ages because it pulls the clojars deps everytime. How can I find out where on the filesystem those deps end up so that I can cache them?; I was expecting it to be ~/.m2, but that seems not to be the case...",0
+53_clojurians_2019,1546640733,Lashawn,Is this a bug?,0
+54_clojurians_2019,1546644211,Tonya,"When writing websites, is it recommended to stick to standard HTML? Writing with a DSL such as Hiccup seems powerful, but I'm wondering about how I should handle CSS/Javascript then.",1
+55_clojurians_2019,1546681769,Maynard,Can anyone here point me to any documentation on the meaning of ::keys for destructuring?; Notice the second colon.; I am reading code that uses this and I don't understand how it works.,0
+56_clojurians_2019,1546684045,Kristine,"hello friends,
+
+Question about concurrency: if i have two http requests (ring) coming in, in quick succession, I want to make sure that the first one can do some work, and block the second request for a little bit, and after the first request is done, the other can continue (it’s ok if the 2nd one takes a few milliseconds longer to succeed)
+
+How should I go about this? I started out with a global `atom`, for simplicity let’s say it’s a boolean `busy?` which is `true` when it’s busy, and `false` otherwise
+
+but how to ‘wait’ for the atom? I could of course make a spinning loop but that feels very dirty.
+
+Which construct from clojure would be suitable?; more context: I am integrating with an oauth2 API, which requires me to refresh access tokens; the refreshing is done in a ring middleware; but if two calls to this api follow each other up quite quickly (which could happen) for the same user; and the first one is busy refreshing the token via a HTTP POST  call to the external API; then the second one will fail because the external api says: ‘you are using an outdated token’",1
+61_clojurians_2019,1546704704,Roslyn,"Hi! I'm doing a library that provides optional functionality that depends on `clojure.core.cache`. But since this is optional functionality, I don't want to introduce dependency on `core.cache`, and thinking how can I make this dependency a ""soft"" one. Initially I tried using own protocol similar to `core.cache` and extend it to `core.cache`'s one if it exists like that:; ```
+(when (try
+        (require 'clojure.core.cache)
+        true
+        (catch Exception _
+          false))
+  (extend-protocol Cache
+    (:on-interface clojure.core.cache/CacheProtocol)
+    (lookup [this k]
+      (clojure.core.cache/lookup this k))
+    (has? [this k]
+      (clojure.core.cache/has? this k))
+    (hit [this k]
+      (clojure.core.cache/hit this k))
+    (miss [this k v]
+      (clojure.core.cache/miss this k v))
+    (evict [this k]
+      (clojure.core.cache/evict this k))))
+```; But I think this solution sucks, because I can't extend protocol to another protocol, only to interfaces; I just realized I can check if supplied cache satisfies `clojure.core.cache/CacheProtocol` and wrap it with my cache",0
+62_clojurians_2019,1546710448,Doreatha,"I want do serve files from the file system, like with `python -m SimpleHTTPServer`, but from inside a clojure process. I think saw a tweet the other day about a(n old, ""done"") library for this, but I can't seem to find it. Does anyone know which library I'm talking about?",1
+63_clojurians_2019,1546771111,Wanita,I have working code where I get hash code of data structures with (hash data-structure) but it works in small amount of them. When I have few millions of data structures it will start giving me duplicate hashes (clash). How to get something more unique when structure of data structure is unknown?,0
+67_clojurians_2019,1546789307,Milford,"<@Clarine> Not sure if it is an idiom, but I often see the sequence
+```
+`'~
+```
+used in macros. It looks a bit like line noise, but perhaps it is an idiom.
+So for that example
+```
+(pprint `'~x)
+```",0
+68_clojurians_2019,1546799800,Cody,"Hey everyone, I have a problem with leiningen, reloaded.repl, Cursive and/or CLJC. I have defined some protocols in .cljc files which are used from clj/s. In an open REPL from Cursive, most of the time when using `reloaded.repl/reset(-all)`, it doesn't pick up my changes at all. If I do a ""manual"" `clojure.tools.namespace/refresh(-all)`, my changes are picked up but all the protocol implementations won't satisfy their respective (newly modified) protocols anymore, so I get exceptions from somewhere near `clojure.core/-cache-protocol-fn`. I need to fully restart the REPL for everything to be picked up again. Is there a way to remedy this, or workarounds? Has anybody encountered this? (my google searches haven't turned up much); (My workflow is roughly equivalent of what using chestnut involves)",0
+69_clojurians_2019,1546803940,Isa,I don’t know this library but it looks like it is bidi + ring glue; <@Reiko> ^,0
+70_clojurians_2019,1546803325,Aubrey,I think you might mean this <https://github.com/juxt/bidi/blob/master/README.md>,0
+72_clojurians_2019,1546809036,Aubrey,"I can also recommend pedestal. Different aims than yada, still a good candidate. ",0
+77_clojurians_2019,1546828867,Annamaria,"Since I love writing templates in Hiccup, I got around to creating a template for clojure built sites on netlify:
+
+<https://github.com/minikomi/simple-static>
+
+Hiccup, cljs, garden for css.",0
+79_clojurians_2019,1546832182,Annamaria,"no problem, just a basic thing you can build on.",0
+81_clojurians_2019,1546841103,Rosaline,"merge it in; in memory it is a pointer to the same data, not separate copies of the data",0
+82_clojurians_2019,1546852625,Ivana,"Like this? ```(clojure.pprint/pprint ''[foo bar])
+'[foo bar]```",0
+83_clojurians_2019,1546854222,Chanelle,as an option copy somewhere online with syntax highlight and copy back - keynote might use the colors.,0
+84_clojurians_2019,1546870127,Antwan,"<@Felix> I've never heard of that library, how does it function?; (if it's cool enough I need a side project regardless); I think for customer facing stuff that makes sense, but I've had acquaintances whose job it was to make a tiny internal tool that needed to have a gui; god rest their souls; they chose swing; so seesaw looks cool",0
+86_clojurians_2019,1546887024,Somer,"I am attempting to read a serialized function from an `ObjectInputStream`. This code is running in a Java Class and looks like this: `IFn f = (IFn) in.readObject();`. I am getting an exception pointing to that line:
+```
+Caused by: java.io.IOException: java.lang.ClassNotFoundException: compute.connector.serialize$myfn
+```
+I'm guessing this has to do with Clojure's classloader? Do I need to switch the classloader for the thread calling `readObject`?; Right before that line, I require the namespace: `require.invoke(Clojure.read(namespace));`.; Actually, the code looks almost identical to this: <https://github.com/gorillalabs/sparkling/blob/b6e93ca6005a86b3d67bfae646db5e26d145dc68/src/java/sparkling/serialization/Utils.java#L33-L58>",0
+87_clojurians_2019,1546896360,Tammera,"<@Jasmine> Looking at some of the documentation I sometimes find myself puzzled at what is actually suggested. Take for example <https://clojuredocs.org/clojure.core/reduce-kv>, it tells me that it takes a function with three positions, an `f`/`init`/`coll` and that it applies f to `init`, `k1`, `v1`, and applies `f` to that result, `k2` and `v2`… etc.
+
+This particular case tells me “how” and “what”, but forgets to tell “why”. It is actually, as a beginner in Clojure, surprisingly difficult to quickly find functions that I need due to these highly dense detailed pieces of documentation that “forget” to tell the higher picture.
+
+Certainly written with great intention, and all information is there, but not usually in a very “yes this is what I want”/“no I don’t want this” kinda way. If that makes any sense?",0
+88_clojurians_2019,1546898125,Celestine,"<@Tammera> I'm curious as to what would have helped you here (specifically)? Were you just looking over all the various core functions thinking ""Hmm, I wonder when I would use that?"" or did you start from a problem, thinking ""Hmm, what core function would solve this problem?""",0
+89_clojurians_2019,1546900981,Reiko,Are there any practical differences between them?,0
+90_clojurians_2019,1546908715,Dorla,"Is there a way to know whether an object satisfies a protocol that's been extended via metadata? `clojure.core/satisfies?` doesn't seem to work?
+```
+  (defprotocol IFoo
+    :extend-via-metadata true
+    (foo [this]))
+
+  (def x (with-meta {} {`foo (fn [x] :foo)}))
+  (foo x)
+  ;; :foo
+  (satisfies? IFoo x)
+  ;; false
+```",0
+91_clojurians_2019,1546909032,Diamond,The use of the word “work” in the context of using `merge` with vectors is quite charitable. I’ve never been in a situation where upon finding that a bug due to a mistaken use of `merge` with vectors was considered “working” nor have I ever been in a situation where anyone recommended `merge` as a substitute for `conj`.,0
+92_clojurians_2019,1546911029,Dann,haha OK,0
+94_clojurians_2019,1546921282,Loria,"Why isn't there an equivalent `peek!` function for transient vectors in the standard library?; Say I have a reducing function where each step depends on the previous result and the intermediate steps are all internal
+```
+(reduce
+ (fn [acc val]
+   (let [prev (peek acc)]
+     (conj acc (... prev val))))
+ [:init]
+ coll)
+```; It would be nice to easily turn it into a transient version
+```
+(persistent!
+ (reduce
+  (fn [acc val]
+    (let [prev (peek! acc)]
+      (conj! acc (... prev val))))
+  (transient [:init])
+  coll))
+```; The only thing I could find was a 8 year old SO post <https://stackoverflow.com/questions/3207298/why-is-there-no-peek-function-for-clojure-transient-vectors>; Is the above code un-idiomatic in some way? I just started learning about transients but I imagine this isn't a rare use case for them.",1
+0_c++,1498962241,Mazon,"well, wouldn't be right to mention the name :); I sometimes get these requests by users - so I make sure to run it by ops...; uh, I usually link to a website - but since this is more general-purpose... any constructive ideas?; <a href=""https://isocpp.org/"" rel=""nofollow"" target=""_blank"">https://isocpp.org/</a> ?",0
+3_c++,1499023801,njose2,I was trying to build libpng on windows using nmake and it seems to compile but not produce a functioning library (fails all the tests). I am not sure how to diagnose this; actually it failes 30/32 tests; if you have any ideas of where I could start looking for a problem I would appreciate it,0
+4_c++,1499028001,marco_polo,"Hi all, I have a problem with fprintf returning the correct number of characters printed but not actually printing everything after I call fclose. Using the same buffer works with printf and is printed to the console; <a href=""https://pastebin.com/z47aimsM"" rel=""nofollow"" target=""_blank"">https://pastebin.com/z47aimsM</a>",0
+5_c++,1499028541,njose2,seems like a lot of access violations but libpng shouldn't be doing that,0
+11_c++,1499035381,mr_sm1th,Does anyone have experience with C++ linear algebra libraries?,1
+12_c++,1499040601,shalok,"How can I cast a pointer into a function and then call it in a single statement?: <a href=""https://ideone.com/NC7KHk"" rel=""nofollow"" target=""_blank"">https://ideone.com/NC7KHk</a>; I can't quite get the right syntax.",0
+13_c++,1499044921,CppCon,"ew; sure, why not using an ugly mostly unreadable C cast when there are other available options?",0
+17_c++,1499088361,olx,"I've the following code fragment: <a href=""https://wandbox.org/permlink/VQKF1AhMDGs5NkBs"" rel=""nofollow"" target=""_blank"">https://wandbox.org/permlink/VQKF1AhMDGs5NkBs</a> which compiles on linux gcc/clang, but not on windows/msvc 2017 15.8 (at line 23: ""what"": Is no an element of ""parser::parse::()::unknown""). I would say constexpr if isn't supported fully. Is there a work arround?; s/no/not/ translated :)",0
+21_c++,1499094181,quarterback,What is a co-responding implementation pertaining to a state machine? Your description seems not complete or correct.,0
+25_c++,1499104621,Svitkona,it's legal but the compiler might scream in agony,0
+32_c++,1499108881,Iarfen,"when there's shared code between 2 similar gui applications should I create a library to handle the common code or there's a better approach? The problem with adding that code to a new library is that the code is intended only for those applications, not essentially for another external use, then I ask what more can be done",1
+33_c++,1499113321,veverak,"does not make it a good idea; ;); Downside is that you either also go into phase 'library won't be updated for any other use than this app...', or you are risking the fact that it will be used a lot for completely different use case and changed in that manner; that may be a good idea; but it may also result in the API changing into more 'general' API, which is the point when you lose 'perfect fit for your application'",0
+34_c++,1499113681,CppCon,or you can use a decent build system and stop forgetting about whether you should create a lib or not :),0
+36_c++,1499126701,Ingersol,"class with half methods are templated, half methods arent - its ok?; class itself is not templated",1
+37_c++,1499131201,amosbird,"Hi, will std::swap(..) take my customized swap function into consideration ?",0
+39_c++,1499136601,Ingersol,"few days ago there we saw c++ code full of auto. auto left, auto right, auto everywhere. not too much difference with python",0
+45_c++,1499146081,RandomReader,"amosbird - the customization point for swap() is via ADL, yes: <a href=""https://en.cppreference.com/w/cpp/named_req/Swappable"" rel=""nofollow"" target=""_blank"">https://en.cppreference.com/w/cpp/named_req/Swappable</a>",0
+46_c++,1499151061,Exaeta,Anyone know a good cross platform GUI library that (preferably) supports CMake? I'd rather not use Qt if I don't have to because I don't want to use the qt MOC,1
+50_c++,1499165401,FishPencil,"If I want to build a 10x10 (100 element) plot, is it better to do for (.. i &lt; 10; ..) { for (.. j &lt; 10; ..) {...} cout &lt;&lt; endl;} or something like: for (.. i &lt; 100; ..) {... if (i % 10 == 0) cout &lt;&lt; endl;}",1
+52_c++,1499171041,CppCon,"code, please :D",0
+54_c++,1499179561,rpav,like the above reference? oh c'mon; that's not even hard to read :(,0
+58_c++,1499188141,ruler501,"I'm getting seg faults from both clang and g++ for this code <a href=""https://ideone.com/ZbUJ6j"" rel=""nofollow"" target=""_blank"">https://ideone.com/ZbUJ6j</a> Clang says it seg faults at the start of the for loop(line 23), g++ seg faults on line 25 on the first iteration(i,j = 0). Is there a limit to how large an array I can create on the stack?",0
+62_c++,1499201941,syrius,"but dynamic types mannnnnnnn \_(?)_/; cool for certain things but totally bones you for others; yeaaaaaaaah... but that's also an implicit print there; a linter would probably warn you; actually i'm not certain it's implicit in that case run as a module.; yeah, in module form it doesn't print that out.; in python interactive mode that a==1 would be an implicit print..; ...; ... a==1; False; but when run inside a file (python foo.py) it suppresses the implicit print for a statement like taht; that was my point.. which is irrelevant as it's not implicit in the context of a module; regardless, linters are pretty important for any decent size python project. i use pycharm which has a host of warnings and parsing it does for me (which is pretty useful)",0
+69_c++,1499224501,z8z,How to have the c++ to ignore that problem and be able to compile while and i fix it bit a bit during the time?,0
+72_c++,1499245441,TinoDidriksen,"I don't see how it could be. If one thread accesses bit 4 and another bit 5, that's within the same storage unit which will be a problem.; As long as threads don't access the same elements or change the size, it's safe. But bool is special because multiple elements share storage.",0
+75_c++,1499251261,Exaeta,"uh; I think vector bool is thread safe, but not sure; if it's implmented with bit field, it's thread safe; It should be thread safe, but I don't know what the standard says specifically",0
+80_c++,1499270581,TinoDidriksen,"Off topic, even here...; Ask -social",0
+81_c++,1499271121,Ingersol,std::decay(##C++-general) - remove cv questions,0
+89_c++,1499293021,amosbird,"Hi, is there a way to expose a class and a function using c style declaration : void foo(MyClass bar)",0
+93_c++,1499306281,dunpeal,I'm starting to really enjoy C++. I feel like I can control every tiny detail... Determine exactly how my program will behave...,0
+95_c++,1499310841,RandomReader,should be 2b,0
+97_c++,1499315641,kalven,I'd be surprised if metaclasses makes it in to c++20,0
+98_c++,1499315701,Exaeta-laptop,"ooooh runtime reflection :D; I want runtime templates; :P; but compile time reflection sounds good; I want a better way to annotate ""this field should be serialized like this"" and such; Can we get rid of macros; please",0
+103_c++,1499327161,RandomReader,"[p0707] is the paper for that; I think it's still floating a bit because it depends on other incomplete work; it's not even on the table for '20; neither are the two dependent bits IIRC, I think they're targeting a TS though",0
+109_c++,1499407801,CppCon,"coroutines paved a long way already. we will get them \o/; for some dumb reason, metaclasses had brought some controversy among the inner circles :(",0
+115_c++,1499427301,TommyC,Is there a way to get a member function to accept 2 arguments vs 1 depending on a template boolean?,0
+120_c++,1499469541,RandomReader,"compiler generates it, linker just collapses duplicates",0
+125_c++,1499484661,TinoDidriksen,"Build include path and library path you set while building. For runtime, there's LD_LIBRARY_PATH",0
+126_c++,1499486341,amosbird,"hmm, what stuff would this lambda capture?; <a href=""https://la.wentropy.com/oQdH"" rel=""nofollow"" target=""_blank"">https://la.wentropy.com/oQdH</a>; yeah; I mean, what scope would it capture; hmm; then what's the order; <a href=""https://la.wentropy.com/wZSi"" rel=""nofollow"" target=""_blank"">https://la.wentropy.com/wZSi</a>; ok; I just enjoy c++ lambda so much; it's the main reason I like c++; especially auto lambda; better to have recursive lambda; [](auto x) {}; that's really attractive; yeah; syntactic sugar is good; in an abstract level you can say all languages are syntactic sugar for bare metal instructions.",0
+128_c++,1499494561,matkatmusic,"hey, does anyone know how to use a macro to return a string including quotes?; like #define QUOTE(reboot) //should return ""reboot"" or QUOTE(arg) would return ""arg""",0
+130_c++,1499499361,Svitkona,"(technically UB, i think); oh, geordi isn't here :(",0
+133_c++,1499504581,amosbird,"hmm, why doesn't this eos overload work?; <a href=""https://la.wentropy.com/oJ0F"" rel=""nofollow"" target=""_blank"">https://la.wentropy.com/oJ0F</a>",0
+137_c++,1499518681,TommyC,TIL: You can specialize member functions. *hangs head in shame at specializing the entire damn class template*,0
+139_c++,1499528281,Ingersol,"hmm. interesting <a href=""https://coliru.stacked-crooked.com/a/6adb902c2ba84253"" rel=""nofollow"" target=""_blank"">https://coliru.stacked-crooked.com/a/6adb902c2ba84253</a>; seems lambda with auto argument type provide separate templated methods per used type; am i right?; *its about lambda with capture.; so they are not *different types*, instead its single type with templated operator()",1
+142_c++,1499543521,Kman,"hi, to find and delete an element from an STL container, which one is most efficient? vector or list?",1
+143_c++,1499544841,jokoon,does somebody know how I can tell MSVC to stop execution when a variable change value? or is set to a certain value?; because I cant know where it changes value,0
+144_c++,1499552341,amosbird,"<a href=""https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html"" rel=""nofollow"" target=""_blank"">https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html</a>; <a href=""https://la.wentropy.com/51Jm.png"" rel=""nofollow"" target=""_blank"">https://la.wentropy.com/51Jm.png</a>; 31% improvement, i'm pleased; ?",0
+147_c++,1499561221,jokoon,"I don't understand, my glfwwindow* changes values when I load geometry on my GPU",0
+148_c++,1499570581,ville,any suggestions for cmake test running strategies?; or how to organize tests in expected to succede and expected to fail?; it's a parser so i kind of want to have cases to fail,1
+156_c++,1499588341,RandomReader,"if they're not reusable, then there really isn't any gain to separating them as if they were; (code organization is a separate thing from binary library organization); I view static libraries as for the case where it is a self-contained reusable component, but you don't need to service it separately after deployment (so single executable), which is not the most common scenario on most platforms these days; so statically linking gzip; MacOS bundles are a collection of components though, not a single binary; convenience isn't really the right angle here; this stuff is platform specific",0
+152_c++,1499588641,bodie_,I think RandomReader answered my question (which was whether I would want to use static libraries internally to a project to organize compilation units),0
+167_c++,1499637061,matkatmusic,"evenin', folks. I'm trying to write a wrapper around a type that needs a specific function called before it's destructed. I'm trying to make the wrapper behave like the original type, in that you can call member functions/properties, but am having a bit of trouble: <a href=""https://wandbox.org/permlink/stIbi8R7oBv4II7i"" rel=""nofollow"" target=""_blank"">https://wandbox.org/permlink/stIbi8R7oBv4II7i</a>; I'm also wondering if the only way to do this wrapping of a type correctly is to always create the wrapped type on the heap.; (via std::unique_ptr )",1
+174_c++,1499664961,amosbird,"hmm, is it possible to create a template wrapper to printf that modifies the const format string at compile time ( changing {} to specific %xxx )",0
+177_c++,1499672761,chaosfisch,"I have a virtual function that is overriden in the deriving class. I'm calling the function but it appears to be not called. I've read that slicing might be the reason. Is it right that if slicing is the reason, then the function call effectively is ""not done?""",1
+179_c++,1499685481,geordi,Base::f(); error: cannot allocate an object of abstract type 'Base',0
+182_c++,1499689021,`Guest00000,how exactly the directions of the channels ##c++ and this channel differ?,0
+186_c++,1499694061,geordi,error: lvalue required as increment operand; 1,0
+191_c++,1499702101,MrFlibble,if you know the cast is safe always prefer static_cast to dynamic_cast.; and if you know the cast is safe always prefer static_cast to dynamic_cast.,0
+196_c++,1499715301,Svitkona,"it's an ownership/lifetime thing; think about how this works; { f(1); } void f(const int&amp; a) {}; { f(1); } void f(int&amp;&amp; a) {}; it's the same idea, except you can modify the object that gets passed in; the important idea is that rvalue ref overloads get called when you pass rvalues and lvalue ref overloads get called when you pass lvalues; so we're basically playing games with the type system to say ""this object that i'm about to pass in is an rvalue""; now, this is useful in resource management scenarios; because temporary objects are rvalues, you now have a way to say ""ok this object is about to expire, so its safe to steal resources from""; no, only when you actually need to do something different with a T&amp;&amp; vs a const T&amp;; the ""how"" is pretty easy; on the caller's side, if you have an rvalue, you just pass it in. if you want to move in an lvalue, you wrap it with std::move; on your side, if you need to keep the object internally, you can std::move it into a class member or something",0
+199_c++,1499721601,geordi,f(T&amp;&amp;) [with T = int&amp;] f(T&amp;&amp;) [with T = int],0
+2.0_angularjs,1498886916,sakustar_,zomg: wanna slav my car someday?; :^),0
+3.0_angularjs,1498888122,Violinist,why is every1 being stupid todayu,0
+4.0_angularjs,1498900013,alexi5,is a angular 4 used for developing line of business applications ? do you guys think it is a good tools for using it to develop these type of applications ?,1
+6.0_angularjs,1498933680,Anticom,"Hi all. I'm having a weird issue with my ng-cli based angular app: <a href=""https://gist.github.com/Anticom/2b54bae7276fc70341d8e377c7bee989"" rel=""nofollow"" target=""_blank"">https://gist.github.com/Anticom/2b54bae7276fc70341d8e377c7bee989</a>; i don't get, why _this.toClass is not a function. although it's right there; Is there any potential issue, because my Model is called ""Class"" and/or the method is called ""toClass"" ?",0
+7.0_angularjs,1498936915,tundebadmus,greetings everyone; I am needing help with designing my anguIar appIication; any advise ??,1
+8.0_angularjs,1498941481,sonda,"hello guys.. i am facing one peculiar problem using gridster... in a gridster, there are around 200 widgets... only for one widget, the charts are not shown, all other charts graphs are shown; but if i add that particular widget separately as a only widget in the gridster, all its graphs are shown; is it kind of memory issue?; widget has an array as its data; if i print the array length in html via {{widget.innerwidgets.length}}, it displays 0; but actually, aray contents are present; i saw it in console log",0
+10.0_angularjs,1498958799,sadme,"hm? should be able to, what's the issue?",0
+12.0_angularjs,1498961008,Foxandxss,"amcorreia: re seed project: Better use the CLI, hands down",0
+14.0_angularjs,1499014143,Anticom,"Hi all. I'm having trouble getting fullcalendar to work with my app. I'm using <a href=""https://www.npmjs.com/package/angular2-fullcalendar."" rel=""nofollow"" target=""_blank"">https://www.npmjs.com/package/angular2-fullcalendar.</a> In a subscription to my service i'm setting `calendarOptions.events = theEvents` but they don't show up; ; Wait what. I always thought you're supposed to return Observable&lt;Fooin your services using http client. Now the tutorial is returning Promises instead :O <a href=""https://angular.io/tutorial/toh-pt6"" rel=""nofollow"" target=""_blank"">https://angular.io/tutorial/toh-pt6</a>",0
+16.0_angularjs,1499025565,amcorreia,anyone here using angular-seed? I'm using with docker and don't seems to be auto reloading files,0
+17.0_angularjs,1499029769,Anticom,Hi all. In angular 2 is there a way i can inject a service into a function?,0
+19.0_angularjs,1499042468,kexmex,what's a good Mac editor; for Angular2 apps?,1
+21.0_angularjs,1499050572,Kn|t3,hi - is this the right channel for angular 2?; I am trying my hand at angular for the first time and had some questions.; was hoping someone could help - what is the best way to manage angular dependencies? for e.g. i have a module M that declares class A which in turn uses selector for class B. Do I need to declare both these class A &amp; B in the module M declaration?,1
+24.0_angularjs,1499064428,yosinof,"I'm installing an external library for angular 2 called ng2-uploader but the problem is that the console shows me the error can not get <a href=""http://localhost:3000/node_module/ng2-uploader"" rel=""nofollow"" target=""_blank"">http://localhost:3000/node_module/ng2-uploader</a> ... I already configure the systemjs.config.js file, but I get the same error.. Is there another file that I have to configure after installing a package?",0
+26.0_angularjs,1499090506,Serg_Penguin,"hi! Is there any ""automagick"" authentication component for Angular ? I want it to block screen until have valid token and catch all 401 responses and show login screen. So I want to just configure it somewhere and then code just like I have no auth, but have it.",0
+27.0_angularjs,1499092397,soee,if i copy an object (angular.copy) than angulat.equals will always return false for them?,0
+30.0_angularjs,1499099764,OnceMe,how to deploy angular application?,0
+31.0_angularjs,1499102776,Elarcis,back!,0
+32.0_angularjs,1499104068,Snugglebash,Hello everyone,0
+34.0_angularjs,1499108391,Pyrrhus666,"heh. opened an old project (which is being resuscitated). using angular 1.3 beta something, without a bundler of any kind... life was simple in 2015.; also : bower. yuck.",0
+35.0_angularjs,1499110384,infinitree,hi guys; anyone here active that wants to help in an open source project based on angularjs?,0
+36.0_angularjs,1499111876,zomg,hey at least he got good criticism on it before spending a year working on it :D,0
+37.0_angularjs,1499115818,kas84,"Hi SargoDarya, I want to a wrapper directive to input type=time so that I have two models, the one that shows the time, and other with the same time but in UTC. Do you know how to do this?; to be honest, I am still trying to figure out how to do this... Ive only done basic directives :/",0
+38.0_angularjs,1499117177,deniz946,"Hello, I have a question about how to do the next thing: When app starts im looking if in the cookies i have the user variable(containing user token) if user token exists, do http call to my backend to fetch user info with the provided token. The problem is that when my view loads the $scope.user is still undefined; da_wunder: +info please",0
+39.0_angularjs,1499130408,optikalmouse,"in angular 2/4+, how do I filter items in a list when displaying them with ngFor? Should I use a filter/pipe or should I use ngIf in the template?",1
+40.0_angularjs,1499134822,zissou,"Anyone have any experince using ng-table?; <a href=""http://ng-table.com/#/"" rel=""nofollow"" target=""_blank"">http://ng-table.com/#/</a>",0
+41.0_angularjs,1499138054,delayedDoorstop,Angular2/Typescript: How do I best determine the type of an object to use resolveComponentFactory? Right now I've got a messy set of instanceofs,1
+46.0_angularjs,1499172133,Elarcis,Hi people!,0
+47.0_angularjs,1499174647,Pyrrhus666,what article did I miss ?,0
+48.0_angularjs,1499175763,xhd,now*; and with an outdated framework called oracle adf.; so i want to push to get angular into the company; but i have to build a proof of concept first; so... i have to understand the system well enough first.,0
+50.0_angularjs,1499179627,johnflux,"; Hi all.  If I have some code like:    setTimeout(() ={ this.foo = ""bar""} , 2000)      and I have {{foo}}  in my html, how does angular know that the page needs rerendering?; I don't get how it can know that I've modified foo.  Does it just recheck everything any time any javascript code runs, or what?",0
+51.0_angularjs,1499181180,Snugglebash,Is it appropriate to use angular for a normal website? I saw that it is mostly used for internal proprietary apps; Pyrrhus666: tbh i havent really created a static website at least a complex one before.... doing more native app / server app programming it was more natural for me to use angular.,1
+52.0_angularjs,1499184073,MickeySoFine,Hi All; how do I detect a browser refresh when using $transition ?,0
+53.0_angularjs,1499186089,ngbot,"[angular.js] Narretz pushed 1 new commit to master: <a href=""https://git.io/vQz5e"" rel=""nofollow"" target=""_blank"">https://git.io/vQz5e</a>; angular.js/master 122d89b Martin Staffa: docs(ngOpen): improve example, correct browser compat note...; angular.js/v1.6.x 079c485 Martin Staffa: docs(ngOpen): improve example, correct browser compat note...; [angular.js] Narretz pushed 1 new commit to v1.6.x: <a href=""https://git.io/vQz5f"" rel=""nofollow"" target=""_blank"">https://git.io/vQz5f</a>",0
+54.0_angularjs,1499187774,jlebrech,"i want to do ng-click=""is_mobile() &amp;&amp; do_something"" but it's escaping the ampersand. i'll make a function in the controller instead? i'm back on my old codebase for a few tweaks (no components or controller as)",0
+55.0_angularjs,1499190167,icebox,I don't think so,0
+57.0_angularjs,1499194658,Murali,"Hello everyone, I have an issue and i wanted to discuss",0
+58.0_angularjs,1499195989,deniz946,"Hello, one question. I have a website and i want to have 2 ""parts"" One part will be all the website for the guests who can see anything and i want to have another ""part"" for admin panel, so my question is, how i can make an abstract state inside of another abstract state",0
+59.0_angularjs,1499199162,johnflux__,"; If I have, say:   &lt;button [disabled]=""false"" /?",0
+60.0_angularjs,1499200894,SuperTyp,is angular 4 to angular like angular to angularJs or is it just a newer version?,0
+62.0_angularjs,1499201676,Elarcis,SuperTyp: newer version; SuperTyp: virtually no change needed on the dev's side,0
+63.0_angularjs,1499203016,Foxandxss,yes,0
+64.0_angularjs,1499203639,edwardiii,; hey i've picked up on someone elses' angular 1 project. he has an element called &lt;mainthat somehow seems to be getting magically populated (no ng-app). is that possible? is that like a builin angular thing? or am i just missing a component/controller/piece of config somewhere?,0
+65.0_angularjs,1499209280,pLaTo0n,moin,0
+68.0_angularjs,1499240830,lamduh,How does angular fit in with traditional MVC frameworks like .NET MVC and ruby on rails? Do people generally still use an MVC framework or just write a web api?,1
+71.0_angularjs,1499256139,Serg_Penguin,"clear; hi! I want to catch all AJAX calls to add Auth header, if no token - refresh it or login, and only then go on with original call. Are there any libs for it ? So far I only have <a href=""https://goo.gl/2Jjc4U"" rel=""nofollow"" target=""_blank"">https://goo.gl/2Jjc4U</a> , <a href=""https://goo.gl/wcCYsv"" rel=""nofollow"" target=""_blank"">https://goo.gl/wcCYsv</a> and <a href=""https://goo.gl/5GBCjT"" rel=""nofollow"" target=""_blank"">https://goo.gl/5GBCjT</a>; How can I call on-screen form and have an observable/promise for result ?; Or is there a complete solution like in Android, just plug your auth calls and login form ?; johnflux__, <a href=""https://goo.gl/2Jjc4U"" rel=""nofollow"" target=""_blank"">https://goo.gl/2Jjc4U</a> . do google !",0
+73.0_angularjs,1499259681,xhd,goodmorning guys! :D,0
+75.0_angularjs,1499264596,xhd,killing myself,0
+77.0_angularjs,1499267785,icebox,?,0
+79.0_angularjs,1499273709,johnflux__,"I have a page that I show if there's an error.  The trouble is that the url then becomes  <a href=""http://localhost/#/error"" rel=""nofollow"" target=""_blank"">http://localhost/#/error</a>; so if I then refresh, I'm just refreshing on that error page.    I'm not sure what the right thing to do is; I want to change to the error page, but without changing the url.  It should be impossible to get to the error page via the url",0
+80.0_angularjs,1499276024,SargoDarya,"Pyrrhus666: Well, it has. Vimeo Pro for example has direct link functionality",0
+81.0_angularjs,1499276240,WhereIsMySpoon,sadme: your directive got me on the right path,0
+83.0_angularjs,1499279035,Foxandxss,"jlebrech: his question is for angular 2, not 1",0
+84.0_angularjs,1499280279,ace_me,any ideea for my iframe video ?,0
+85.0_angularjs,1499281828,Pyrrhus666,"that facebook-to-youtube link is creepy as fuck. it links to a video that has a fake ad, that, when you try to skip it, redirects you to another vid, which is actually the commercial.; I was wondering why I even saw an ad (I never see them), but that s because it wasn t...",0
+86.0_angularjs,1499282027,roadrunneratwast,"Hi all.  I inherited the following code.  <a href=""https://gist.github.com/mcverter/9e3b337e76fbeb89b5efccd7183e8a9a"" rel=""nofollow"" target=""_blank"">https://gist.github.com/mcverter/9e3b337e76fbeb89b5efccd7183e8a9a</a> The purpose of it is to dynamically create a set of elements based on a json file.  The usage of the explicit $scope calls -- $new, $compile, $apply, etc -- as well as to angular.element().append() -- alls to seems very wasteful to me.  Are these costly?  I would like to make this code more efficient (btw:  thanks to",1
+87.0_angularjs,1499285174,Pyrrhus666,"nice overview :); *namespaces, duh",0
+88.0_angularjs,1499288114,max_at,"Hi there, anyone aware of a way to detect externally if page with an angular app is loaded (using protractor disabling synchronization to go to some other pages, coming back to the SPA and finding the right timing to reactivate synching)",0
+89.0_angularjs,1499292060,sdfds,"I have a directive. How do I access the component in my hostlistener?; here is my code: <a href=""https://pastebin.com/N3VfPMrQ"" rel=""nofollow"" target=""_blank"">https://pastebin.com/N3VfPMrQ</a>",0
+90.0_angularjs,1499300136,da_wunder,anyone using angular/material2 ?,0
+92.0_angularjs,1499305483,fattuna,"rejected $http request status is always -1, how can i get actual status code from the server?; Status Code:403 Forbidden; Remote Address:127.0.0.1:80; Request Method:OPTIONS; Referrer Policy:no-referrer-when-downgrade; this is what returned by server; but the error object has status -1",0
+94.0_angularjs,1499344342,icebox,hey all,0
+97.0_angularjs,1499349805,Elarcis,"Hi, rascals",0
+98.0_angularjs,1499351796,ChaosBringer,Just create a service that interacts with the API?; then inject service where needed?,0
+99.0_angularjs,1499354421,xhd,hi guys!; i am trying to install angular cli. i installed node but when i try to install the cli via ''npm install -g @angular/cli'' i get a econnrefused 151.101.172.162:443 does anyone know how to get around this?; Elarcis ! why hello! :D,0
+100.0_angularjs,1499357778,d4kkk,"I've loaded ng-include an html and used a controller , when running i receive Error: [$injector:unpr] Unknown provider: serverInofrmationProvider &lt;- serverInofrmation &lt;- websocketService",0
+101.0_angularjs,1499361232,xhd,I'm back from out of space.,0
+103.0_angularjs,1499365433,zomg,"Foxandxss: good, that's two for then - you're the second techy person who comments on this matter whose opinion I trust =)",0
+105.0_angularjs,1499370005,max_at,Hi guys,0
+106.0_angularjs,1499372298,mzaza,"sadme: Now I have strange error, I use auto deployment tool called Envoyer with this angular project. And I have something called Development Hooks setup. The point of development hooks is to run commands after pulling the latest commits. The two commands I have are ""npm i"" and ""ng build --dev""; sadme: However sometimes I got warning through Envoyer only that caused problems while running the development hooks so I used the --save error-log flag. And it works fine and supposedly installs the modules, but while building the project I get a strange error the one I pasted before which is ""You seem to not be depending on ""@angular/core"". This is an error.""; sadme I set a hookup to npm cache clean before each build and it worked.; IS that normal?",1
+107.0_angularjs,1499373420,SargoDarya,wb icebox,0
+108.0_angularjs,1499376084,workerbeetwo,"Hi. Please help. I'm new to angular and Im getting a strange editor screen, as the ng command is not correct. I tried ""ng generate component login"" . on ubuntu.; icebox: yes",0
+109.0_angularjs,1499378532,hmmmminteresting,Hi there all -- wondering if there's a way to have httpParamSerializer allow duplicate keys?,0
+110.0_angularjs,1499379944,hmmmminteresting,Bump on my question -- wondering if there's a way to have httpParamSerializer allow duplicate keys?,0
+111.0_angularjs,1499381803,Foxandxss,"none; you don't need to do that, that is a wrong practice",0
+112.0_angularjs,1499383321,da_wunder,Violinist: if you need to share something between controllers use services,0
+116.0_angularjs,1499396911,beepbeep_,"When I build and run my dotnet core angular project locally, serverside prerender works like a charm. When building and running in docker using the exact same commands, serverside prerender does not work. I get the following error: Call to Node module failed with error: Error: Uncaught (in promise): Response with status: 0  for URL: null\n    at resolvePromise (/app/src/StarterKit/ClientA; pp/dist/vendor.js:83662:31)\n    at resolvePromise; I'm quite clueless :D",0
+118.0_angularjs,1499409747,Violinist,what is transclude in directive do,0
+122.0_angularjs,1499437683,Elarcis,busy day; I hate you; hi,0
+123.0_angularjs,1499439433,icebox,"Pyrrhus666: did you see it in the logs? <a href=""https://twitter.com/dr4goonis/status/882506627710169093"" rel=""nofollow"" target=""_blank"">https://twitter.com/dr4goonis/status/882506627710169093</a> :)",0
+1_elmlangB_2019,1546238071,Pattie,"using `elm-bootstrap`, I’m having difficulty replicating <http://elm-bootstrap.info/table>
+if I look at that site with an iPhone device in chrome dev tools, the rows are pretty wide, but if I try and replicate it with what I feel is the same code, the rows are minuscule.
+here’s an ellie showing how small the rows are after switching the device to mobile: <https://ellie-app.com/4jMBCvyWBY8a1>; I’m trying alternatives like `elm-ui` but it’s hard to make that responsive",0
+5_elmlangB_2019,1546277074,Shaunna,"I’m currently working on sites using airtable as a back end and gatsby up front.  I’m ELM curious and just join my local ELM meetup in Eugene, OR",0
+6_elmlangB_2019,1546281630,Tiffani,There’s a podcast episode about it here: <https://elmtown.simplecast.fm/ports-again-murphy-randle>,0
+7_elmlangB_2019,1546286199,Bernie,Didn’t it switch from elm to elm-lang and now _back_ to elm? Or do I misrecall?,0
+9_elmlangB_2019,1546335225,Gertrude,"what is your input format? seconds as floating point number?; I think something like this. `millisToPosix` requires integer milliseconds, so if your input is floating point seconds, first multiply by 1000 to get milliseconds, and then convert to int.
+```
+posixDecoder : Decode.Decoder Time.Posix
+posixDecoder =
+    Decode.map (\n -&gt; n * 1000 |&gt; round |&gt; millisToPosix) 
+        Decode.float
+```",0
+11_elmlangB_2019,1546351060,Gladys,Is there a canvas library where I can getImageData to work with the typed array data?; Or is this where I should use ports?,1
+12_elmlangB_2019,1546353422,Prudence,"I personally have never run in such problem. `Html` values are straightforward, it is also possible to inspect the DOM they generate via browser tools (like Dev tools in Chrome) which has always been enough for me; Apparently, there is no easy way to get an inspectable representation of `Html`/`Regex` as they are in fact internal JS objects; I would start from asking myself what knowing the internal structure helps solving if I were you and then tried to address it from different angle",0
+14_elmlangB_2019,1546370290,Yi,"I have an issue with this import : ```import Html.Styled.Attributes exposing (..)
+```
+
+    import Html.Styled.Events
+
+I cannot find that module! Is there a typo in the module name?
+
+The ""source-directories"" field of your elm.json tells me to look in directories
+like src, but it is not in any of them. Maybe it is in a package that is not
+installed yet?
+""",0
+18_elmlangB_2019,1546389781,Gussie,Happy New Year.. Q: Is <https://maximilianhoffmann.com/posts/how-to-compile-elm-files-on-save> still (today) the state-of-the-art / best-practice when it comes to ELM workflow??? Or.. Is there now better --watcher / rebuild-on-save options with ELM 1.9 ??,1
+19_elmlangB_2019,1546416292,Kathrine,"elm-live is nice for that <https://github.com/wking-io/elm-live>; also create-elm-app, if you're starting from scratch it has a lot of nice stuff included <https://github.com/halfzebra/create-elm-app>; create-elm-app also shows build errors in the browser",0
+20_elmlangB_2019,1546430313,Luke,"<@Ima> - if I understand you, you want pressing the button to trigger an action on your server, and for your server to record the time that action occurs? If so, then I don't think you need to send the time at all from Elm. Your server should already know what time it is - so elm can just post to the server and say ""starting now"", your rails backend then grabs the current time and saves it ...",0
+21_elmlangB_2019,1546435657,Gertrude,"depending on use case, ""utc offset"" can be useless information",0
+22_elmlangB_2019,1546442118,Carlos,Hi all can i use material web components directly in my elm app or should i have to use elm-mdc ?,1
+27_elmlangB_2019,1546462822,Alecia,"I’ve got a question about elm’s verbosity and boilerplate…I think it’s been asked before:
+
+My update function is gonna be kind of unruly for generic field updates (I have over 30 fields).
+This is a nested record in my main model, so I broke it out into it’s own update constructor:
+```
+setNewTextField : Fields -&gt; String -&gt; Model -&gt; Model
+setNewTextField field value model =
+    let
+        formApp =
+            model.formApp
+
+        newFormApp =
+            case field of
+                LegalFirstName -&gt;
+                    { formApp | legalFirstName = value }
+
+                LegalLastName -&gt;
+                    { formApp | legalLastName = value }
+
+                LegalMiddleName -&gt;
+                    { formApp | legalMiddleName = value }
+    in
+    { model | formApp = newFormApp }
+```
+Is there a good way to distill that out into a sort of helper function based on the `Fields` type constructor?",1
+28_elmlangB_2019,1546465463,Raymundo,"I am looking at making a website that can take payments, I have seen things like stripe and square but am struggling to figure out how to integrate those well with elm. Does anyone have any suggestions about the best way to do this in elm?",1
+30_elmlangB_2019,1546469987,Pattie,"How could I have a clickable link inside an `li` that also has a pointer cursor on mouseover, so that when it’s clicked some data changes in the page without it reloading?
+
+I’ve tried to set an `href` to `javascript:void(0)`, but the browser complains that `This is an XSS vector. Please use ports or web components instead.`.
+
+Also, `elm-css` wouldn’t work well because I’m using `elm-bootstrap` heavily and they don’t seem compatible",0
+31_elmlangB_2019,1546471570,Livia,"<@Winona> I think you could implement a function like this: `mapFn : (a -&gt; b) -&gt; (c -&gt; a) -&gt; (c -&gt; b)`
+Does that make sense?",0
+32_elmlangB_2019,1546474175,Fredericka,"Yeah, map for functions is just composition ",0
+33_elmlangB_2019,1546484100,Raymundo,"I  can't seem to find a non-messy way of doing this, as in a way without handling a maybe. I want to check whether a list contains a type alias with the same name field as another, if it does I want to increase the count field on that type otherwise I want to add it to the list.",0
+34_elmlangB_2019,1546494312,Gladys,"Hmm, I thought to be a pure function you have to pass everything into it as an argument. But in Elm I can define a constant or function and call it from within a function, without feeding it into the function. Is that a bad practice, still pure? Doesn’t it “couple things tightly”?",1
+38_elmlangB_2019,1546504005,Kellye,"*elm-make doesn’t work*
+Hi all, enthusiastically I started with elm but I got stock early :slightly_smiling_face:
+I installed elm based on the tutorial and repl for example works, also formatting in atom. But elm-make doesn’t work. When I run elm-make I get `elm-make: command not found`",0
+39_elmlangB_2019,1546509026,Oneida,are there any elm packages for UI elements or animations ?,0
+40_elmlangB_2019,1546511294,Betsy,How do I check if the number is NaN,0
+44_elmlangB_2019,1546520542,Elvera,<@Indira> correct.,0
+45_elmlangB_2019,1546521713,Fredericka,It’s just Ocaml with different syntax though,0
+46_elmlangB_2019,1546523826,Indira,"hmm, is there a reason why static languages don't have ""untagged unions""?
+like, it seems to me that if I wrote something like:
+```
+union type Number = Int | Float
+
+numberToString : Number -&gt; String
+numberToString number =
+  case number of
+    Int val -&gt;
+      String.fromInt val
+    Float val -&gt;
+      String.fromFloat val
+```
+it could still be type safe? and seems like it would be pretty powerful and still simple?",1
+47_elmlangB_2019,1546526543,Indira,"but again, I guess there's probably a reason...",0
+48_elmlangB_2019,1546531351,Rosina,"Hi, im currently trying to replace some angular1 stuff with elm. How to create some independant components like a Usercomponent and a Settingscomponent etc. that should be handled by elm in a specified `&lt;div&gt;` container?; I only managed to create one big elm component.",0
+49_elmlangB_2019,1546532689,Jenna,Hey! Is there a way of turning of debugging using `elm-app start`?,0
+50_elmlangB_2019,1546538916,Yi,"How do I use Task : <https://package.elm-lang.org/packages/elm/core/latest/Task> ?
+More specifically I am confuse on how to get the result of a Browser.Dom.getElement; All help appreciated !",0
+2_pythondev_2019,1546233710,Nevada,"Hello Guys i need help
+
+The issue is: I want to set up ""AdminLTE-2.4.5"" theme+CRUD in Django App at front-side, I get many answers like direct cmd through installing it and I do it but i don't know how to set up for the view
+
+Please give solution step by step or any other solution regarding how to install AdminLTE-2.4.5 theme+CRUD and show in front side
+
+Reply Soon
+
+Thanks",0
+3_pythondev_2019,1546263449,Carmel,"Hi everyone :smile:
+say you have a list `_list = ['hello', 'world', 'pikachu']` and a string `greeting = 'hello, my name is pikachu'`
+how would you assert that any of the elements in the list are in the string ? Thanks for your help !",0
+4_pythondev_2019,1546291492,Bunny,<@Sherrill> Thank you for the explanation!,0
+7_pythondev_2019,1546355127,Paz,"I know this is super easy, but tired and brain farting..
+
+```
+company = ""ciscotest""
+check = company.lower().find(""cisco"")
+
+print check
+```
+
+I want to return true if the string is matched, not the index of the string. How can I do that in the one line?; since it's -1 if false I know I could check the result numerically.. but surely there's a quicker approach?; This is where it's being used, just seems like there should be a more ""pythonic"" approach?
+```
+check = company.lower().find(""cisco"")
+                if (check != -1): # true, continue
+```; Aha, perfect",1
+9_pythondev_2019,1546383505,Magan,"Hey you sexy people is there a way to make this ... less confusing/ugly for python/tkinter
+
+```for i in range(0,12):
+    playlistbox.insert("""", END, text=""FuntimeMovieTime"", values=[""000""+repr(i)+"".m2ts"", ""0""+repr(i), ""1:2""+repr(i)+"":00"", ""4""+repr(i)+"",542,421""])```; I think it may be confusing to someone scanning the code. As opposed to when I wrote something similar in Tcl/Tk
+
+```foreach i {0 1 2 3 4 5 6 7} {
+.three.playlistbox insert {} end -text FuntimeMovieTime -values [list 000$i.m2ts 0$i  1:2$i:00 4$i,542,421]
+}```",1
+10_pythondev_2019,1546386959,Clemmie,You can read up on f strings in Python 3.6 and beyond,0
+11_pythondev_2019,1546391781,Sasha,I suspect you're going to get throttled by the whois server.,0
+12_pythondev_2019,1546399861,Conchita,"I remember someone here linked to a community driven site that links you up with code mentors, for free. Seems I lost that link when my last laptop died. Anyone know the site?",0
+15_pythondev_2019,1546420414,Tajuana,"hello everyone, please I need help regarding these problems.; I am setting up a django project and the current challenge I'm facing is pasted below:; *$ python manage.py migrate
+Traceback (most recent call last):
+  File ""manage.py"", line 10, in &lt;module&gt;
+    execute_from_command_line(sys.argv)
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\site-packages\django\core\management\__init__.py"", line 364, in execute_from_command_line
+    utility.execute()
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\site-packages\django\core\management\__init__.py"", line 308, in execute
+    settings.INSTALLED_APPS
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\site-packages\django\conf\__init__.py"", line 56, in __getattr__
+    self._setup(name)
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\site-packages\django\conf\__init__.py"", line 41, in _setup
+    self._wrapped = Settings(settings_module)
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\site-packages\django\conf\__init__.py"", line 110, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File ""c:\python27\Lib\importlib\__init__.py"", line 37, in import_module
+    __import__(name)
+  File ""C:\pythonProjects\wecyclers-admin\we_sms\we_sms\settings.py"", line 257, in &lt;module&gt;
+    EMAIL_HOST_USER = os.environ['EMAILER_USERNAME']
+  File ""C:\pythonProjects\wecyclers-admin\ajwecyc\lib\os.py"", line 425, in __getitem__
+    return self.data[key.upper()]
+KeyError: 'EMAILER_USERNAME'
+*",0
+16_pythondev_2019,1546422078,Merrill,"Hi Guys, can anyone please help me with this?; Few decades ago, german physicist Werner Heisenberg established the famous principle of uncertainity. Mr.Harold is a well known scientist living on a planet in Alpha Centauri. He came up with a theory that the principle of uncertainity can be reciprocated as follows,
+
+Value Some function tx(di, V) is always greater than the inverse of planks constant where di is collection of diameters of the size of atoms inside a object in space moving with velocity V. tx(di, V) is equal to the sum of all gx(di[i]) functions values modulo V, where di[i] (diameter of ith atom) is a prime integer.
+
+Note: Velocity is always a prime integer.
+
+gx(x) = {
+	1                , if x = 1
+	2                , if x = 2
+	gx(x-1) + gx(x-2), otherwise
+}
+
+Note: Diameter of all atoms are given in order of fermi-meters
+
+Can you help Mr.Harold to design an efficient algorithm for calculating the value the function tx() ?
+
+Constaints:
+-&gt; 1 &lt;= Velocity &lt;= 10^12
+-&gt; 1 &lt;= di[i] &lt;= 10^9
+
+Examples:
+
+Input 1:
+3 1000000007
+3 5 7
+
+Output 1:
+32
+
+Input 2:
+4 1000000007
+31 59 77 4
+
+Output 2:
+10923393
+
+Input 3:
+5 1000000007
+13 15486833 23 17 8731
+
+Output 3:
+467275880; Thank you in advance",0
+17_pythondev_2019,1546424227,Conchita,:woman-facepalming:; Of course,0
+19_pythondev_2019,1546432746,Conchita,"Anyone see why I get this? The right script finds the `strptime` member, my left script does not. Could it be that my left script fails to properly load the module somehow?",0
+20_pythondev_2019,1546436022,Conchita,"I'm having some issue with saving a date time instance using PyMongo.
+
+After running `print(type(get_date_from_filename(filename)))` the return is ```&lt;class 'datetime.date'&gt;```; This is the traceback I get",0
+23_pythondev_2019,1546439213,My,I've also always done this. Store as int and use `totimestamp` when querying the DB,0
+24_pythondev_2019,1546440301,Asha,"I find it more valuable to have ideas of things I'd like to make, regardless of the language, and make those happen in that language as part of the learning process. Definitely comes down to how you learn, but having something I'm actually interested in working on pushes me further than following a tutorial on another blog platform, etc.; Then you just Google everything you don't know how to do, and gradually I find you start to pick things up. Whatever you write probably won't have great performance, etc, but it's better to learn that way for me",0
+27_pythondev_2019,1546453550,Tajuana,thanks,0
+28_pythondev_2019,1546461445,Nenita,"Simple question here, but confusing solution (at least for me), but how would I use this simple dataframe to count each person's points by their names? I just cannot wrap my head around to figuring out how to do this?",0
+29_pythondev_2019,1546464239,Sasha,"To simplify, you might consider using a temporary variable for the employee record.; It means to only draw widely-spaced tick marks on the axes, instead of wide and narrow. It looks like `""major""` is the default anyway, though, so even if you leave it out, the setting is the same.; If you want to see different behavior, you can set it to `""minor""` or `""both""`.",0
+30_pythondev_2019,1546465706,Tommye,"<@Layla>, I ended up uninstalling python 3.7 and now it's working. annoying it does not know how to parse the versions. thanks for the help",0
+31_pythondev_2019,1546505192,Conchita,"How do I query data stored in an array in mongodb document using pymongo?
+
+I have tried this, but that only returns ```&lt;pymongo.cursor.Cursor object at 0x10837b9e8&gt;```; This is the structure of the document I'm trying to query",0
+33_pythondev_2019,1546512554,Conchita,"Nice, thanks have a :taco: <@Rocio>; <@Rocio> How can I query only the last item in a MongoDB document array?",0
+35_pythondev_2019,1546519029,Stepanie,"Hi guys, I was wondering if there was anyone around to help me with a Slack bot issue, they seemed to have removed the legacy webhook and you now need to create an App. but no matter what I try, I am unable to get the bots username or icon to come through. has anyone got any experience with how to do this?",0
+36_pythondev_2019,1546519568,Tyree,Hi guys I need a little help with seaborn and matplotlib; So I've got this graph here; it's for a tv show; the colours indicate a change of lead; but i want to have some vertical lines coming from the x axis to denote seasons; im not too sure how and im not having much luck with google,0
+37_pythondev_2019,1546521601,Hiroko,"What’s the reasoning for this requirement? There’s no easy way to do this, I think ",0
+38_pythondev_2019,1546522686,Shanon,"Hello! I want to have a class with a “delete” method that receives a “path” argument that points to a folder, but it can either be a local folder (ie: ~/foo) or an s3 folder… is there any libs or functions that will know how to delete folders from different types of “storages”?",0
+39_pythondev_2019,1546524767,Stepanie,"Hey guys, I have the following code, If it detects a keyword from the list ""keywords"" It will send a message to slack
+If it detects a keyword from BOTH ""keywords"" and ""color_keywords"" then it will send the same message, but with the extra line
+``` msg += ""\n*&lt;!here&gt; Colors was possibly detected along with one of our projects*""``` as shown below
+
+I was wondering if it was possible, that when it detected a keyword from BOTH keyword lists instead of just sending an extra line of text like shown above
+If it was possible to send another version of ```slack_data``` as shown in ```slack_data = {'attachments': [{'pretext': 'I detected the following word:', 'text': msg, 'color': '#3fce00', 'icon_emoji': ':cat:','as_user': 'false',}]}```
+So I would be able to change the color and different options? so maybe if I made a slack_data2 or something
+
+Here is the code
+
+```if any(kw.lower() in comment.body.lower() for kw in keywords):
+            found_kws = [kw for kw in keywords if kw.lower() in comment.body.lower()]
+
+            msg = MSG_TEMPLATE.format(
+                keyword=found_kws[0],
+                permalink=comment.permalink,
+                author=comment.author,
+                comment_body=comment.body
+            )
+
+            if any(kw.lower() in comment.body.lower() for kw in color_keywords):
+                msg += ""\n*&lt;!here&gt; Colors was possibly detected along with one of our projects*""
+
+            slack_data = {'attachments': [{'pretext': 'I detected the following word:', 'text': msg, 'color': '#3fce00', 'icon_emoji': ':cat:','as_user': 'false',}]}
+            
+            
+
+            response = <http://requests.post|requests.post>(
+                SLACK_WEBHOOK,
+                data=json.dumps(slack_data),
+                headers={'Content-Type': 'application/json'}```
+
+I am still quite new to Python and trying to find my way around things, but this really has me stumped!
+Any help would be really appreciated!",0
+40_pythondev_2019,1546526153,Candi,I am beginner and was writing a code that is a function that converts temperature from Fahrenheit to Celsius or visa versa. In the code I have given a default argument function as 40 degree Celsius but it is not able take the default values. What am I doing wrong.,0
+41_pythondev_2019,1546528521,Sau,both ways are working find; fine*,0
+42_pythondev_2019,1546544772,Magan,"Hey you sexy people. Quick question on this but I have Tkinter application that when it launches on execution does eveything except change the title from displaying ""tk"" despite that the line in the app specifically has. Is there something else I can look for?
+
+Sample code below
+```
+#!/bin/env python3
+
+__version__ = 1.0
+__author__ = ""Ru""
+
+import tkinter
+from tkinter import ttk, filedialog
+from tkinter.constants import *
+
+# Program Version
+testapp = <http://tkinter.Tk|tkinter.Tk>()
+testapp.configure({'padx':10})
+
+# Set Window Title
+testapp.title = (""blu.py {}"".format(__version__))
+testapp.mainloop()
+
+```",0
+43_pythondev_2019,1546549625,Candra,I'm trying to write some sphinx documentation for the whole codebase I've built at my job. My question whether or not I should use the current source directory which is the parent of all the code I've written and just have the one Sphinx build OR use intersphinx in the multiple projects I have,1
+44_pythondev_2019,1546552004,Cammie,"Lets say I have a little game that’s two players, so I have so functions
+
+`playerTwoMoves(int coordinate)`
+`playerOneMoves(int coordinate)`
+
+This seems like a pretty bad design, as _if_ I want to support lets say three players, I’ll have to copy and paste a new function with almost the same functionality. How would you solve this?
+
+I could have a single function that takes in a player id
+
+`playerMoves(int playerId, int coordinate)`
+
+but are there other or better options? I know I could use enums, or turn this into an OO design, *but what would you do?*; I was addressing this problem from a testing point of view, cause I noticed my tests were the same for:
+
+`playerTwoMoves(int coordinate)`
+`playerOneMoves(int coordinate)`
+
+and then noticed the amount of duplicated code and I didn’t like it",1
+46_pythondev_2019,1546559070,Sasha,You mean like this?,0
+48_pythondev_2019,1546575350,Chanda,I have two simple Django forms PDEM &amp; GUARANTOR. I am trying to figure out how to copy data from PDEM to GUARANTOR if Patient_Relationship = Self. Im having a hard time finding documentation on this. Has anyone done this before with django forms? Thanks! :heart:,0
+50_pythondev_2019,1546621070,Alvina,"I am able to create SQLAlchemy models for existing database tables and then create an initial migration (the create and drop table script) with Alembic - is there an easy way to autogenerate the models if I do not have a database table with an existing schema?; for example, reading a file with pandas; or reading a directory of different files and creating a models.py file which I can then go into and edit, add primary keys, schemas, etc",1
+51_pythondev_2019,1546627699,Leopoldo,"Hello all,
+
+I have a conceptual problem, and I hope I describe it clearly.
+
+I am making a script that logs into a ticket selling website, picks a pass level, and goes through each event in the calendar to confirm if certain discounts are applied.
+
+Logically, I’m a bit stumped. I’m selecting users by text with Selenium. And I select by drop down menu based on a loop that goes through the entire index of choices in the drop down (also Selenium). I can get all this to work.
+
+How should I set up the structure to pick a new user once it’s gone through all the events? Should that be another block of the same code w/ a different username selected? Or could I create a loop that picks a new user once all the events are tested?",1
+55_pythondev_2019,1546658215,Fiona,My actual data in my web page is a decimal 10 but when I try to implement get request the output is b10 and I want to perform arithmetic operations on the data but I am not able to perform since the data I obtained was a binary one#help,0
+56_pythondev_2019,1546658677,Harvey,How to detect a file or a folder in python; I mean can python tell if its a file or a folder,0
+57_pythondev_2019,1546662291,Vernia,"Team, my program crashed on parsing big gz File over 3GB.Any better way to deal with bigger gz File ?",1
+59_pythondev_2019,1546670046,Conchita,Why is this returning ```TypeError: update_one() got multiple values for argument 'upsert'``` ? free tacos to helper!; That makes sense. Any suggestion on how to get around this?; Or maybe I'll just remove `current_balance`; Idea was to save some processing,1
+60_pythondev_2019,1546673623,Chad,"```<https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&amp;symbol=MSFT&amp;outputsize=full&amp;apikey=demo>```
+The above json feed gets updating everyday
+```df=new_data_frame.reset_index().to_sql(name='customers1', con=con, if_exists = 'replace', index=True)```
+I have inserted this data to the SQL table
+How I can add only new data to the SQL table from the above JSON feed?(Everyday there is one table added to the above Json Feed)",0
+61_pythondev_2019,1546676995,Alejandrina,This message was deleted.,0
+62_pythondev_2019,1546677681,Leana,"Please use the snippet feature, or backticks, when sharing code. You can do so by clicking on the :heavy_plus_sign: on the left of the input box for a snippet.
+For more information on snippets click <https://get.slack.help/hc/en-us/articles/204145658-Create-a-snippet|here>.
+For more information on inline code formatting with backticks click <https://get.slack.help/hc/en-us/articles/202288908-Format-your-messages#inline-code|here>.",0
+63_pythondev_2019,1546686641,Linnea,"Hello everyone, I am trying to upload multiple images to cloudinary with Django as direct-uploads from the browser but, i am failing. I have read all of the documentation and the github example is not working for the direct-uploading. If i use server-side upload it is working but with direct upload no luck. Please help me.; First thing I am stuck with is that do we have to something like cloudinary.uploader.upload('<http://www.example.com/image.jpg>') in a direct-upload?! I have not put this line anywhere in my code because the doc says with direct-upload as long as I have included the jQuery libraries, an upload will be triggered once the file is selected.",0
+64_pythondev_2019,1546688260,Raven,In what way doesn't it work?,0
+66_pythondev_2019,1546700391,Lanelle,"I have a python question, I want to transfer files in python that range from 10gb to 20gb. I want to find a mechanism where i have some control. I dont want to bombard the network with unlimited request. how do i go about this",0
+68_pythondev_2019,1546707973,Mathilde,Can someone please help me find out why my code is not working. It is supposed to print the greatest value in the list which in my case is 42. Instead it prints 9..,0
+69_pythondev_2019,1546719328,Rufus,hi. I'm using pipreq3 for my project and I'm finding it is downgrading a few libraries. Does it evaluate what is the earliest possible version supported?,0
+71_pythondev_2019,1546737780,Vernia,"Thanks <@Kiera> 
+Yep the program works fine with other gz File.
+But again with 28GB of gz File , I got out of memory error.
+My system memory is about 32GB.Couple Of Points to confirm:
+#1: What is the maximum size of File should my system can work once at a time, given the 32 GB of RAM?
+#2: Am Using 14 + python lists &amp; few dictionaries to save &amp; Process Log Fields in that Program , is that a wrong idea to use large numbers of lists &amp; dictionary in same python function?
+#3: Should I invest time to identify bottlenecks of my program through cProfile &amp; subsequent tracemalloc module to identify memory leaks?
+Any suggestion would be helpful; Thanks <@Sasha> , will print the <http://lengths.Is|lengths.Is> there any bottlenecks with the length of python list?
+For my use Case:I need to sort &amp; count uniq contents in those lists.Means , the flow of program is :
+Saving all those contents in the list &amp; run following to achieve that:
+collections.Counter(LISTNAME).most_common
+
+On a different note:
+Grep &amp; awk was doing awesome work on this type of process &amp; awk is not my favorite, should I push myself to write awk scripts?
+
+",1
+73_pythondev_2019,1546742913,Jennifer,"When I `print hosts` I get:
+``` 
+[&lt;Host: 34.201.170.143 us-east&gt;, &lt;Host: 54.189.186.227 us-west-2&gt;, &lt;Host: 54.148.67.53 us-west-2&gt;, &lt;Host: 34.221.200.209 us-west-2&gt;, &lt;Host: 54.89.112.50 us-east&gt;, &lt;Host: 18.209.34.170 us-east&gt;]```
+
+I would like to have only the ips as a string. Any tips?",1
+76_pythondev_2019,1546751095,Marth,"I'm getting the following error: UnboundLocalError: local variable 'month2' referenced before assignment; I've been reading about the error I'm getting and I'm still not sure how it applies.  Seems most of the answers talk about using the global option, but other than setting the varibles when I call the function this is no prior ""declaration""",0
+77_pythondev_2019,1546754144,Harvey,What is the prefered way to distribute python programs?,1
+78_pythondev_2019,1546776879,Shyla,"*Create an MP3 file from samples?*
+
+Hi all, I'm a total newbie to Python (I'm a JS developer), but I have a specific task I'm trying to achieve with it....
+I want to create an MP3/WAV comprising of an audio clip that is repeated at specific time intervals (which are taken from an array of microseconds that I already have). This is for usage as a drummer's click track.
+
+Basically I need to load an MP3/WAV clip, loop through the array of microseconds, set the clip at these times and then output a single MP3 file.
+
+*Is this possible with Python?*
+
+I've looked at several audio libraries such as Librosa but can't find any hints on how I could achieve this!
+Thanks!",0
+79_pythondev_2019,1546793600,Shellie,"How do I created a dictionary with every key having two values from a variable length list for the content of the list has the following sequence key,value,value,key,value,value and so on, so every 3 elements of the list is a key value/value pair",0
+80_pythondev_2019,1546798869,Jacinta,"not sure how many ppl are on here, oor how active it is, or how to find out
+
+*but looking for a fun enjoyable way to learn python or any other coding or computer science*
+
+does anyone know of any good recommendations? or is there nothing in 2019..; if anyone knows anything, please @ping or dm me or however tagging/pining works in slack, thanks to the person that knows
+
+in long future i think i'll only be interested in *UX/UI* coding, given &amp; if i ever get to learning coding, any better places to ask is also good",1
+82_pythondev_2019,1546812699,Shan,What the fuck did I just read?; Did I just stumble into `/r/iamverysmart`?,0
+83_pythondev_2019,1546826079,Jennifer,"Hello everyone! :slightly_smiling_face: I'm trying to ""print"" a *yaml* but not succeeding so far.
+
+Code:
+```
+            print (""4"")
+            print (file)
+            print (""4a"")
+            print (list((file.items())))
+            print (""5"")
+            test = yaml.safe_dump(file)
+            print (test)```
+Result:
+```
+4
+OrderedDict([('targets', ['172.31.43.242', '172.31.38.216', '172.31.38.117']), ('cluster', 'MultiDC-Demo'), ('dc', 'us-west-2')])
+4a
+[('targets', ['172.31.43.242', '172.31.38.216', '172.31.38.117']), ('cluster', 'MultiDC-Demo'), ('dc', 'us-west-2')]
+5
+Traceback (most recent call last):
+  File ""/home/bfranklin/.local/lib/python3.6/site-packages/ruamel/yaml/representer.py"", line 121, in represent_data
+    node = self.yaml_representers[None](self, data)
+  File ""/home/bfranklin/.local/lib/python3.6/site-packages/ruamel/yaml/representer.py"", line 392, in represent_undefined
+    raise RepresenterError('cannot represent an object: %s' % data)
+ruamel.yaml.representer.RepresenterError: cannot represent an object: 172.31.43.242```
+
+Any advise on how to fix it?",0
+84_pythondev_2019,1546852533,Ouida,"usually I prefer list comprehension, but for casting I usually like to do `map(str, this_dc[:, 2])`",0
+85_pythondev_2019,1546858480,Chad,"can anyone help me with pandas and SQL?; The Below statement is inserting the data from pandas to SQL but missing the datetime column
+```df=new_data_frame.to_sql(name='customers1', con=con, if_exists = 'replace', index=False)```
+
+The below code is entering the data from pandas to SQL but here on the top of datetime column it is showing index and that index is not accessable in the sql query.
+```df=new_data_frame.reset_index().to_sql(name='customerstemp', con=con, if_exists = 'replace', index=True)```; This is the error I am getting while accessing the index column",0
+88_pythondev_2019,1546862054,Jettie,you can make A inherit from abc.ABC or use an ABCMeta metaclass; None,0
+89_pythondev_2019,1546870667,Chad,"Where does this saves files in the computer?
+```engine = create_engine(""sqlite:///test.db"")```",0
+90_pythondev_2019,1546878894,Nenita,"What would be a good catch method for text entries? This code currently outputs the text entry that needs to be fixed, but it doesn't notify which entry. There are 4 text entries and I need the catch method to define which variable is error-ed out?",1
+91_pythondev_2019,1546879798,Ashley,"I mean once you get `response`, how are you spitting `response` back out?; are you just pumping that straight into another csv?",0
+93_pythondev_2019,1546882700,Candra,Does anyone know how to get pycharm to NOT run scripts in the python console and instead run them in the actual run portion,0
+94_pythondev_2019,1546891746,Jennifer,"Can an `collections.OrderedDict()` have entries with the same index?; Ah... I'm trying to use pyyaml to create e configuration file.; ```
+# Example file - GOAL
+#- targets:
+#       - 172.17.0.2:9180
+#  labels:
+#       cluster: cluster1
+#       dc: dc1
+#- targets:
+#       - 172.17.0.3:9180
+#  labels:
+#       cluster: cluster1```; And I passa an OrderedDict to the yaml.dump",0
+95_pythondev_2019,1546896378,Leana,None,0
+97_pythondev_2019,1546897708,Ashley,jesus,0
+98_pythondev_2019,1546898846,Javier,I missed something spicy,0
+100_pythondev_2019,1546901326,Clemmie,We should all be grateful we were in the presence of such eminence,0
+101_pythondev_2019,1546927660,Chad,"```<https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&amp;symbol=MSFT&amp;interval=5min&amp;outputsize=full&amp;apikey=demo>```
+The above link get updated every 5 min
+I have exported the data from the link to pandas dataframe and from DataFrame to database using sqlalchemy.
+I want the data to be updated to the database and this time it should only enter the latest data not the entire data(Every 5 min one row)
+I have taken data in two tables in the database and then I am merging
+```INSERT INTO customers1 SELECT * FROM customers WHERE (SELECT date from customers) != (SELECT date from customers1);```
+Is there any way to update the single database from pandas to sqlite database?; Yes but again 100 I need to save it into other temp database and then merge; Is there any way i can save the data from pandas to database without `dataframe.to_sql`; ?",0
+103_pythondev_2019,1546939419,Conchita,"Hope this is clear. What would be the most pythonic solution to returning data out of this method?
+
+I have a MongoDB that contains simple data of bank accounts including historical balances. The data is structured like this:
+
+```_id:""3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r""
+balances: 
+    0:
+    balance: 138661
+    date: 2018-11-06 08:00:00.000
+
+    1:
+    balance: 138660
+    date: 2018-11-07 08:00:00.000```
+
+My goal here is to count how many accounts are increasing their account balance, decreasing  their account balance or neither during a given period, to compute the share between them.
+
+When I run the code below, I get ```{'increasing': 0, 'decreasing': 0, 'idle': 1}
+{'increasing': 0, 'decreasing': 1, 'idle': 0}
+{'increasing': 0, 'decreasing': 0, 'idle': 1}
+{'increasing': 0, 'decreasing': 1, 'idle': 0}
+{'increasing': 0, 'decreasing': 0, 'idle': 1}
+{'increasing': 0, 'decreasing': 0, 'idle': 1}```; I'm unsure if I should store this in a dict, in pandas etc; It's my first go at interacting with MongoDB",1
+104_pythondev_2019,1546941463,Allyson,"What is your suggestion to test non-click CLI apps and measure the coverage.
+
+Is there any libs to enable coverage collection for CLI testing?",1
+106_pythondev_2019,1546954939,Valeri,"Not really a Python question.
+The pipelines we use at work has a single job that runs thousands of test cases and takes around 2 hours.
+I was wondering if I could split the task into jobs of 1000 test cases each or maybe sub-app wise.
+And I want to do that after my schema/data migrations have successfully run.
+I was wondering if somebody has done something similar.",0
+108_pythondev_2019,1546959059,Valeri,Parallelization; <@Karoline> ; For the former I can specifically run test cases covering them,0
+110_pythondev_2019,1546978415,Nikki,"Is it possible to get the count of the number of times a phrase is listed within string items?
+
+Example...
+
+`a = ['this is a string', 'this is not', 'cheese on toast']`
+
+If I were checking for the word `this` the count would be 2; ```
+a = ['this', 'this is a string', 'this is not', 'cheese on toast']
+
+
+print sum([1 for i in a if 'this' in i])```",0
+112_pythondev_2019,1546986301,Nikki,FYI - <https://github.com/pricing> Github have added private repos to the free plan - I've just downgraded :slightly_smiling_face:,0
+113_pythondev_2019,1546994596,Ardath,"Hey guys, anyone using mongoengine?; Explaining the code should explain the issue; None; Trying to query documents by brand name. Individually they work fine as expected and return their respective documents",0
+115_pythondev_2019,1547004381,Brittanie,can someone tell me why does this give an error ?,0
+116_pythondev_2019,1547006158,Conchita,"I have a MongoDB document structure like below and I want to find the `balance` value that belongs in the same array object as `date` value x. Ie I want to find what the balance was at 2018-11-06.
+
+```_id:""3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r""
+balances: 
+    0:
+    balance: 138661
+    date: 2018-11-06 08:00:00.000
+
+    1:
+    balance: 8660
+    date: 2018-11-07 08:00:00.000```
+
+In my code example the output is empty dataframes ```Empty DataFrame
+Columns: [balance, date, percentage]
+Index: []
+None```; What am I missing here?",0
+117_pythondev_2019,1547009156,Conchita,"I got a datetime object here, but why is it returning ```2018-11-06 08:00:00
+``` and not adding the fractional seconds when I have included `%f`?",0
+118_pythondev_2019,1547013183,Conchita,"What am I doing wrong here? I get 2 sets of fractional seconds..; If you compare the first line `date = '2018-11-06 08:00:00.000`
+ with the last line you can see what I mean `2018-11-06 08:00:00.000000`; The strftime generates exta `000`; I use this for querying a MongoDB collection, so should be precise",0
+1_elmlangG_2019,1546249961,Fred,"I just finished updating my application from 0.18 and 0.19, but using `--optimize` only gets the compiled file from 1.2MB to 1.1MB.  I guess I was expecting more.  Could I be doing something wrong?",1
+2_elmlangG_2019,1546261010,Santina,"Happy new year all. I'm wondering why in the Elm docs, it is so discouraged to write effect manager helpers? If I knew why it was discouraged, it might give me an idea for how to implement some kind of alternative. <https://package.elm-lang.org/packages/elm/core/latest/Platform>",0
+3_elmlangG_2019,1546263860,Lavonna,"I'm trying to write a shrinker (elm-explorations/test v1.2.0) for my own data structure but fail to import module 'Lazy.List' (""I cannot find that module!"").
+Importing module 'Shrink' works without problems.
+Any ideas?",0
+6_elmlangG_2019,1546278033,Rosalee,join us in <#C0RSQNQ92|graphql>; Imagine the best of Graphql and Elm. Impossible to write an invalid query. Not just a syntactically invalid query. You can only build queries your api can return a valid response for.; I would say to skim the recent conference talks to get an idea of whats hot these days <https://www.youtube.com/channel/UCOpGiN9AkczVjlpGDaBwQrQ>,0
+9_elmlangG_2019,1546293402,Macy,"Is there an equivalent for `Date.fromString` in Elm .19, to parse a time string into a Posix?",0
+10_elmlangG_2019,1546349726,Marcelino,<@Delmy> I like your example as well. Thanks for your appreciation. We should probably start an online book with parsing examples. I think a lot of people would benefit from it,0
+11_elmlangG_2019,1546399135,Norris,"Is there any reason why you cannot use `Html.Attributes.property` (or `VirtualDom.property`) to set an element's `innerHTML` value in 0.19?; When I ported our 0.18 code to 0.19, that line stopped working; I can set a different attribute, e.g. if I change `property ""innerHTML"" (Json.Encode.string stringVal)` to `property ""innerText"" (Json.Encode.string stringVal)`, it will work; Yeah just noticed that by looking at my compiled `.js` file; I really don't appreciate these unannounced breaking changes; So how is one supposed to insert characters like `&amp;nbsp;` into their HTML now?; Or any special chars for that matter",0
+12_elmlangG_2019,1546429029,Earnestine,"does anyone use elm19 with emacs elm-mode? looks like it's rather written fro 18, but maybe there's a recipe to configure it for 19?",1
+13_elmlangG_2019,1546435615,Earnestine,any recommendations for an elm (18) documentation generator (html)?,1
+14_elmlangG_2019,1546438884,Agustin,"This is off topic, but can anyone recommend a JS linter thats not as opinionated as standard? I want whitespace and syntax checking, but I care more about consistency when it comes to `function()` and semi colons etc.; (We have serverside JS code and Ruby/Elixir code, haven’t yet convinced client to switch to Elm :()",1
+17_elmlangG_2019,1546463090,Saul,"Hi, is there any good stream library for 0.19?",1
+18_elmlangG_2019,1546467648,Su,I am looking at the documentation for Random (<https://package.elm-lang.org/packages/elm/random/latest/Random>); and see that the signature for `generate` is `generate : (a -&gt; msg) -&gt; Generator a -&gt; Cmd msg`; is there a name for the (a -&gt; msg) part? Asking because I want to pass my random function a `(a -&gt; msg)`,0
+19_elmlangG_2019,1546468050,Earleen,Hello all! Any suggestion on naming messages? (I'm mostly having issues naming msgs for HTTP command),1
+20_elmlangG_2019,1546481898,Hien,"Greetings, all. I’m having issues with `elm/time`. I’m trying to use `Time.Month` like so:; ```
+import Time exposing (Month)
+
+daysInMonth : Month -&gt; List Int
+daysInMonth month =
+    case month of
+        Jan -&gt;
+            List.range 1 31
+
+        Feb -&gt;
+            List.range 1 28
+
+        Mar -&gt;
+            List.range 1 31
+
+        Apr -&gt;
+            List.range 1 30
+
+        May -&gt;
+            List.range 1 31
+
+        Jun -&gt;
+            List.range 1 30
+
+        Jul -&gt;
+            List.range 1 31
+
+        Aug -&gt;
+            List.range 1 31
+
+        Sep -&gt;
+            List.range 1 30
+
+        Oct -&gt;
+            List.range 1 31
+
+        Nov -&gt;
+            List.range 1 30
+
+        Dec -&gt;
+            List.range 1 31
+```; I’m getting an error for every month similar to this:; ```I cannot find a `Dec` constructor:
+
+117|         Dec -&gt;
+             ^^^
+These names seem close though:
+
+    EQ
+    Err
+    GT
+    LT```; Can someone give me a pointer to what I’m doing wrong?; I thought these types were importable and usable as shown in the docs.; <https://package.elm-lang.org/packages/elm/time/latest/Time>; I know I’m not handling leap years yet. This is my first implementation and I’m trying to populate a dropdown.",0
+22_elmlangG_2019,1546486117,Mozella,"Someone dm me what the argument was about I missed it; also, has anyone used any of the available xml parsing modules?; I'm a bit lost on how to decode stuff",1
+23_elmlangG_2019,1546504636,Danika,"```The elm.json for elm-community/list-extra 1.0.0 gotcorrupted somehow.
+
+I removed it from my file cache, so if it was some transient error it should be
+fixed if you try the same thing again. Please report this if it seems like an
+Elm problem though!```
+
+This is not the first time i've got this message when trying to install a package with `elm install`, any ideas?",1
+24_elmlangG_2019,1546530437,Zachary,"(not sure what's the policy on announcements here, but I'll post it anyway)
+
+Using Nix to deploy Elm application: <https://blog.hercules-ci.com/elm/2019/01/03/elm2nix-0.1/>",0
+25_elmlangG_2019,1546532225,Hyacinth,Does anyone have enough experience with the `composable-form` package to know how to make a custom field to just display a paragraph of text?,1
+26_elmlangG_2019,1546544003,Marcus,"I have a `User` record with `firstName` and `lastName`. Both are of type `Maybe String`. What's the best way to say ""if firstName isn't Nothing and lastName isn't Nothing then""?",1
+29_elmlangG_2019,1546589406,Arie,I'm trying out the navbar in rundis/elm-bootstrap. It looks a little weird and fails to collapse. I'm using elm 0.19. Same thing when I try this example <http://elm-bootstrap.info/getting-started> Anyone who tried this?,0
+30_elmlangG_2019,1546614644,Lynne,"Hey folks. I think I know the answer to my question but there is a chance I am missing something. Say I have a list of rose trees where each node contains an object of the same type. I would like to work with this ""forest"" as if it is a rose tree to use zipper etc. This is easily achievable by catering some root item which would be a non-meaningful value of the same type which all trees are using. But that's what I would like to avoid. Is there any way to model it somehow?",0
+31_elmlangG_2019,1546637214,Monte,Is there any way to find out which github repos use a particular elm package?,0
+32_elmlangG_2019,1546647023,Ron,is there a way to list those functions in a List and map over that list call each func and passdown the result to the next func call ?,0
+35_elmlangG_2019,1546654400,Earnest,"Something like this?
+```
+filters : List (a -&gt; Bool) -&gt; List a -&gt; List a
+filters fs =
+    List.filter (\i -&gt; List.all (\filter -&gt; filter i) fs)
+```",0
+39_elmlangG_2019,1546692327,Huong,<https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree-Zipper#fromForest>,0
+40_elmlangG_2019,1546715394,Jae,"```./src/Main.elm
+Error: Compiler process exited with error Compilation failed
+elm.exe: not enough bytes
+CallStack (from HasCallStack):
+  error, called at libraries\binary\src\Data\Binary.hs:212:21 in binary-0.8.5.1:Data.Binary```
+I've gotten this error a few times today when compiling my code.  Does anyone know how to fix this?  My solution for now is to delete elm-stuff and compile again but it's kind of tedious.",0
+42_elmlangG_2019,1546748824,Renay,"Delete the `elm-stuff` folder from your project and you should be good to go; I'm porting a 0.18 app to 0.19.. the app was created using <https://github.com/halfzebra/create-elm-app> having trouble importing .elm files in .js file
+
+more specifically
+```
+import { App } from './App.elm';
+import { Welcome } from ""./Welcome.elm""
+```
+both `App` and `Welcome` are `undefined`.. any hints?; later in the code
+```
+    let welcomeApp = Welcome.Main.init({
+      node: document.getElementById('root'),
+      flags: logoPath
+    });
+.
+.
+.
+    let app = App.Main.init({
+      node: document.getElementById('root')
+    });
+```; getting error
+```
+index.js:38 Uncaught TypeError: Cannot read property 'Main' of undefined
+    at Module../src/index.js (index.js:38)
+```",0
+44_elmlangG_2019,1546765859,Tu,"is anybody up to date on the contenteditable cursor position issue? afaict from a mailing list thread and some recent blog posts that google turned up, it's unsolved (that is, elm doesn't maintain cursor position in contenteditable elements when re-rendering like it does w/inputs)",0
+45_elmlangG_2019,1546767140,Tu,"it's a couple of years old, and all they say is ""yup, doesn't work w/o hacks"": <https://groups.google.com/forum/#!topic/elm-discuss/YKz8rgffoWc>",0
+47_elmlangG_2019,1546825278,Dee,":wave: i'm confused about this error message from the json package:; ```
+-- TYPE MISMATCH -------------------------------------------------- src/Main.elm
+
+The 1st argument to `list` is not what I expect:
+
+142|     Encode.list (List.map encodeRow rows)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+This `map` call produces:
+
+    List Encode.Value
+
+But `list` needs the 1st argument to be:
+
+    a -&gt; Encode.Value
+```; that doesn't seem to be what `list` needs the 1st argument to be, according to <https://package.elm-lang.org/packages/elm-lang/core/1.1.1/Json-Encode#list>; oh i'm looking at the wrong docs; what's the difference between elm-lang/core/Json.Encode and elm/json/Json.Encode?",0
+0_opengl,1498882741,greg__,"I have some ogl code that works on my desktop but not my laptop. How do I debug it?; I can't figure out renderdoc, I can't get any info; frigging thing just crashes; the app itself crashes; qrenderdoc; i can get it to launch n capture but when i start clicking ui after captire it crashes; prdinart?; :/; my program doesnt crash; i do know; i close mine before qrennderdoc crashes; things broken",0
+5_opengl,1498893301,derhass,you say this as if they driver is at fault,0
+6_opengl,1498904761,solidus-fractal,"i'm trying to manually calculate depth given model space coordinates an a perspective projection in opengl however everything is coming out as white for the depth, i'm using this calculation; vec4 projection = projection * view * model * localIntersection; gl_FragDepth = projections.z / projection.w;; hmm, been readin garoudn and I am thouroughly confused :X; well, my funciton is obvously wrong; ((MVP * localcoordinates).z / (MVP * localCoordinates).w) + 1.0 / 2.0 is not accurate depth; it gets me a value between 0 and 1; but its.. always 1; is it possible i'm not even enablign the depth buffer; no i'm wirting the depth value; hmm; seems a lot of people have differeing views on what does and does not work to calculate a fragment depth; i'd like to understand the math; thats wierd, irc client crashed; still struggling with calculating gl_FragDepth manually; the wierd thing is that if i dont modify it at all, and just out put gl_FragDepth; its still all white; oh interesting, maybe my values are correct? how do i debug this further; is there a gdb for shader programs of sorts?; so if i want to write depth manually; do i want to bunch up the values around one; or do i want them linearly distributed; so, i think i've worked through it but..; for a perspective depth texture; do i really want to clump everything around 0.9?; seems odd that it wouldn't be better to use up the wholespectrum",0
+7_opengl,1498922401,baedert,"How would I best implement a fragment shader that takes a variable amount of uniforms? I can't do that of course so I need to restructure things a bit and not use uniforms for the data, but any examples what the alternative would look like?",1
+8_opengl,1498927981,Saphire,"Hi.; Sorry, was looking at the examples.; Okay, uh, so...; <a href=""https://hastebin.com/mejudikico.c"" rel=""nofollow"" target=""_blank"">https://hastebin.com/mejudikico.c</a> - I get a segfault at line 8; That is just a snip of code from my program of course, I got initialization and etc.",0
+12_opengl,1498974781,Stragus,Your projection matrix needs to consider the aspect ratio of your viewport,0
+13_opengl,1498977841,travisgrib,"hi guys, at what point does a fragment shader run? is it when the entire contents of a vbo have been processed by the vertex shader? or is it as and when a single primitive/face has been processed by the vertex shader?",0
+17_opengl,1498982041,njmbb8,"hello; can anyone tell me when a vertex shader would come in handy vs a fragment shader?; i'm going through learnopengl.org, but i'm not uite sure i get it; ok, so shaders do more than color modification?",1
+18_opengl,1498986301,Stragus,"""come in handy""? You need both; There are good URLs in the channel's topic to learn OpenGL; The vertex shader performs operations for every vertex, before rasterization of triangles. The fragment shader performs operations for every fragment of said triangles",0
+20_opengl,1498994161,solidus-fractal,"hmm, i've generated a depth texture, creted a framebuffer, attached the texture to the depth component. I want to release the framebuffer prior to rendering my shader, or release it after so i can render to the screen next, what is the reverse call to glBindFramebuffer",0
+22_opengl,1499011321,notadeveloper,how do you unsue shader; unuse,0
+26_opengl,1499024641,Stragus,"Narrow down the problem... Render colored quads, printf() the glyph bitmap buffer, save the atlas to a file",0
+27_opengl,1499029081,notadeveloper,try rendertext.size(); try rendertext().size(),0
+28_opengl,1499033521,Stragus,"There is nothing wrong with the Data(), Map() and Unmap(); It's just a bit large to review everything, so it would be great if you could narrow down the problem; printf() your atlas texture or save it as an image",0
+29_opengl,1499034301,karalaine,(on intel windows driver),0
+32_opengl,1499053321,ville,just throw in an inverse matrix multiplication there somewhere to undo something,0
+37_opengl,1499076661,Stragus,"glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );; glGetShaderInfoLog(), glGetProgramInfoLog()",0
+46_opengl,1499109721,charlie5,"heh, actually, i wish my video card were not broken, so that i could do some more gl; ugh ... 7:30 am",0
+47_opengl,1499114221,Codex_,"when I bought gaming laptop few years ago, all my frame rate problems disappeared.; sadly all my users are not so lucky; but even my mom has good computer now; is this one of those overheating ones?; where you need to watch carefully against the computer burning your house",0
+51_opengl,1499218381,canurabus,"Does anyone know how I can use glad to be a function loader for all GL versions? That is, I'd like to pick the GL version and profile at run time, but it seems like you need to specify that beforehand when the libs are generated here: <a href=""http://glad.dav1d.de/"" rel=""nofollow"" target=""_blank"">http://glad.dav1d.de/</a>",0
+54_opengl,1499229361,jbracey_00,I'm trouble with VertexArray ignoring the first triangle,0
+55_opengl,1499234881,dcunit3d,"if i write to a texture, do i have to call glGenerateMipmap() again for it to be complete?; i'm trying to use a sampler with linearMipmapNearest set to avoid using mipmaps, but it's not really working",0
+56_opengl,1499241841,hanna,"Is there some sort of well-recognized texture interchange file format that specifies textures and their metadata (sampling mode, border wrapping mode, dimensions, data format, texture format) and so on?; I'm trying to design an API that would allow users of my program to load their own textures, but I'm finding myself running into an antipattern of NIH-ing everything, hard-coding it to only support 32-bit floats, and so on",0
+68_opengl,1499313061,jbracey_00,"hey I'm having trouble with this google query: I'm trying to write a shader that takes the 360 degree panorama and makes the rectangular view; so the 360 video actually looks like this: <a href=""https://drive.google.com/open?id=0B5EYCx-K0cqoZkppUGZlbVFuUFU"" rel=""nofollow"" target=""_blank"">https://drive.google.com/open?id=0B5EYCx-K0cqoZkppUGZlbVFuUFU</a>; So I was trying to write a shader that would allow you to do the look around thingy",0
+71_opengl,1499328241,Stragus,"OpenGL picking is some deprecated thing that was removed from the standard over a decade ago; But anyhow, I guess it should still work in a compatibility context, though I can't help with that",0
+72_opengl,1499332681,zid,"hwo are you getting ""Object ID""s then",0
+77_opengl,1499356021,solidus-fractal,"when rendering to a texture, do you need to tell opengl the dimensions of the texture?; i'm setting up my projection matrix with the right attributes but my shadow map sampling isreally off",0
+83_opengl,1499415901,RobertPlummer,is high precision 32 bit float encoding and decoding possible in opengl?; chrisf: ^,0
+84_opengl,1499421121,Stragus,Encoding and decoding? You can get the float representation as an integer if you want to extract mantissa and stuff,0
+94_opengl,1499445601,reduz,"question: Is it possible to read from a texture array layer in a fbo and write to another at the same time? I'm not having much success :/ (all layers are black); er i mean, read from a layer in a texture array, as texture while writing to another using fbo; i get all layers as black :(",0
+95_opengl,1499455681,Codex_,"I have interesting question; if I have a texture, and I want to apply blur to it hardward accelerated, is there any way to do that without using the whole rendering engine. Basically I wouldn't like to change the state of the rendering pipeline to do such a small operation?",0
+106_opengl,1499520961,snyp,glLineWidth(10.0f) gives me GL_INVALID_VALUE error generated. Operation is not valid from a preview context. &lt;- this error; why?,0
+109_opengl,1499552401,Stragus,How do you expect to blend without drawing?; Blending is for mixing with the content of the destination framebuffer. Shader can mix multiple inputs in any way you want,0
+111_opengl,1499555821,zid,"You can generate text files, if you want; it's up to you what you do with and how you transform the output",0
+114_opengl,1499560081,mefesto,so this is with the intent of storing the results to a png or animated gif?,0
+117_opengl,1499571181,spara,"DarkUranium : so each channel is the displacement in each direction? (could be r for tangent, g for bitangent and b for normal)",0
+118_opengl,1499573281,mertyildiran,Is OpenGL the only way to generate animations in C? Could you suggest me any alternative libraries?,1
+119_opengl,1499578741,Stragus,People constantly underestimate CPUs. You can do some pretty fast stuff on CPUs with _good_ optimized multithreaded code using SSE/AVX,0
+120_opengl,1499584981,chrisf,"i can see a narrow use for markdown in bot output.; for things a human is typing, who cares about formatting.",0
+123_opengl,1499590021,derhass,where's the improvement; I don't even see what the problem would be with pasting links; to github code blocks or to whatever,0
+126_opengl,1499593801,Raco[m],is using bgfx slower than using opengl directly?,1
+130_opengl,1499608021,zid,You didn't give it 6 triangles; try 2; You either want 2 or 6 I never remember; and it fits your error message,0
+131_opengl,1499611981,Jervac,I'm using OpenGL ES 2.0 on android with Java and everything is setup working but my issue is the coordinate system...; how am i supposed to align anything or position things when I have to think in terms of -1 to 1,0
+138_opengl,1499654701,Saphire,"Hmm; Would it be better calculate position of square's corners on CPU or GPU? Assuming that pretty much every element drawn is square and it's 2D; Top right corner and side; Top left, whoops; Hmm; And adding rotations of both player and the squares?; I mean, gah; So the camera should be centered on a specific square/tile/object, and should keep it orientated always without rotation. But instead the world around should rotate. And some objects in the world can also have their own rotation. So, where to calculate it?; So, do most things related to actual rendering on the shader?; I know; Just, wasn't sure how much they can do; *how much is sensible to do in them; So I just supply data into them, like what texture from atlas to use and so on?; I'm using 2D though :P; Owww, I have no idea how to implement rotation; I mean, rotation of camera is okay; Just use trig operations, yeah; But, what to do with things like grids of objects? I mean, in my design I have objects grouped into a grid, and both object have rotation and the grid, /and/ the camera; Mmm, no. 2D space sandbox. And yes, I know that it would take a matrix (which I guess better be calculated on CPU and baked into the batch draw call? 0; Basically",1
+139_opengl,1499663221,BaronNox,ok I'm kinda lost with this one: Doing projectionMatrix * viewMatrix * transformationMatrix * position inside the shader works. But I want to reduce the amount of uniform 'uploads' so I basically want to precompute the model-view-projection matrix on the CPU and then upload the MVP to the shader. But...; ... for some reason i cannot multiply the projection matrix. So atm I do viewMatrix * modelMatrix on the CPU and upload the VM and the projectionMatrix to the shader (which I guess is some improvement),0
+144_opengl,1499687581,ubitux,"if i have a triangle with the 3 coords @ pos=(0,0,0), is it possible with a vertex shader to apply a translation of each individual coordinates? (using typically 3 vec3 uniforms and one time uniform)",0
+147_opengl,1499708281,Codex_,"hmm; I found out why opengl doesn't allow more than 15 uniform variables; their variable precision consistency was not followed, so they rejected the uniforms; adding new uniform gave just black screen; this only happened in webgl build...; adding ""uniform float time;"" was the problem.; vertex shader had time without precision mediump float; but fragment shader had one; so adding float variable failed; but this basically means that I've spent 1.5 years writing shaders that have no ""time"" available.; which is kinda bad if you want frame rates or animations of any kind",0
+150_opengl,1499715181,slime,"well, that function isn't available in any core version of opengl; (since it has an ARB suffix, it's from an extension)",0
+159_opengl,1499730121,mefesto,"I'm trying to read a value from the depth buffer but I'm getting what seems like non-sense. What am I doing wrong? <a href=""https://pastebin.com/pkPVzPZC"" rel=""nofollow"" target=""_blank"">https://pastebin.com/pkPVzPZC</a>; expecting a value in 0-1 range but getting 2 :-\",0
+172_opengl,1499795821,Xeek,maybe you have a habit of unsetting the currently bound texture by binding to 0. I've seen some people do that.; I doubt it results in any issues,0
+174_opengl,1499800081,Saphire,"Um; What happens if I don't delete anything on exit?; Oh, what's the bare minimum to render a triangle?; With shaders",0
+175_opengl,1499800741,Codewar,"at 3.3 I think create a VAO, bind a VAO and glDrawArrays(GL_TRIANGLES, 0, 3) should do it; in the VS you can source the positions out of a constant array",0
+177_opengl,1499805541,Saphire,"And bunch of invalid ops on glMatrixMode, glOrtho, glLoadIdentity...; ...oh, it was removed in favor of shaders, I guess?; Okay, I have a basic shader program, I have a vao, vbo...; And nothing drawn; vertex shader is basically just ""gl_Position = vec4(vPos, 0.0, 1.0);""; Ooookay, I was idiot, I just had to actually set the data for vbo",0
+181_opengl,1499820481,derhass,show. the. code.; I wouldn't be surprised if the error is in the client side,0
+186_opengl,1499835541,ThomasMonroe,"ok so i am using opengl 1.4(yes ik, its an old computer), and i have set up a light system using glLightfv() but idk how to create separate materials for different faces; its a panasonic cf-29 toughbook; about 15 yrs i think; could be less though; heh, ikr; true; i have another computer i am going to try to port the code to...; but its going to be interesting bcs its a windows computer; and this is linux; its not a big program; its mostly going to be the libraries; but i think i can workaround that by using a cross compiler; right; XD; i meant using that on this computer; and then just transfering the files; yeah i also have a better linux computer that i am going to use; how do i get the mouse position in the viewport using glut?",0
+189_opengl,1499858521,Codex_,its harsh competing against other libraries if your hardware sucks...; porting from linux to windows takes like a month or something; depending on how much code you have; mostly stuff like installing libraries and setting up makefiles etc; normal mingw will work pretty much the same way as g++ does on linux,0
+191_opengl,1499884861,Blackhole,"Hello, I am writing to depth texture using gl.DEPTH_COMPONENT but the depth that seems to be getting written is always 1, anyone have any ideas?",0
+193_opengl,1499892901,bookmark,you can't like read from them easily but you can set them up/ create them; i mean you can't like cout them or whatever; not without a lot of stuff i don't even know eheh,0
+195_opengl,1499898181,slime,"wait, why aren't you using native depth testing?",0
+200_opengl,1499924101,DarkUranium,"hm; still can't figure it out (sec, link coming soon(TM)); slide 9: <a href=""http://www-evasion.imag.fr/~Fabrice.Neyret/images/fluids-nuages/waves/Jonathan/articlesCG/NV_OceanCS_Slides.pdf"" rel=""nofollow"" target=""_blank"">http://www-evasion.imag.fr/~Fabrice.Neyret/images/fluids-nuages/waves/Jonathan/articlesCG/NV_OceanCS_Slides.pdf</a>; does anyone have any idea how do they get the normal map out of the 3D (X/Y/Z) displacement map?; \o/; lol; depends what half.; might be a rectangle!; but given the context of OpenGL, probably a triangle, yes :P; if you're just learning GL, you could just leave it to the default (identity) matrix; and draw the squad from (-1,-1,0) to (+1,+1,0); square*",0
