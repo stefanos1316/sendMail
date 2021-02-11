@@ -4,5 +4,3 @@
 frameworks/model/*
 frameworks/env/*
 frameworks/pytorch/data/*
-
-data/WordEmbeddings/*

@@ -12,6 +12,7 @@ This tools is deticated to linux and facilitates the extraction of energy measur
 
 ```bash
 apt-get install python3-venv linux-tools-`uname -r`-generic
+git lfs install
 pip3 install pre-commit freeze
 pre-commit install
 pre-commit migrate-config
