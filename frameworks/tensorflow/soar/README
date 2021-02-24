@@ -1,11 +1,11 @@
 To run SOAR:
 
-If you run from docker execute:
+If you run from docker, first, execute:
 
 1. docker build -t soar .
 2. docker run -it -v (local_path)/findings:/soar/findings --rm soar
 
-Otherwise, if you run from ubuntu 16.4 execute:
+Then, execute the following commands. If you run from ubuntu 16.4 execute, directly (i.e., we do not need the two previous commands):
 
 1. mkdir soar (if it does not exist)
 2. cd soar
