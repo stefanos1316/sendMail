@@ -70,7 +70,7 @@ help_info()
 configureSendMail()
 {
   # Check if it is already condifured
-  if [ $(grep ) ]
+  echo "Under construction"
 }
 
 sendMail()

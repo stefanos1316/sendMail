@@ -1,0 +1,7 @@
+---
+repos:
+  - repo: http://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.4
+    hooks:
+      - id: shellcheck
+        additional_dependencies: []      
