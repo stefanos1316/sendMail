@@ -4,50 +4,64 @@
 help_info()
 {
   # Printing the manual page
-  if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$#" -eq 0 ]; then
-    echo 
-    echo "${bold}NAME${default}"
-    echo "	sendMail"
-    echo
-    echo "${bold}SYNOPSIS${default}"
-    echo "	${bold}sendMail${default} [${underline}OPTION${default}]..."
-    echo
-    echo "${bold}DESCRIPTION${default}"
-    echo "	Sends an email though the command-line for gmail. Rememver to first setup this service and then allow less secure apps from your gmail account."
-    echo
-    echo "	${bold}-t${default} ${underline}receiver's address${default}, ${bold}--to${default} ${underline}receive's address${default}"
-    echo
-    echo "		provide the email address of the receiver"
-    echo
-    echo "	${bold}-s${default} ${underline}title of mail${default}, ${bold}--subject${default} ${underline}title of mail${default}"
-    echo
-    echo "		provide the title/subject of the mail"
-    echo
-    echo "	${bold}-m${default} ${underline}mail's body${default}, ${bold}--message${default} ${underline}mail's body${default}"
-    echo
-    echo "		provide the body of the mail"
-    echo
-    echo "	${bold}-f${default} ${underline}file path with mail's body${default}, ${bold}--file${default} ${underline}file path with mail's body${default}"
-    echo
-    echo "		provide a file path with the mail's body"
-    echo 
-    echo "	${bold}-h, --help${default}"
-    echo
-    echo "		display this help list and exit"
-    echo
-    echo "${bold}AUTHOR${default}"
-    echo "	Written by Stefanos I. Georgiou"
-    echo 
-    echo "${bold}REPORTING BUGS${default}"
-    echo "	Report sendMail translation bugs to <https://github.com/stefanos1316/sendMail/issues>"
-    echo
-    echo "${bold}COPYRIGHT${default}"
-    echo "	Copyright © 2021 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>."
-    echo "	This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law."
-    echo
-    echo -e "\e[38;5;208mThank you for using our product 🙏${default}"
-    exit
-  fi
+  echo 
+  echo "${bold}NAME${default}"
+  echo "	sendMail"
+  echo
+  echo "${bold}SYNOPSIS${default}"
+  echo "	${bold}sendMail${default} [${underline}OPTION${default}]..."
+  echo
+  echo "${bold}DESCRIPTION${default}"
+  echo "	Sends an email though the command-line for gmail. Rememver to first setup this service and then allow less secure apps from your gmail account."
+  echo
+  echo "	${bold}-a${default} ${underline}email's username${default}, ${bold}--account${default} ${underline}email's username${default}"
+  echo
+  echo "    provide the email address from which you will send your mails"
+  echo
+  echo "	${bold}-c, --configure${default}"
+  echo
+  echo "    when this flag is invoked, you have to provide your account (-a or --account) and password (-p or --password) command-line arguments to complete the setup"
+  echo
+  echo "	${bold}-f${default} ${underline}file path with mail's body${default}, ${bold}--file${default} ${underline}file path with mail's body${default}"
+  echo
+  echo "		provide a file path with the mail's body"
+  echo
+  echo "	${bold}-h, --help${default}"
+  echo
+  echo "		display this help list and exit"
+  echo
+  echo "	${bold}-m${default} ${underline}mail's body${default}, ${bold}--message${default} ${underline}mail's body${default}"
+  echo
+  echo "		provide the body of the mail"
+  echo
+  echo "	${bold}-p${default} ${underline}password of email account${default}, ${bold}--password${default} ${underline}password of email account${default}"
+  echo
+  echo "		provide the body of the mail"
+  echo
+  echo "	${bold}-r, --reconfigure${default}"
+  echo
+  echo "		reconfigure account settings, account and password command-line arguments are required"
+  echo
+  echo "	${bold}-s${default} ${underline}title of mail${default}, ${bold}--subject${default} ${underline}title of mail${default}"
+  echo
+  echo "		provide the title/subject of the mail"
+  echo
+  echo "	${bold}-t${default} ${underline}receiver's address${default}, ${bold}--to${default} ${underline}receive's address${default}"
+  echo
+  echo "		provide the email address of the receiver"
+  echo
+  echo "${bold}AUTHOR${default}"
+  echo "	Written by Stefanos I. Georgiou"
+  echo 
+  echo "${bold}REPORTING BUGS${default}"
+  echo "	Report sendMail translation bugs to <https://github.com/stefanos1316/sendMail/issues>"
+  echo
+  echo "${bold}COPYRIGHT${default}"
+  echo "	Copyright © 2021 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>."
+  echo "	This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law."
+  echo
+  echo -e "\e[38;5;208mThank you for using our product 🙏${default}"
+  exit
 }
 
 # Set up mail account configurations
@@ -70,28 +84,19 @@ sendMail()
 }
 
 # If there is no : after a letter it means the specific letter has no argument, if it has :: it means the particular has optional, and a : has required argument.
-OPTIONS=$(getopt -o t:s:m:f: --long to:,subject:,message:,file: -n 'sendMail' -- "$@")
+OPTIONS=$(getopt -o a:cf:hm:p:rs:t: --long account:,configure,file:,help,message:,password:,reconfigure,subject:,to: -n 'sendMail' -- "$@")
 eval set -- "$OPTIONS"
 while true; do
-  case "$1" in 
-    -d|--directory) DIRECTORY=true;
-      case "$2" in 
-	*/*) DIRECTORY_PATH="$2"; shift 2;;
-	*) >&2 echo "[Error] Directory path was not provided."; shift 2;;
-      esac;;
-    -l|--link) LINK=true;
-      case "$2" in 
-        https* | http* | www*) LINK_ADDRESS="$2"; shift 2;;
-	*) >&2 echo "[Error] ULR address was not provided"; shift 2;;
-      esac ;;
-    -t|--to) RECEIVER="$2"; shift;;
-    -s|--subject) SUBJECT="$2"; shift;;
-    -m|--message) MESSAGE="$2"; shift;;
-    -f|--file) FILE="$2"; shift;;
-    -c|--configure) CONFIGURE=true; shift;;
+  case "$1" in
     -a|--account) ACCOUNT="$2"; shift;;
+    -c|--configure) CONFIGURE=true; shift;;
+    -f|--file) FILE="$2"; shift;;
+    -h|--help) help_info; shift;;
     -p|--password) PASSWORD="$2"; shift;;
-    -r|--re-configure) RE-CONFIGURE=true; shift 2;;
+    -r|--reconfigure) RE-CONFIGURE=true; shift 2;;
+    -m|--message) MESSAGE="$2"; shift;;
+    -s|--subject) SUBJECT="$2"; shift;;
+    -t|--to) RECEIVER="$2"; shift;;
     --) shift; break;;
     *) >&2 echo "Wrong command line argument, please try again."; exit 1;;
   esac
