@@ -109,8 +109,8 @@ reConfigureSendMail()
 # Check if configurs are already there
 checkIfAlreadyConfigured()
 {
-  if [ -f ~/.userinfo_sendMail ]; then
-      rm ~/.userinfo_sendMail || log "${yellowlabel}[INFO]${default} Not found"
+  if [ -f ~/.sendMail/userinfo ]; then
+      rm ~/.sendMail/userinfo || log "${yellowlabel}[INFO]${default} Not found"
     fi
 
   return 0
@@ -126,12 +126,17 @@ sendEmail()
     --mail-from "$1" \
     --mail-rcpt "$3" \
     --user "$1:$2" \
-    -T ~/.mail_sendMail; then
+    -T ~/.sendMail/message; then
     return 1
   fi
 
   return 0
 }
+
+# Create a hidden directory
+if [ ! -d ~/.sendMail ]; then
+  mkdir ~/.sendMail
+fi
 
 # If there is no : after a letter it means the specific letter has no argument, if it has :: it means the particular has optional, and a : has required argument.
 OPTIONS=$(getopt -o a:cf:hm:p:rs:t:x --long account:,configure,file:,help,message:,password:,reconfigure,subject:,to:,send -n 'sendMail' -- "$@")
@@ -139,8 +144,8 @@ eval set -- "$OPTIONS"
 while true; do
   case "$1" in
     -c|--configure) checkIfAlreadyConfigured; shift;;
-    -a|--account) echo "username:$2" >> ~/.userinfo_sendMail; shift 2;;
-    -p|--password) echo "password:$2" >> ~/.userinfo_sendMail; shift 2;;
+    -a|--account) echo "username:$2" >> ~/.sendMail/userinfo; shift 2;;
+    -p|--password) echo "password:$2" >> ~/.sendMail/userinfo; shift 2;;
     #-f|--file) FILE="$2"; shift;;
     -h|--help) help_info; shift;;
     -m|--message) MESSAGE="$2"; shift 2;;
@@ -155,7 +160,7 @@ done
 if [ "$SEND" ]; then
   
   # Check if user was configured before sending email
-  if [ ! -f ~/.userinfo_sendMail ]; then
+  if [ ! -f ~/.sendMail/userinfol ]; then
     log "${redlabel}[ERROR]${default} Seems like a user was not configured!"
     log "${yellowlabel}[INFO]${default} Please run sendMail with -c file to configure"
     log "${yellowlabel}[INFO]${default} Additionally, you have to provide -a and -p arguments for account name and password, repsectively"
@@ -163,11 +168,11 @@ if [ "$SEND" ]; then
   fi
 
   # Get user's info
-  FROM="$(grep username ~/.userinfo_sendMail | cut -d':' -f2)"
-  PASS="$(grep password ~/.userinfo_sendMail | cut -d':' -f2)"
+  FROM="$(grep username ~/.sendMail/userinfo | cut -d':' -f2)"
+  PASS="$(grep password ~/.sendMail/userinfo | cut -d':' -f2)"
   
   # Generete message file
-  printf "From: %s\nTo: %s\nSubject: %s\n\n%s" "$FROM" "$TO" "$SUBJECT" "$MESSAGE" > ~/.mail_sendMail
+  printf "From: %s\nTo: %s\nSubject: %s\n\n%s" "$FROM" "$TO" "$SUBJECT" "$MESSAGE" > ~/.sendMail/message
   
   # Send mail
   if ! sendEmail "$FROM" "$PASS" "$TO"; then
@@ -179,5 +184,5 @@ if [ "$SEND" ]; then
   log "${greenlabel}[SUCCESS]${default} Mail was delivered to $TO successfully!"
 
   # Remove hidden files
-  rm ~/.mail_sendMail
+  rm ~/.sendMail/message
 fi
