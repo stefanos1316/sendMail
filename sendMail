@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Text fonts for Linux distros
+bold=$(tput bold)
+underline=$(tput smul)
+default=$(tput sgr0)
 
 help_info()
 {
@@ -50,6 +54,10 @@ help_info()
   echo
   echo "		provide the email address of the receiver"
   echo
+  echo "	${bold}-x, --send${default}"
+  echo
+  echo "		this option is needed in order to send mail"
+  echo
   echo "${bold}AUTHOR${default}"
   echo "	Written by Stefanos I. Georgiou"
   echo 
@@ -60,44 +68,80 @@ help_info()
   echo "	Copyright © 2021 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>."
   echo "	This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law."
   echo
-  echo -e "\e[38;5;208mThank you for using our product 🙏${default}"
+  echo "\e[38;5;208mThank you for using this product 🙏${default}"
   exit
+}
+
+# Log with a timestamp
+log()
+{
+  # Output is redirected to the log file if needed at the script's lop level
+  date +'%F %T ' | tr -d \\n 1>&2
+  echo "$@" 1>&2
 }
 
 # Set up mail account configurations
 # $1 stands for the sender's email account
 # $2 stands for the password of the corresponding email account
-configureSendMail()
+reConfigureSendMail()
 {
-  # Check if it is already condifured
-  echo "Under construction"
+  rm ~/.sendMail
+  log "Configurations reset"
+  exit
 }
 
+# Send email
+# $3 the receiver of this email
 sendMail()
 {
   curl --url 'smtps://smtp.gmail.com:465' \
     --ssl-reqd \
-    --mail-from 'ToBeReplacedEmailAddress' \
-    --mail-rcpt 'stefanos1316@gmail.com' \
-    --user 'stefanos1316@gmail.com:ToBeReplacedPassword' \
-     -T <(echo -e 'From: stefanos1316@gmail.com\nTo: stefanos1316@gmail.com\nSubject: Curl Test\n\nHello')
+    --mail-from "$1" \
+    --mail-rcpt "$3" \
+    --user "$1:$2" \
+    -T ~/.mail_sendMail
+}
+
+# If configuration flag is selected, check if account and password where given
+checkConfigurations()
+{
+  #if [ -z $(grep username ~/.userinfo_sendMail) ]; then
+  #fi
+  echo Under constructions
 }
 
 # If there is no : after a letter it means the specific letter has no argument, if it has :: it means the particular has optional, and a : has required argument.
-OPTIONS=$(getopt -o a:cf:hm:p:rs:t: --long account:,configure,file:,help,message:,password:,reconfigure,subject:,to: -n 'sendMail' -- "$@")
+OPTIONS=$(getopt -o a:cf:hm:p:rs:t:x --long account:,configure,file:,help,message:,password:,reconfigure,subject:,to:,send -n 'sendMail' -- "$@")
 eval set -- "$OPTIONS"
 while true; do
   case "$1" in
-    -a|--account) ACCOUNT="$2"; shift;;
-    -c|--configure) CONFIGURE=true; shift;;
-    -f|--file) FILE="$2"; shift;;
+    -a|--account) echo "username:$2" >> ~/.userinfo_sendMail; shift 2;;
+    #-c|--configure) CONFIGURED=true; shift;;
+    #-f|--file) FILE="$2"; shift;;
     -h|--help) help_info; shift;;
-    -p|--password) PASSWORD="$2"; shift;;
-    -r|--reconfigure) RE-CONFIGURE=true; shift 2;;
-    -m|--message) MESSAGE="$2"; shift;;
-    -s|--subject) SUBJECT="$2"; shift;;
-    -t|--to) RECEIVER="$2"; shift;;
+    -m|--message) MESSAGE="$2"; shift 2;;
+    -p|--password) echo "password:$2" >> ~/.userinfo_sendMail; shift 2;;
+    -r|--reconfigure) reConfigureSendMail; shift;;
+    -s|--subject) SUBJECT="$2"; shift 2;;
+    -t|--to) TO="$2"; shift 2;;
+    -x|--send) SEND=true; shift;;
     --) shift; break;;
     *) >&2 echo "Wrong command line argument, please try again."; exit 1;;
   esac
 done
+
+if [ "$SEND" ]; then
+  
+  # Get user's info
+  FROM="$(grep username ~/.userinfo_sendMail | cut -d':' -f2)"
+  PASS="$(grep password ~/.userinfo_sendMail | cut -d':' -f2)"
+  
+  # Generete message file
+  printf "From: %s\nTo: %s\nSubject: %s\n\n%s" "$FROM" "$TO" "$SUBJECT" "$MESSAGE" > ~/.mail_sendMail
+  
+  # Send mail
+  sendMail "$FROM" "$PASS" "$TO"
+
+  # Remove hidden files
+  rm ~/.mail_sendMail
+fi
