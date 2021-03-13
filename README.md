@@ -14,4 +14,9 @@ If the above step is successful, then you can start sending emails:
 
 You can also add the executable `sendMail` file under the `/usr/local/bin` in order to invoke the command from anywhere.
 
-	# sudo mv sendMail /usr/local/bin
+	# sudo cp sendMail /usr/local/bin
+
+# License
+
+Unless otherwise noted, this code is licensed under the Apache 2.0 license,
+as found in the LICENSE file.
