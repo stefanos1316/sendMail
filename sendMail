@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Shell scripts to faciliate mail sending from the terminal
+# A simple Shell script to facilitate the process of sending emails from a terminal
 #
 # Copyright 2021 Stefanos Georgiou
 #
