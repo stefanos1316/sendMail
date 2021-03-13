@@ -62,10 +62,6 @@ help_info()
   echo
   echo "		provide the body of the mail"
   echo
-  echo "	${bold}-r, --reconfigure${default}"
-  echo
-  echo "		reconfigure account settings, account and password command-line arguments are required"
-  echo
   echo "	${bold}-s${default} ${underline}title of mail${default}, ${bold}--subject${default} ${underline}title of mail${default}"
   echo
   echo "		provide the title/subject of the mail"
@@ -110,6 +106,16 @@ reConfigureSendMail()
   exit
 }
 
+# Check if configurs are already there
+checkIfAlreadyConfigured()
+{
+  if [ -f ~/.userinfo_sendMail ]; then
+      rm ~/.userinfo_sendMail || log "${yellowlabel}[INFO]${default} Not found"
+    fi
+
+  return 0
+}
+
 # Send email
 # $3 the receiver of this email
 sendEmail()
@@ -132,13 +138,12 @@ OPTIONS=$(getopt -o a:cf:hm:p:rs:t:x --long account:,configure,file:,help,messag
 eval set -- "$OPTIONS"
 while true; do
   case "$1" in
+    -c|--configure) checkIfAlreadyConfigured; shift;;
     -a|--account) echo "username:$2" >> ~/.userinfo_sendMail; shift 2;;
     -p|--password) echo "password:$2" >> ~/.userinfo_sendMail; shift 2;;
-    #-c|--configure) CONFIGURED=true; shift;;
     #-f|--file) FILE="$2"; shift;;
     -h|--help) help_info; shift;;
     -m|--message) MESSAGE="$2"; shift 2;;
-    -r|--reconfigure) reConfigureSendMail; shift;;
     -s|--subject) SUBJECT="$2"; shift 2;;
     -t|--to) TO="$2"; shift 2;;
     -x|--send) SEND=true; shift;;
