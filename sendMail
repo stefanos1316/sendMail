@@ -46,6 +46,10 @@ help_info()
   echo
   echo "    when this flag is invoked, you have to provide your account (-a or --account) and password (-p or --password) command-line arguments to complete the setup"
   echo
+  echo "	${bold}-d, --delete${default}"
+  echo
+  echo "    the senders emails with be deleted from the .sendMail dir (found under the home directory)"
+  echo
   echo "	${bold}-f${default} ${underline}file path with mail's body${default}, ${bold}--file${default} ${underline}file path with mail's body${default}"
   echo
   echo "		provide a file path with the mail's body"
@@ -126,7 +130,7 @@ sendEmail()
     --mail-from "$1" \
     --mail-rcpt "$3" \
     --user "$1:$2" \
-    -T ~/.sendMail/message; then
+    -T "$4"; then
     return 1
   fi
 
@@ -139,13 +143,14 @@ if [ ! -d ~/.sendMail ]; then
 fi
 
 # If there is no : after a letter it means the specific letter has no argument, if it has :: it means the particular has optional, and a : has required argument.
-OPTIONS=$(getopt -o a:cf:hm:p:rs:t:x --long account:,configure,file:,help,message:,password:,reconfigure,subject:,to:,send -n 'sendMail' -- "$@")
+OPTIONS=$(getopt -o a:cdf:hm:p:rs:t:x --long account:,configure,delete,file:,help,message:,password:,reconfigure,subject:,to:,send -n 'sendMail' -- "$@")
 eval set -- "$OPTIONS"
 while true; do
   case "$1" in
     -c|--configure) checkIfAlreadyConfigured; shift;;
     -a|--account) echo "username:$2" >> ~/.sendMail/userinfo; shift 2;;
     -p|--password) echo "password:$2" >> ~/.sendMail/userinfo; shift 2;;
+    -d|--delete) DELETE=true; shift;;
     #-f|--file) FILE="$2"; shift;;
     -h|--help) help_info; shift;;
     -m|--message) MESSAGE="$2"; shift 2;;
@@ -160,7 +165,7 @@ done
 if [ "$SEND" ]; then
   
   # Check if user was configured before sending email
-  if [ ! -f ~/.sendMail/userinfol ]; then
+  if [ ! -f ~/.sendMail/userinfo ]; then
     log "${redlabel}[ERROR]${default} Seems like a user was not configured!"
     log "${yellowlabel}[INFO]${default} Please run sendMail with -c file to configure"
     log "${yellowlabel}[INFO]${default} Additionally, you have to provide -a and -p arguments for account name and password, repsectively"
@@ -171,11 +176,14 @@ if [ "$SEND" ]; then
   FROM="$(grep username ~/.sendMail/userinfo | cut -d':' -f2)"
   PASS="$(grep password ~/.sendMail/userinfo | cut -d':' -f2)"
   
+  # Generate message file
+  MESSAGE_FILE_PATH=~/.sendMail/"$(date '+%Y-%m-%d_%H-%M-%S')"_message
+  touch "$MESSAGE_FILE_PATH"
   # Generete message file
-  printf "From: %s\nTo: %s\nSubject: %s\n\n%s" "$FROM" "$TO" "$SUBJECT" "$MESSAGE" > ~/.sendMail/message
+  printf "From: %s\nTo: %s\nSubject: %s\n\n%s" "$FROM" "$TO" "$SUBJECT" "$MESSAGE" > "$MESSAGE_FILE_PATH"
   
   # Send mail
-  if ! sendEmail "$FROM" "$PASS" "$TO"; then
+  if ! sendEmail "$FROM" "$PASS" "$TO" "$MESSAGE_FILE_PATH"; then
     log "${redlabel}[ERROR]${default} Something went wrong and the mail was not send"
     log "${yellowlabel}[INFO]${default} Please contact with the authors of this tool"
     exit
@@ -184,5 +192,7 @@ if [ "$SEND" ]; then
   log "${greenlabel}[SUCCESS]${default} Mail was delivered to $TO successfully!"
 
   # Remove hidden files
-  rm ~/.sendMail/message
+  if [ "$DELETE" ]; then
+    rm "$MESSAGE_FILE_PATH"
+  fi
 fi
