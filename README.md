@@ -1,6 +1,10 @@
 # sendMail
 A simple command-line tool that uses cURL since I always mess up the mailx configurations.
 Note that this tools works only for gmail at the moment.
+A nice way of using this tool is to execute long experiments and send a mail when finished.
+For instance:
+
+	$ ./longExperiment && ./sendMail -x -t "recevier's Mail" -s "subejct" -m "message"
 
 # How to use
 

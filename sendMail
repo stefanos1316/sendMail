@@ -186,7 +186,7 @@ if [ "$SEND" ]; then
   if ! sendEmail "$FROM" "$PASS" "$TO" "$MESSAGE_FILE_PATH"; then
     log "${redlabel}[ERROR]${default} Something went wrong and the mail was not send"
     log "${yellowlabel}[INFO]${default} Please contact with the authors of this tool"
-    exit
+    exit 1
   fi
 
   log "${greenlabel}[SUCCESS]${default} Mail was delivered to $TO successfully!"
