@@ -1,0 +1,60 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Update the apt package index
+      become: yes
+      apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: install required modules
+      become: true
+      become_user: root
+      apt:
+        name: ['git', 'linux-tools-`uname -r`', 'apt-transport-https', 'ca-certificates', 'wget', 'software-properties-common', 'gnupg2', 'curl']
+      
+    - name: add apt signing key from official docker repo
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: add docker official repository for Debian Buster
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+        state: present
+
+    - name: Index new repo into the cache
+      become: yes
+      become_user: root
+      apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+        force_apt_get: yes
+  
+    - name: actually install docker
+      become: yes
+      become_user: root
+      apt:
+        name: "docker-ce"
+        state: latest
+
+    - name: clone and install nvidia-docker
+      shell: |
+        https://github.com/NVIDIA/nvidia-docker.git
+        cd nvidia-docker
+        make
+
+    - name: clone repo DeepLearningExamples
+      shell: git clone https://github.com/NVIDIA/DeepLearningExamples.git
+
+    - name: configuring Trasformer-XL task
+      shell: |
+        cd Pytorch/LanguageModeling/Transformer-XL
+        bash getdata.sh
+        bash pytorch/scripts/docker/build.sh
+
