@@ -16,13 +16,22 @@
       become_user: root
       apt:
         name: ['git', 'linux-tools-`uname -r`', 'apt-transport-https', 'ca-certificates', 'wget', 'software-properties-common', 'gnupg2', 'curl']
+
+    - name: enable sudoless invocation for perf
+      become: true
+      become_user: root
+      shell: sh -c echo -1 >/proc/sys/kernel/perf_event_paranoid && sysctl -w kernel.perf_event_paranoid=-1"
       
     - name: add apt signing key from official docker repo
+      become: true
+      become_user: root  
       apt_key:
         url: https://download.docker.com/linux/debian/gpg
         state: present
 
     - name: add docker official repository for Debian Buster
+      become: true
+      become_user: root
       apt_repository:
         repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
         state: present
