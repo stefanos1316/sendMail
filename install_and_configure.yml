@@ -20,7 +20,22 @@
     - name: enable sudoless invocation for perf
       become: true
       become_user: root
-      shell: sh -c echo -1 >/proc/sys/kernel/perf_event_paranoid && sysctl -w kernel.perf_event_paranoid=-1"
+      shell: | 
+        sh -c echo -1 >/proc/sys/kernel/perf_event_paranoid
+        sysctl -w kernel.perf_event_paranoid=-1
+
+    - name: clone sendMail tool
+      tags: only
+      git:
+        repo: https://github.com/stefanos1316/sendMail.git
+        dest: ./
+        version: master
+
+    - name: configure sendMail tool
+      tags: only
+      shell: |
+        cd sendMail
+        ./sendMail -c -a {{ email_address }} -p {{ password }}       
       
     - name: add apt signing key from official docker repo
       become: true
@@ -53,13 +68,24 @@
         state: latest
 
     - name: clone and install nvidia-docker
+      tags: only
+      git:
+        repo: https://github.com/NVIDIA/nvidia-docker.git
+        dest: ./
+        version: master
+    
+    - name: build nvidia-docker
+      tags: only
       shell: |
-        https://github.com/NVIDIA/nvidia-docker.git
         cd nvidia-docker
         make
 
     - name: clone repo DeepLearningExamples
-      shell: git clone https://github.com/NVIDIA/DeepLearningExamples.git
+      tags: only
+      git:
+        repo: https://github.com/NVIDIA/DeepLearningExamples.git
+        dest: ./
+        version: master
 
     # Build and configure Transformer-XL (Pytroch)
     - name: download data-set and build docker image for Pytroch's Transformer-XL
