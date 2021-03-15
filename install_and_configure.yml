@@ -13,47 +13,38 @@
 
     - name: install required modules
       become: true
-      become_user: root
       apt:
-        name: ['git', 'linux-tools-`uname -r`', 'apt-transport-https', 'ca-certificates', 'wget', 'software-properties-common', 'gnupg2', 'curl']
+        name: ['git', 'linux-tools-`uname -r`', 'apt-transport-https', 'ca-certificates', 'wget', 'software-properties-common', 'gnupg2', 'curl', 'make', gcc]
 
     - name: enable sudoless invocation for perf
       become: true
-      become_user: root
-      shell: | 
+      shell: |
         sh -c echo -1 >/proc/sys/kernel/perf_event_paranoid
         sysctl -w kernel.perf_event_paranoid=-1
 
-    - name: clone sendMail tool
+    - name: clone and configure sendMail tool
       tags: only
-      git:
-        repo: https://github.com/stefanos1316/sendMail.git
-        dest: ./
-        version: master
-
-    - name: configure sendMail tool
-      tags: only
+      become: true
+      become_user: "{{ user }}"
       shell: |
+        git clone https://github.com/stefanos1316/sendMail.git
         cd sendMail
-        ./sendMail -c -a {{ email_address }} -p {{ password }}       
+        ./sendMail -c -a {{ email_address }} -p {{ password }}
       
     - name: add apt signing key from official docker repo
-      become: true
-      become_user: root  
+      become: true  
       apt_key:
         url: https://download.docker.com/linux/debian/gpg
         state: present
 
     - name: add docker official repository for Debian Buster
       become: true
-      become_user: root
       apt_repository:
         repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
         state: present
 
     - name: Index new repo into the cache
       become: yes
-      become_user: root
       apt:
         name: "*"
         state: latest
@@ -62,33 +53,28 @@
   
     - name: actually install docker
       become: yes
-      become_user: root
       apt:
         name: "docker-ce"
         state: latest
 
     - name: clone and install nvidia-docker
-      tags: only
-      git:
-        repo: https://github.com/NVIDIA/nvidia-docker.git
-        dest: ./
-        version: master
-    
-    - name: build nvidia-docker
-      tags: only
+      become: true
+      become_user: "{{ user }}"
       shell: |
+        git clone https://github.com/NVIDIA/nvidia-docker.git
         cd nvidia-docker
         make
 
     - name: clone repo DeepLearningExamples
       tags: only
-      git:
-        repo: https://github.com/NVIDIA/DeepLearningExamples.git
-        dest: ./
-        version: master
+      become: true
+      become_user: "{{ user }}"
+      shell: git clone https://github.com/NVIDIA/DeepLearningExamples.git
 
     # Build and configure Transformer-XL (Pytroch)
     - name: download data-set and build docker image for Pytroch's Transformer-XL
+      become: true
+      become_user: "{{ user }}"
       shell: |
         cd Pytorch/LanguageModeling/Transformer-XL
         mkdir data || echo Already exists
@@ -105,6 +91,8 @@
 
     # Build, configure, and generate train data-set corpuse.json for Transformer-XL (Tensorflow)
     - name: download data-set and build docker image for TensorFlow's Transformer-XL
+      become: true
+      become_user: "{{ user }}"
       shell: |
         cd TensorFlow/LanguageModeling/Transformer-XL
         mkdir data || echo Already exists
