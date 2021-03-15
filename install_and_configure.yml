@@ -52,9 +52,35 @@
     - name: clone repo DeepLearningExamples
       shell: git clone https://github.com/NVIDIA/DeepLearningExamples.git
 
-    - name: configuring Trasformer-XL task
+    # Build and configure Transformer-XL (Pytroch)
+    - name: download data-set and build docker image for Pytroch's Transformer-XL
       shell: |
         cd Pytorch/LanguageModeling/Transformer-XL
-        bash getdata.sh
+        mkdir data || echo Already exists
+        cd data
+        wget --continue https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip
+        unzip -q wikitext-103-v1.zip
+        cd wikitext-103
+        mv wiki.train.tokens train.txt
+        mv wiki.valid.tokens valid.txt
+        mv wiki.test.tokens test.txt
+        cd ../..
+        rm data/wikitext-103-v1.zip
         bash pytorch/scripts/docker/build.sh
 
+    # Build, configure, and generate train data-set corpuse.json for Transformer-XL (Tensorflow)
+    - name: download data-set and build docker image for TensorFlow's Transformer-XL
+      shell: |
+        cd TensorFlow/LanguageModeling/Transformer-XL
+        mkdir data || echo Already exists
+        cd data
+        wget --continue https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip
+        unzip -q wikitext-103-v1.zip
+        cd wikitext-103
+        mv wiki.train.tokens train.txt
+        mv wiki.valid.tokens valid.txt
+        mv wiki.test.tokens test.txt
+        cd ../..
+        rm data/wikitext-103-v1.zip
+        bash tf/scripts/docker/build.sh
+        docker run --gpus all --init -it --rm --network=host --ipc=host -v $PWD:/workspace/transformer-xl transformer-xl bash run_wt103_base.sh train_data
