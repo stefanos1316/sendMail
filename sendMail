@@ -72,7 +72,7 @@ help_info()
   echo
   echo "	${bold}-t${default} ${underline}receiver's address${default}, ${bold}--to${default} ${underline}receive's address${default}"
   echo
-  echo "		provide the email address of the receiver"
+  echo "		provide the email address of the receiver, for multiple receivers use commas to separate them"
   echo
   echo "	${bold}-x, --send${default}"
   echo
@@ -124,11 +124,24 @@ checkIfAlreadyConfigured()
 # $3 the receiver of this email
 sendEmail()
 {
+  # Set default receivers
+  receivers=$(echo "$3" | sed 's/\ //g' | sed 's/^/--mail-rcpt\ "/' | sed 's/$/"/g')
+
+  # Check if there are multiple receivers
+  receiversNumber=$(echo "$3" | tr -cd ',' | wc -c)
+  if [ "$receiversNumber" -gt 0 ]; then
+    receivers=$(echo "$3" | sed 's/\ //g' | sed 's/^/--mail-rcpt\ "/' | sed 's/$/"/g' | sed 's/,/"\ --mail-rcpt\ "/g')
+  fi
+  #receivers=$(echo $receivers | tr -d \'\")
+  #echo "$receivers"
+
+  # Intentionally disable word splitting for $receivers argument
+  # shellcheck disable=2086
   if ! curl --url 'smtps://smtp.gmail.com:465' \
     --silent \
     --ssl-reqd \
     --mail-from "$1" \
-    --mail-rcpt "$3" \
+    $receivers \
     --user "$1:$2" \
     -T "$4"; then
     return 1
