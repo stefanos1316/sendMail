@@ -100,9 +100,7 @@ log()
   echo "$@" 1>&2
 }
 
-# Set up mail account configurations
-# $1 stands for the sender's email account
-# $2 stands for the password of the corresponding email account
+# Reconfigure user's email configurations for sendMail
 reConfigureSendMail()
 {
   rm ~/.sendMail
@@ -114,13 +112,15 @@ reConfigureSendMail()
 checkIfAlreadyConfigured()
 {
   if [ -f ~/.sendMail/userinfo ]; then
-      rm ~/.sendMail/userinfo || log "${yellowlabel}[INFO]${default} Not found"
+    rm ~/.sendMail/userinfo || log "${yellowlabel}[INFO]${default} Not found"
   fi
 
   return 0
 }
 
 # Send email
+# $1 is the senders email address
+# $2 is the passwrod of the user's email account
 # $3 the receiver of this email
 sendEmail()
 {
