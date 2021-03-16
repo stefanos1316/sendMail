@@ -14,7 +14,7 @@ As a first step you need to configure you account settings by using the followin
 
 If the above step is successful, then you can start sending emails:
 
-	$ ./sendMail -x -t "receiversMail" -s "emailSubject" -m "emailBody"
+	$ ./sendMail -x -t "receiver_1, receiver_2, receiver_N" -s "emailSubject" -m "emailBody"
 
 You can also add the executable `sendMail` file under the `/usr/local/bin` in order to invoke the command from anywhere.
 
