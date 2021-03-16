@@ -115,7 +115,7 @@ checkIfAlreadyConfigured()
 {
   if [ -f ~/.sendMail/userinfo ]; then
       rm ~/.sendMail/userinfo || log "${yellowlabel}[INFO]${default} Not found"
-    fi
+  fi
 
   return 0
 }
@@ -209,3 +209,5 @@ if [ "$SEND" ]; then
     rm "$MESSAGE_FILE_PATH"
   fi
 fi
+
+exit
