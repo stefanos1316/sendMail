@@ -20,6 +20,8 @@ You can also add the executable `sendMail` file under the `/usr/local/bin` in or
 
 	# sudo cp sendMail /usr/local/bin
 
+In order to encrypt sensitive information like email password use the -e `password for encryption` for both configuring user and sending email.
+
 # License
 
 Unless otherwise noted, this code is licensed under the Apache 2.0 license,
